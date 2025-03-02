@@ -1,0 +1,24 @@
+{
+  "name": "smart-hotel-api",
+  "version": "0.0.0",
+  "description": "A RESTful API built with Express for the Smart Hotel project",
+  "homepage": "https://github.com/alexwauquier/smart-hotel-api#readme",
+  "bugs": {
+    "url": "https://github.com/alexwauquier/smart-hotel-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexwauquier/smart-hotel-api.git"
+  },
+  "license": "UNLICENSED",
+  "author": "Alex Wauquier <alex@alexwauquier.com>",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "private": true
+}
