@@ -5,10 +5,7 @@ const router = express.Router();
 
 router.get('/', productsController.getAllProducts);
 router.get('/:id', productsController.getProduct);
-
-router.post('/', (req, res) => {
-  res.send('Create a product');
-});
+router.post('/', productsController.createProduct);
 
 router.put('/:id', (req, res) => {
   res.send(`Update product ${req.params.id}`);

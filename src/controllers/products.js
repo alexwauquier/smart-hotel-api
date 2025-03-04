@@ -18,4 +18,21 @@ const getProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, getProduct };
+const createProduct = async (req, res) => {
+  try {
+    const { name, description, type_id, unit_price, stock_quantity, limit_quantity } = req.body;
+    const newProduct = await Product.create({
+      name,
+      description,
+      type_id,
+      unit_price,
+      stock_quantity,
+      limit_quantity
+    });
+    res.status(201).json(newProduct);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export { getAllProducts, getProduct, createProduct };
