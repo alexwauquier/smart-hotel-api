@@ -1,4 +1,5 @@
 import express from 'express';
+import * as productsController from '../controllers/products.js';
 
 const router = express.Router();
 
@@ -6,9 +7,7 @@ router.get('/', (req, res) => {
     res.send('Get all products');
 });
 
-router.get('/:id', (req, res) => {
-    res.send(`Get product ${req.params.id}`);
-});
+router.get('/:id', productsController.getProduct);
 
 router.post('/', (req, res) => {
     res.send('Create a product');
