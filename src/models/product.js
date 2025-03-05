@@ -36,4 +36,14 @@ const update = async (id, productData) => {
   return result.rows[0];
 };
 
-export { findAll, findById, create, update };
+const deleteById = async (id) => {
+  const text = `
+    DELETE FROM product
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const result = await pool.query(text, [id]);
+  return result.rows[0];
+};
+
+export { findAll, findById, create, update, deleteById };

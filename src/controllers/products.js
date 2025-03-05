@@ -56,4 +56,15 @@ const updateProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, getProduct, createProduct, updateProduct };
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProduct = await Product.deleteById(id);
+    res.status(200).json(deletedProduct);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export { getAllProducts, getProduct, createProduct, updateProduct, deleteProduct };
