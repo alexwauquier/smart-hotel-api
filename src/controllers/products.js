@@ -35,4 +35,25 @@ const createProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, getProduct, createProduct };
+const updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, type_id, unit_price, stock_quantity, limit_quantity } = req.body;
+
+    const updatedProduct = await Product.update(id, {
+      name,
+      description,
+      type_id,
+      unit_price,
+      stock_quantity,
+      limit_quantity
+    });
+
+    res.status(200).json(updatedProduct);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export { getAllProducts, getProduct, createProduct, updateProduct };

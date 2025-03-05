@@ -18,4 +18,22 @@ const create = async (productData) => {
   return result.rows[0];
 };
 
-export { findAll, findById, create };
+const update = async (id, productData) => {
+  const text = `
+    UPDATE product
+    SET
+      name = COALESCE($1, name),
+      description = COALESCE($2, description),
+      type_id = COALESCE($3, type_id),
+      unit_price = COALESCE($4, unit_price),
+      stock_quantity = COALESCE($5, stock_quantity),
+      limit_quantity = COALESCE($6, limit_quantity)
+    WHERE id = $7
+    RETURNING *;
+  `;
+  const values = [...Object.values(productData), id];
+  const result = await pool.query(text, values);
+  return result.rows[0];
+};
+
+export { findAll, findById, create, update };
