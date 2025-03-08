@@ -1,0 +1,21 @@
+services:
+
+  db:
+    image: postgres
+    restart: on-failure
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: smarthotel
+      POSTGRES_PASSWORD: smarthotel
+      POSTGRES_DB: smart_hotel_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.data:/var/lib/postgresql/data
+      - ./src/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    image: adminer
+    restart: on-failure
+    ports:
+      - 8080:8080
