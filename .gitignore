@@ -137,3 +137,6 @@ dist
 
 # macOS
 .DS_Store
+
+# Local testing
+/.data/
