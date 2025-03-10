@@ -4,6 +4,8 @@
   <h3>Une API RESTful réalisée avec Express pour le projet Smart Hotel</h3>
 
   <h4>
+    <a href="https://github.com/alexwauquier/smart-hotel-api/blob/main/README.md">English README</a>
+    •
     <a href="#aperçu-du-projet">Aperçu du Projet</a>
     •
     <a href="#pour-commencer">Pour Commencer</a>
