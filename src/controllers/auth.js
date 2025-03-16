@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
+import * as argon2 from 'argon2';
 import * as Customer from '../models/customer.js';
+import * as Employee from '../models/employee.js';
 
 const loginCustomer = async (req, res) => {
   try {
@@ -29,4 +31,36 @@ const loginCustomer = async (req, res) => {
   }
 }
 
-export { loginCustomer };
+const loginEmployee = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const employee = await Employee.findByUsername(username);
+
+    if (!employee) {
+      return res.status(401).json({ error: 'Authentication failed' });
+    }
+
+    const isValidPassword = await argon2.verify(employee.password_hash, password);
+
+    if (!isValidPassword) {
+      return res.status(401).json({ error: 'Authentication failed' });
+    }
+
+    const token = jwt.sign(
+      { id: employee.id, role: 'employee', type_id: employee.type_id },
+      process.env.JWT_SECRET,
+      { expiresIn: '2h' }
+    );
+
+    res.json({ token, employee: {
+      id: employee.id,
+      first_name: employee.first_name,
+      last_name: employee.last_name,
+      type_id: employee.type_id
+    } });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export { loginCustomer, loginEmployee };
