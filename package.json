@@ -19,6 +19,7 @@
     "start:dev": "nodemon --env-file=.env.development --env-file-if-exists=.env.development.local src/server.js"
   },
   "dependencies": {
+    "argon2": "^0.41.1",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.13.3"
