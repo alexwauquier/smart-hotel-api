@@ -28,6 +28,7 @@
   - [Running the API Locally](#running-the-api-locally)
   - [Development Database with Docker](#development-database-with-docker)
 - [Available Routes](#available-routes)
+  - [Authentication](#authentication)
   - [Products](#products)
 
 ## Project Overview
@@ -78,6 +79,7 @@ This project includes a default `.env.development` file. You can override this b
 | DB_HOST     | Database host                  | localhost      |
 | DB_PORT     | Database port                  | 5432           |
 | DB_NAME     | Database name                  | smart_hotel_db |
+| JWT_SECRET  | JWT secret key                 | smarthotel     |
 
 ### Running the API Locally
 
@@ -100,6 +102,13 @@ docker compose -f compose.development.yaml up -d
 This will launch a PostgreSQL container with the required configuration for testing the API.
 
 ## Available Routes
+
+### Authentication
+
+| Method | Endpoint                 | Description                                       |
+| ------ | ------------------------ | ------------------------------------------------- |
+| POST   | /api/auth/login/customer | Authenticates a customer and returns a JWT token  |
+| POST   | /api/auth/login/employee | Authenticates an employee and returns a JWT token |
 
 ### Products
 

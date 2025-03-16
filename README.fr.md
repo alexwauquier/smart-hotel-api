@@ -28,6 +28,7 @@
   - [Exécuter l'API Localement](#exécuter-lapi-localement)
   - [Base de Données de Développement avec Docker](#base-de-données-de-développement-avec-docker)
 - [Routes Disponibles](#routes-disponibles)
+  - [Authentification](#authentification)
   - [Produits](#produits)
 
 ## Aperçu du Projet
@@ -78,6 +79,7 @@ Ce projet inclut un fichier `.env.development` par défaut. Vous pouvez le rempl
 | DB_HOST     | Adresse hôte de la base de données      | localhost          |
 | DB_PORT     | Port de la base de données              | 5432               |
 | DB_NAME     | Nom de la base de données               | smart_hotel_db     |
+| JWT_SECRET  | Clé secrète JWT                         | smarthotel         |
 
 ### Exécuter l'API Localement
 
@@ -100,6 +102,13 @@ docker compose -f compose.development.yaml up -d
 Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l'API.
 
 ## Routes Disponibles
+
+### Authentification
+
+| Method | Endpoint                 | Description                                    |
+| ------ | ------------------------ | ---------------------------------------------- |
+| POST   | /api/auth/login/customer | Authentifie un client et renvoie un jeton JWT  |
+| POST   | /api/auth/login/employee | Authentifie un employé et renvoie un jeton JWT |
 
 ### Produits
 
