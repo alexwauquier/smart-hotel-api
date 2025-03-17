@@ -3,6 +3,11 @@ import * as Customer from '../models/customer.js';
 const getAllCustomers = async (req, res) => {
   try {
     const customers = await Customer.findAll();
+
+    if (!customers) {
+      return res.status(404).json({ error: 'No customers found' })
+    }
+
     res.json(customers);
   } catch (err) {
     res.status(500).json({ error: err.message });
