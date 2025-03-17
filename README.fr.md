@@ -29,6 +29,7 @@
   - [Base de Données de Développement avec Docker](#base-de-données-de-développement-avec-docker)
 - [Routes Disponibles](#routes-disponibles)
   - [Authentification](#authentification)
+  - [Clients](#clients)
   - [Produits](#produits)
 
 ## Aperçu du Projet
@@ -109,6 +110,16 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | ------ | ------------------------ | ---------------------------------------------- |
 | POST   | /api/auth/login/customer | Authentifie un client et renvoie un jeton JWT  |
 | POST   | /api/auth/login/employee | Authentifie un employé et renvoie un jeton JWT |
+
+### Clients
+
+| Méthode | URI                | Description                        |
+| ------- | ------------------ | ---------------------------------- |
+| GET     | /api/customers     | Récupérer tous les clients         |
+| GET     | /api/customers/:id | Récupérer un client par son ID     |
+| POST    | /api/customers     | Créer un nouveau client            |
+| PUT     | /api/customers/:id | Mettre à jour un client par son ID |
+| DELETE  | /api/customers/:id | Supprimer un client par son ID     |
 
 ### Produits
 

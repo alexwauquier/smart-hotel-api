@@ -29,6 +29,7 @@
   - [Development Database with Docker](#development-database-with-docker)
 - [Available Routes](#available-routes)
   - [Authentication](#authentication)
+  - [Customers](#customers)
   - [Products](#products)
 
 ## Project Overview
@@ -109,6 +110,16 @@ This will launch a PostgreSQL container with the required configuration for test
 | ------ | ------------------------ | ------------------------------------------------- |
 | POST   | /api/auth/login/customer | Authenticates a customer and returns a JWT token  |
 | POST   | /api/auth/login/employee | Authenticates an employee and returns a JWT token |
+
+### Customers
+
+| Method | Endpoint           | Description                       |
+| ------ | ------------------ | --------------------------------- |
+| GET    | /api/customers     | Retrieve all customers            |
+| GET    | /api/customers/:id | Retrieve a single customer by ID  |
+| POST   | /api/customers     | Create a new customer             |
+| PUT    | /api/customers/:id | Update an existing customer by ID |
+| DELETE | /api/customers/:id | Delete a customer by ID           |
 
 ### Products
 
