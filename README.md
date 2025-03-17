@@ -113,20 +113,20 @@ This will launch a PostgreSQL container with the required configuration for test
 
 ### Customers
 
-| Method | Endpoint           | Description                       |
-| ------ | ------------------ | --------------------------------- |
-| GET    | /api/customers     | Retrieve all customers            |
-| GET    | /api/customers/:id | Retrieve a single customer by ID  |
-| POST   | /api/customers     | Create a new customer             |
-| PUT    | /api/customers/:id | Update an existing customer by ID |
-| DELETE | /api/customers/:id | Delete a customer by ID           |
+| Method | Endpoint           | Description                        |
+| ------ | ------------------ | ---------------------------------- |
+| GET    | /api/customers     | Returns all customers              |
+| GET    | /api/customers/:id | Returns a single customer by ID    |
+| POST   | /api/customers     | Creates a new customer             |
+| PUT    | /api/customers/:id | Updates an existing customer by ID |
+| DELETE | /api/customers/:id | Deletes a customer by ID           |
 
 ### Products
 
-| Method | Endpoint          | Description                      |
-| ------ | ----------------- | -------------------------------- |
-| GET    | /api/products     | Retrieve all products            |
-| GET    | /api/products/:id | Retrieve a single product by ID  |
-| POST   | /api/products     | Create a new product             |
-| PUT    | /api/products/:id | Update an existing product by ID |
-| DELETE | /api/products/:id | Delete a product by ID           |
+| Method | Endpoint          | Description                       |
+| ------ | ----------------- | --------------------------------- |
+| GET    | /api/products     | Returns all products              |
+| GET    | /api/products/:id | Returns a single product by ID    |
+| POST   | /api/products     | Creates a new product             |
+| PUT    | /api/products/:id | Updates an existing product by ID |
+| DELETE | /api/products/:id | Deletes a product by ID           |

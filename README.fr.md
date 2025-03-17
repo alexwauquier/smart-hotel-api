@@ -106,27 +106,27 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 
 ### Authentification
 
-| Method | Endpoint                 | Description                                    |
-| ------ | ------------------------ | ---------------------------------------------- |
-| POST   | /api/auth/login/customer | Authentifie un client et renvoie un jeton JWT  |
-| POST   | /api/auth/login/employee | Authentifie un employé et renvoie un jeton JWT |
+| Méthode | Endpoint                 | Description                                    |
+| ------- | ------------------------ | ---------------------------------------------- |
+| POST    | /api/auth/login/customer | Authentifie un client et renvoie un jeton JWT  |
+| POST    | /api/auth/login/employee | Authentifie un employé et renvoie un jeton JWT |
 
 ### Clients
 
-| Méthode | URI                | Description                        |
-| ------- | ------------------ | ---------------------------------- |
-| GET     | /api/customers     | Récupérer tous les clients         |
-| GET     | /api/customers/:id | Récupérer un client par son ID     |
-| POST    | /api/customers     | Créer un nouveau client            |
-| PUT     | /api/customers/:id | Mettre à jour un client par son ID |
-| DELETE  | /api/customers/:id | Supprimer un client par son ID     |
+| Méthode | Endpoint           | Description                     |
+| ------- | ------------------ | ------------------------------- |
+| GET     | /api/customers     | Renvoie tous les clients        |
+| GET     | /api/customers/:id | Renvoie un client par son ID    |
+| POST    | /api/customers     | Crée un nouveau client          |
+| PUT     | /api/customers/:id | Met à jour un client par son ID |
+| DELETE  | /api/customers/:id | Supprime un client par son ID   |
 
 ### Produits
 
-| Méthode | URI               | Description                         |
-| ------- | ----------------- | ----------------------------------- |
-| GET     | /api/products     | Récupérer tous les produits         |
-| GET     | /api/products/:id | Récupérer un produit par son ID     |
-| POST    | /api/products     | Créer un nouveau produit            |
-| PUT     | /api/products/:id | Mettre à jour un produit par son ID |
-| DELETE  | /api/products/:id | Supprimer un produit par son ID     |
+| Méthode | Endpoint          | Description                      |
+| ------- | ----------------- | -------------------------------- |
+| GET     | /api/products     | Renvoie tous les produits        |
+| GET     | /api/products/:id | Renvoie un produit par son ID    |
+| POST    | /api/products     | Crée un nouveau produit          |
+| PUT     | /api/products/:id | Met à jour un produit par son ID |
+| DELETE  | /api/products/:id | Supprime un produit par son ID   |
