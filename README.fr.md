@@ -30,6 +30,7 @@
 - [Routes Disponibles](#routes-disponibles)
   - [Authentification](#authentification)
   - [Clients](#clients)
+  - [Employés](#employés)
   - [Produits](#produits)
 
 ## Aperçu du Projet
@@ -120,6 +121,16 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/customers     | Crée un nouveau client          |
 | PUT     | /api/customers/:id | Met à jour un client par son ID |
 | DELETE  | /api/customers/:id | Supprime un client par son ID   |
+
+### Employés
+
+| Méthode | Endpoint           | Description                      |
+| ------- | ------------------ | -------------------------------- |
+| GET     | /api/employees     | Renvoie tous les employés        |
+| GET     | /api/employees/:id | Renvoie un employé par son ID    |
+| POST    | /api/employees     | Crée un nouveau employé          |
+| PUT     | /api/employees/:id | Met à jour un employé par son ID |
+| DELETE  | /api/employees/:id | Supprime un employé par son ID   |
 
 ### Produits
 

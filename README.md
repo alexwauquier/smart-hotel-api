@@ -30,6 +30,7 @@
 - [Available Routes](#available-routes)
   - [Authentication](#authentication)
   - [Customers](#customers)
+  - [Employees](#employees)
   - [Products](#products)
 
 ## Project Overview
@@ -120,6 +121,16 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/customers     | Creates a new customer             |
 | PUT    | /api/customers/:id | Updates an existing customer by ID |
 | DELETE | /api/customers/:id | Deletes a customer by ID           |
+
+### Employees
+
+| Method | Endpoint           | Description                        |
+| ------ | ------------------ | ---------------------------------- |
+| GET    | /api/employees     | Returns all employees              |
+| GET    | /api/employees/:id | Returns a single employee by ID    |
+| POST   | /api/employees     | Creates a new employee             |
+| PUT    | /api/employees/:id | Updates an existing employee by ID |
+| DELETE | /api/employees/:id | Deletes a employee by ID           |
 
 ### Products
 
