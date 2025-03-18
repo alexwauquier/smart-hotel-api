@@ -2,7 +2,7 @@ services:
 
   db:
     image: postgres
-    restart: on-failure
+    restart: unless-stopped
     shm_size: 128mb
     environment:
       POSTGRES_USER: smarthotel
@@ -16,6 +16,6 @@ services:
 
   adminer:
     image: adminer
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - 8080:8080
