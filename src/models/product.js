@@ -11,8 +11,20 @@ const findById = async (id) => {
 };
 
 const create = async (productData) => {
-  const text = `INSERT INTO product (name, description, type_id, unit_price, stock_quantity, limit_quantity) 
-                VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+  const text = `
+    INSERT INTO product (
+      name,
+      description,
+      ingredients,
+      type_id,
+      contains_alcohol,
+      unit_price,
+      stock_quantity,
+      limit_quantity
+    )
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *
+  `;
   const values = Object.values(productData);
   const result = await pool.query(text, values);
   return result.rows[0];
@@ -24,11 +36,13 @@ const update = async (id, productData) => {
     SET
       name = COALESCE($1, name),
       description = COALESCE($2, description),
-      type_id = COALESCE($3, type_id),
-      unit_price = COALESCE($4, unit_price),
-      stock_quantity = COALESCE($5, stock_quantity),
-      limit_quantity = COALESCE($6, limit_quantity)
-    WHERE id = $7
+      ingredients = COALESCE($3, ingredients),
+      type_id = COALESCE($4, type_id),
+      contains_alcohol = COALESCE($5, contains_alcohol),
+      unit_price = COALESCE($6, unit_price),
+      stock_quantity = COALESCE($7, stock_quantity),
+      limit_quantity = COALESCE($8, limit_quantity)
+    WHERE id = $9
     RETURNING *;
   `;
   const values = [...Object.values(productData), id];

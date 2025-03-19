@@ -30,11 +30,13 @@ const getProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { name, description, type_id, unit_price, stock_quantity, limit_quantity } = req.body;
+    const { name, description, ingredients, type_id, contains_alcohol, unit_price, stock_quantity, limit_quantity } = req.body;
     const newProduct = await Product.create({
       name,
       description,
+      ingredients,
       type_id,
+      contains_alcohol,
       unit_price,
       stock_quantity,
       limit_quantity
@@ -48,12 +50,14 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, type_id, unit_price, stock_quantity, limit_quantity } = req.body;
+    const { name, description, ingredients, type_id, contains_alcohol, unit_price, stock_quantity, limit_quantity } = req.body;
 
     const updatedProduct = await Product.update(id, {
       name,
       description,
+      ingredients,
       type_id,
+      contains_alcohol,
       unit_price,
       stock_quantity,
       limit_quantity
