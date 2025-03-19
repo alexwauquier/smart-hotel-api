@@ -28,7 +28,7 @@ const create = async (employeeData) => {
       type_id
     ) 
     VALUES ($1, $2, $3, $4, $5)
-    RETURNING first_name, last_name, username, type_id
+    RETURNING id, first_name, last_name, username, type_id
   `;
   const values = Object.values(employeeData);
   const result = await pool.query(text, values);
@@ -45,7 +45,7 @@ const update = async (id, employeeData) => {
       password_hash = COALESCE($4, password_hash),
       type_id = COALESCE($5, type_id)
     WHERE id = $6
-    RETURNING first_name, last_name, type_id
+    RETURNING id, first_name, last_name, type_id
   `;
   const values = [...Object.values(employeeData), id];
   const result = await pool.query(text, values);
