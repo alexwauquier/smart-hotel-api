@@ -1,13 +1,13 @@
 import pool from '../config/db.js';
 
 const findAll = async () => {
-  const text = 'SELECT first_name, last_name, type_id FROM employee';
+  const text = 'SELECT id, first_name, last_name, username, type_id FROM employee';
   const result = await pool.query(text);
   return result.rows;
 };
 
 const findById = async (id) => {
-  const text = 'SELECT first_name, last_name, type_id FROM employee WHERE id = $1';
+  const text = 'SELECT id, first_name, last_name, username, type_id FROM employee WHERE id = $1';
   const result = await pool.query(text, [id]);
   return result.rows[0];
 };
