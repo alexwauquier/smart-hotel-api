@@ -119,7 +119,7 @@ This will launch a PostgreSQL container with the required configuration for test
 | GET    | /api/customers     | Returns all customers              |
 | GET    | /api/customers/:id | Returns a single customer by ID    |
 | POST   | /api/customers     | Creates a new customer             |
-| PUT    | /api/customers/:id | Updates an existing customer by ID |
+| PATCH  | /api/customers/:id | Updates an existing customer by ID |
 | DELETE | /api/customers/:id | Deletes a customer by ID           |
 
 ### Employees
@@ -129,7 +129,7 @@ This will launch a PostgreSQL container with the required configuration for test
 | GET    | /api/employees     | Returns all employees              |
 | GET    | /api/employees/:id | Returns a single employee by ID    |
 | POST   | /api/employees     | Creates a new employee             |
-| PUT    | /api/employees/:id | Updates an existing employee by ID |
+| PATCH  | /api/employees/:id | Updates an existing employee by ID |
 | DELETE | /api/employees/:id | Deletes a employee by ID           |
 
 ### Products
@@ -139,5 +139,5 @@ This will launch a PostgreSQL container with the required configuration for test
 | GET    | /api/products     | Returns all products              |
 | GET    | /api/products/:id | Returns a single product by ID    |
 | POST   | /api/products     | Creates a new product             |
-| PUT    | /api/products/:id | Updates an existing product by ID |
+| PATCH  | /api/products/:id | Updates an existing product by ID |
 | DELETE | /api/products/:id | Deletes a product by ID           |

@@ -119,7 +119,7 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | GET     | /api/customers     | Renvoie tous les clients        |
 | GET     | /api/customers/:id | Renvoie un client par son ID    |
 | POST    | /api/customers     | Crée un nouveau client          |
-| PUT     | /api/customers/:id | Met à jour un client par son ID |
+| PATCH   | /api/customers/:id | Met à jour un client par son ID |
 | DELETE  | /api/customers/:id | Supprime un client par son ID   |
 
 ### Employés
@@ -129,7 +129,7 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | GET     | /api/employees     | Renvoie tous les employés        |
 | GET     | /api/employees/:id | Renvoie un employé par son ID    |
 | POST    | /api/employees     | Crée un nouveau employé          |
-| PUT     | /api/employees/:id | Met à jour un employé par son ID |
+| PATCH   | /api/employees/:id | Met à jour un employé par son ID |
 | DELETE  | /api/employees/:id | Supprime un employé par son ID   |
 
 ### Produits
@@ -139,5 +139,5 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | GET     | /api/products     | Renvoie tous les produits        |
 | GET     | /api/products/:id | Renvoie un produit par son ID    |
 | POST    | /api/products     | Crée un nouveau produit          |
-| PUT     | /api/products/:id | Met à jour un produit par son ID |
+| PATCH   | /api/products/:id | Met à jour un produit par son ID |
 | DELETE  | /api/products/:id | Supprime un produit par son ID   |
