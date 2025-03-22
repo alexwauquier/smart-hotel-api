@@ -16,7 +16,8 @@ const getAllProducts = async (req, res) => {
 
 const getProduct = async (req, res) => {
   try {
-    const product = await productModel.getProductById(req.params.id);
+    const { productId } = req.params;
+    const product = await productModel.getProductById(productId);
 
     if (!product) {
       return res.status(404).json({ error: 'Product not found' })
@@ -49,10 +50,10 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { productId } = req.params;
     const { name, description, ingredients, type_id, contains_alcohol, unit_price, stock_quantity, limit_quantity } = req.body;
 
-    const updatedProduct = await productModel.updateProduct(id, {
+    const updatedProduct = await productModel.updateProduct(productId, {
       name,
       description,
       ingredients,
@@ -76,8 +77,8 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedProduct = await productModel.deleteProduct(id);
+    const { productId } = req.params;
+    const deletedProduct = await productModel.deleteProduct(productId);
 
     if (!deletedProduct) {
       return res.status(404).json({ error: 'Product not found' })

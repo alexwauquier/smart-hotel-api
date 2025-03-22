@@ -4,9 +4,9 @@ import * as customerController from '../controllers/customer.controller.js';
 const router = express.Router();
 
 router.get('/', customerController.getAllCustomers);
-router.get('/:id', customerController.getCustomer);
+router.get('/:customerId', customerController.getCustomer);
 router.post('/', customerController.createCustomer);
-router.patch('/:id', customerController.updateCustomer);
-router.delete('/:id', customerController.deleteCustomer);
+router.patch('/:customerId', customerController.updateCustomer);
+router.delete('/:customerId', customerController.deleteCustomer);
 
 export default router;

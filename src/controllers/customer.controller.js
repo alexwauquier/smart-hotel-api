@@ -16,7 +16,8 @@ const getAllCustomers = async (req, res) => {
 
 const getCustomer = async (req, res) => {
   try {
-    const customer = await customerModel.getCustomerById(req.params.id);
+    const { customerId } = req.params;
+    const customer = await customerModel.getCustomerById(customerId);
 
     if (!customer) {
       return res.status(404).json({ error: 'Customer not found' })
@@ -48,10 +49,10 @@ const createCustomer = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { customerId } = req.params;
     const { first_name, last_name, arrival_date, departure_date, space_id } = req.body;
 
-    const updatedCustomer = await customerModel.updateCustomer(id, {
+    const updatedCustomer = await customerModel.updateCustomer(customerId, {
       first_name,
       last_name,
       arrival_date,
@@ -72,8 +73,8 @@ const updateCustomer = async (req, res) => {
 
 const deleteCustomer = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedCustomer = await customerModel.deleteCustomer(id);
+    const { customerId } = req.params;
+    const deletedCustomer = await customerModel.deleteCustomer(customerId);
 
     if (!deletedCustomer) {
       return res.status(404).json({ error: 'Customer not found' })

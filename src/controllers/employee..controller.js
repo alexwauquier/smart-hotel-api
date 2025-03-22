@@ -17,7 +17,8 @@ const getAllEmployees = async (req, res) => {
 
 const getEmployee = async (req, res) => {
   try {
-    const employee = await employeeModel.getEmployeeById(req.params.id);
+    const { employeeId } = req.params;
+    const employee = await employeeModel.getEmployeeById(employeeId);
 
     if (!employee) {
       return res.status(404).json({ error: 'Employee not found' })
@@ -50,11 +51,11 @@ const createEmployee = async (req, res) => {
 
 const updateEmployee = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { employeeId } = req.params;
     const { first_name, last_name, username, password, type_id } = req.body;
     const password_hash = await argon2.hash(password);
 
-    const updatedEmployee = await employeeModel.updateEmployee(id, {
+    const updatedEmployee = await employeeModel.updateEmployee(employeeId, {
       first_name,
       last_name,
       username,
@@ -75,8 +76,8 @@ const updateEmployee = async (req, res) => {
 
 const deleteEmployee = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deletedEmployee = await employeeModel.deleteEmployee(id);
+    const { employeeId } = req.params;
+    const deletedEmployee = await employeeModel.deleteEmployee(employeeId);
 
     if (!deletedEmployee) {
       return res.status(404).json({ error: 'Employee not found' })
