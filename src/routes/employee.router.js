@@ -1,7 +1,10 @@
 import express from 'express';
 import * as employeeController from '../controllers/employee.controller.js';
+import employeeTypeRouter from './employee-type.router.js';
 
 const router = express.Router();
+
+router.use('/types', employeeTypeRouter);
 
 router.get('/', employeeController.getAllEmployees);
 router.get('/:employeeId', employeeController.getEmployee);
