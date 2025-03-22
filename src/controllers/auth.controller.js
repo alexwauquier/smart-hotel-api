@@ -6,7 +6,11 @@ import * as employeeModel from '../models/employee.model.js';
 const loginCustomer = async (req, res) => {
   try {
     const { last_name, space_id } = req.body;
-    const customer = await customerModel.getCustomerByCredentials(last_name, space_id);
+
+    const customer = await customerModel.getCustomerByCredentials(
+      last_name,
+      space_id
+    );
 
     if (!customer) {
       return res.status(401).json({ error: 'Authentication failed' });
@@ -34,13 +38,17 @@ const loginCustomer = async (req, res) => {
 const loginEmployee = async (req, res) => {
   try {
     const { username, password } = req.body;
+
     const employee = await employeeModel.getEmployeeByUsername(username);
 
     if (!employee) {
       return res.status(401).json({ error: 'Authentication failed' });
     }
 
-    const isValidPassword = await argon2.verify(employee.password_hash, password);
+    const isValidPassword = await argon2.verify(
+      employee.password_hash,
+      password
+    );
 
     if (!isValidPassword) {
       return res.status(401).json({ error: 'Authentication failed' });
