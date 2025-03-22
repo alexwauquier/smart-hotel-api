@@ -115,23 +115,23 @@ This will launch a PostgreSQL container with the required configuration for test
 
 ### Customers
 
-| Method | Endpoint           | Description                        |
-| ------ | ------------------ | ---------------------------------- |
-| GET    | /api/customers     | Returns all customers              |
-| GET    | /api/customers/:id | Returns a single customer by ID    |
-| POST   | /api/customers     | Creates a new customer             |
-| PATCH  | /api/customers/:id | Updates an existing customer by ID |
-| DELETE | /api/customers/:id | Deletes a customer by ID           |
+| Method | Endpoint                   | Description                        |
+| ------ | -------------------------- | ---------------------------------- |
+| GET    | /api/customers             | Returns all customers              |
+| GET    | /api/customers/:customerId | Returns a single customer by ID    |
+| POST   | /api/customers             | Creates a new customer             |
+| PATCH  | /api/customers/:customerId | Updates an existing customer by ID |
+| DELETE | /api/customers/:customerId | Deletes a customer by ID           |
 
 ### Employees
 
-| Method | Endpoint           | Description                        |
-| ------ | ------------------ | ---------------------------------- |
-| GET    | /api/employees     | Returns all employees              |
-| GET    | /api/employees/:id | Returns a single employee by ID    |
-| POST   | /api/employees     | Creates a new employee             |
-| PATCH  | /api/employees/:id | Updates an existing employee by ID |
-| DELETE | /api/employees/:id | Deletes a employee by ID           |
+| Method | Endpoint                   | Description                        |
+| ------ | -------------------------- | ---------------------------------- |
+| GET    | /api/employees             | Returns all employees              |
+| GET    | /api/employees/:employeeId | Returns a single employee by ID    |
+| POST   | /api/employees             | Creates a new employee             |
+| PATCH  | /api/employees/:employeeId | Updates an existing employee by ID |
+| DELETE | /api/employees/:employeeId | Deletes an employee by ID          |
 
 ### Employee Types
 
@@ -145,10 +145,10 @@ This will launch a PostgreSQL container with the required configuration for test
 
 ### Products
 
-| Method | Endpoint          | Description                       |
-| ------ | ----------------- | --------------------------------- |
-| GET    | /api/products     | Returns all products              |
-| GET    | /api/products/:id | Returns a single product by ID    |
-| POST   | /api/products     | Creates a new product             |
-| PATCH  | /api/products/:id | Updates an existing product by ID |
-| DELETE | /api/products/:id | Deletes a product by ID           |
+| Method | Endpoint                 | Description                       |
+| ------ | ------------------------ | --------------------------------- |
+| GET    | /api/products            | Returns all products              |
+| GET    | /api/products/:productId | Returns a single product by ID    |
+| POST   | /api/products            | Creates a new product             |
+| PATCH  | /api/products/:productId | Updates an existing product by ID |
+| DELETE | /api/products/:productId | Deletes a product by ID           |

@@ -115,23 +115,23 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 
 ### Clients
 
-| Méthode | Endpoint           | Description                     |
-| ------- | ------------------ | ------------------------------- |
-| GET     | /api/customers     | Renvoie tous les clients        |
-| GET     | /api/customers/:id | Renvoie un client par son ID    |
-| POST    | /api/customers     | Crée un nouveau client          |
-| PATCH   | /api/customers/:id | Met à jour un client par son ID |
-| DELETE  | /api/customers/:id | Supprime un client par son ID   |
+| Méthode | Endpoint                   | Description                     |
+| ------- | -------------------------- | ------------------------------- |
+| GET     | /api/customers             | Renvoie tous les clients        |
+| GET     | /api/customers/:customerId | Renvoie un client par son ID    |
+| POST    | /api/customers             | Crée un nouveau client          |
+| PATCH   | /api/customers/:customerId | Met à jour un client par son ID |
+| DELETE  | /api/customers/:customerId | Supprime un client par son ID   |
 
 ### Employés
 
-| Méthode | Endpoint           | Description                      |
-| ------- | ------------------ | -------------------------------- |
-| GET     | /api/employees     | Renvoie tous les employés        |
-| GET     | /api/employees/:id | Renvoie un employé par son ID    |
-| POST    | /api/employees     | Crée un nouveau employé          |
-| PATCH   | /api/employees/:id | Met à jour un employé par son ID |
-| DELETE  | /api/employees/:id | Supprime un employé par son ID   |
+| Méthode | Endpoint                   | Description                      |
+| ------- | -------------------------- | -------------------------------- |
+| GET     | /api/employees             | Renvoie tous les employés        |
+| GET     | /api/employees/:employeeId | Renvoie un employé par son ID    |
+| POST    | /api/employees             | Crée un nouveau employé          |
+| PATCH   | /api/employees/:employeeId | Met à jour un employé par son ID |
+| DELETE  | /api/employees/:employeeId | Supprime un employé par son ID   |
 
 ### Types d'Employés
 
@@ -145,10 +145,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 
 ### Produits
 
-| Méthode | Endpoint          | Description                      |
-| ------- | ----------------- | -------------------------------- |
-| GET     | /api/products     | Renvoie tous les produits        |
-| GET     | /api/products/:id | Renvoie un produit par son ID    |
-| POST    | /api/products     | Crée un nouveau produit          |
-| PATCH   | /api/products/:id | Met à jour un produit par son ID |
-| DELETE  | /api/products/:id | Supprime un produit par son ID   |
+| Méthode | Endpoint                 | Description                      |
+| ------- | ------------------------ | -------------------------------- |
+| GET     | /api/products            | Renvoie tous les produits        |
+| GET     | /api/products/:productId | Renvoie un produit par son ID    |
+| POST    | /api/products            | Crée un nouveau produit          |
+| PATCH   | /api/products/:productId | Met à jour un produit par son ID |
+| DELETE  | /api/products/:productId | Supprime un produit par son ID   |
