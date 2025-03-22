@@ -11,9 +11,9 @@ const getCustomerByCredentials = async (lastName, spaceId) => {
   return result.rows[0];
 };
 
-const getCustomerById = async (id) => {
+const getCustomerById = async (customerId) => {
   const text = 'SELECT * FROM customer WHERE id = $1';
-  const result = await pool.query(text, [id]);
+  const result = await pool.query(text, [customerId]);
   return result.rows[0];
 };
 
@@ -34,7 +34,7 @@ const createCustomer = async (customerData) => {
   return result.rows[0];
 };
 
-const updateCustomer = async (id, customerData) => {
+const updateCustomer = async (customerId, customerData) => {
   const text = `
     UPDATE customer
     SET
@@ -46,14 +46,14 @@ const updateCustomer = async (id, customerData) => {
     WHERE id = $6
     RETURNING *
   `;
-  const values = [...Object.values(customerData), id];
+  const values = [...Object.values(customerData), customerId];
   const result = await pool.query(text, values);
   return result.rows[0];
 };
 
-const deleteCustomer = async (id) => {
+const deleteCustomer = async (customerId) => {
   const text = 'DELETE FROM customer WHERE id = $1 RETURNING *';
-  const result = await pool.query(text, [id]);
+  const result = await pool.query(text, [customerId]);
   return result.rows[0];
 };
 

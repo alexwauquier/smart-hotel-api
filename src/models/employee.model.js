@@ -9,13 +9,13 @@ const getAllEmployees = async () => {
   return result.rows;
 };
 
-const getEmployeeById = async (id) => {
+const getEmployeeById = async (employeeId) => {
   const text = `
     SELECT id, first_name, last_name, username, type_id
     FROM employee
     WHERE id = $1
   `;
-  const result = await pool.query(text, [id]);
+  const result = await pool.query(text, [employeeId]);
   return result.rows[0];
 };
 
@@ -42,7 +42,7 @@ const createEmployee = async (employeeData) => {
   return result.rows[0];
 };
 
-const updateEmployee = async (id, employeeData) => {
+const updateEmployee = async (employeeId, employeeData) => {
   const text = `
     UPDATE employee
     SET
@@ -54,18 +54,18 @@ const updateEmployee = async (id, employeeData) => {
     WHERE id = $6
     RETURNING id, first_name, last_name, type_id
   `;
-  const values = [...Object.values(employeeData), id];
+  const values = [...Object.values(employeeData), employeeId];
   const result = await pool.query(text, values);
   return result.rows[0];
 };
 
-const deleteEmployee = async (id) => {
+const deleteEmployee = async (employeeId) => {
   const text = `
     DELETE FROM employee
     WHERE id = $1
     RETURNING first_name, last_name, type_id
   `;
-  const result = await pool.query(text, [id]);
+  const result = await pool.query(text, [employeeId]);
   return result.rows[0];
 };
 
