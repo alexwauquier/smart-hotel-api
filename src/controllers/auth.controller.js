@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
 import * as argon2 from 'argon2';
-import * as Customer from '../models/customer.js';
-import * as Employee from '../models/employee.js';
+import * as customerModel from '../models/customer.model.js';
+import * as employeeModel from '../models/employee.model.js';
 
 const loginCustomer = async (req, res) => {
   try {
     const { last_name, space_id } = req.body;
-    const customer = await Customer.findByCredentials(last_name, space_id);
+    const customer = await customerModel.findByCredentials(last_name, space_id);
 
     if (!customer) {
       return res.status(401).json({ error: 'Authentication failed' });
@@ -34,7 +34,7 @@ const loginCustomer = async (req, res) => {
 const loginEmployee = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const employee = await Employee.findByUsername(username);
+    const employee = await employeeModel.findByUsername(username);
 
     if (!employee) {
       return res.status(401).json({ error: 'Authentication failed' });

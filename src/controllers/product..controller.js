@@ -1,8 +1,8 @@
-import * as Product from '../models/product.js';
+import * as productModel from '../models/product.model.js';
 
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.findAll();
+    const products = await productModel.findAll();
 
     if (!products) {
       return res.status(404).json({ error: 'No products found' })
@@ -16,7 +16,7 @@ const getAllProducts = async (req, res) => {
 
 const getProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await productModel.findById(req.params.id);
 
     if (!product) {
       return res.status(404).json({ error: 'Product not found' })
@@ -31,7 +31,7 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const { name, description, ingredients, type_id, contains_alcohol, unit_price, stock_quantity, limit_quantity } = req.body;
-    const newProduct = await Product.create({
+    const newProduct = await productModel.create({
       name,
       description,
       ingredients,
@@ -52,7 +52,7 @@ const updateProduct = async (req, res) => {
     const { id } = req.params;
     const { name, description, ingredients, type_id, contains_alcohol, unit_price, stock_quantity, limit_quantity } = req.body;
 
-    const updatedProduct = await Product.update(id, {
+    const updatedProduct = await productModel.update(id, {
       name,
       description,
       ingredients,
@@ -77,7 +77,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedProduct = await Product.deleteById(id);
+    const deletedProduct = await productModel.deleteById(id);
 
     if (!deletedProduct) {
       return res.status(404).json({ error: 'Product not found' })

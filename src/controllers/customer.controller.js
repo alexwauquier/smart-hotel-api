@@ -1,8 +1,8 @@
-import * as Customer from '../models/customer.js';
+import * as customerModel from '../models/customer.model.js';
 
 const getAllCustomers = async (req, res) => {
   try {
-    const customers = await Customer.findAll();
+    const customers = await customerModel.findAll();
 
     if (!customers) {
       return res.status(404).json({ error: 'No customers found' })
@@ -16,7 +16,7 @@ const getAllCustomers = async (req, res) => {
 
 const getCustomer = async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id);
+    const customer = await customerModel.findById(req.params.id);
 
     if (!customer) {
       return res.status(404).json({ error: 'Customer not found' })
@@ -32,7 +32,7 @@ const createCustomer = async (req, res) => {
   try {
     const { first_name, last_name, arrival_date, departure_date, space_id } = req.body;
 
-    const newCustomer = await Customer.create({
+    const newCustomer = await customerModel.create({
       first_name,
       last_name,
       arrival_date,
@@ -51,7 +51,7 @@ const updateCustomer = async (req, res) => {
     const { id } = req.params;
     const { first_name, last_name, arrival_date, departure_date, space_id } = req.body;
 
-    const updatedCustomer = await Customer.update(id, {
+    const updatedCustomer = await customerModel.update(id, {
       first_name,
       last_name,
       arrival_date,
@@ -73,7 +73,7 @@ const updateCustomer = async (req, res) => {
 const deleteCustomer = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedCustomer = await Customer.deleteById(id);
+    const deletedCustomer = await customerModel.deleteById(id);
 
     if (!deletedCustomer) {
       return res.status(404).json({ error: 'Customer not found' })
