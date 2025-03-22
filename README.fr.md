@@ -50,7 +50,7 @@ L'API Smart Hotel est le backend de l'[application mobile](https://github.com/al
 
 ### Exigences
 
-- [Node.js](https://nodejs.org/) (>= 22.9.0)
+- [Node.js](https://nodejs.org/) (>=22.9.0 pour le développement)
 - [PostgreSQL](https://www.postgresql.org/) (si vous n'utilisez pas Docker)
 - [Docker](https://www.docker.com/) (pour le développement conteneurisé)
 
