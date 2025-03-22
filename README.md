@@ -33,6 +33,7 @@
   - [Employees](#employees)
   - [Employee Types](#employee-types)
   - [Products](#products)
+  - [Product Types](#product-types)
 
 ## Project Overview
 
@@ -152,3 +153,13 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/products            | Creates a new product             |
 | PATCH  | /api/products/:productId | Updates an existing product by ID |
 | DELETE | /api/products/:productId | Deletes a product by ID           |
+
+### Product Types
+
+| Method | Endpoint                    | Description                            |
+| ------ | --------------------------- | -------------------------------------- |
+| GET    | /api/products/types         | Returns all product types              |
+| GET    | /api/products/types/:typeId | Returns a single product type by ID    |
+| POST   | /api/products/types         | Creates a new product type             |
+| PATCH  | /api/products/types/:typeId | Updates an existing product type by ID |
+| DELETE | /api/products/types/:typeId | Deletes a product by ID                |

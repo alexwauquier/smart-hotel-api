@@ -33,6 +33,7 @@
   - [Employés](#employés)
   - [Types d'Employés](#types-demployés)
   - [Produits](#produits)
+  - [Types de Produits](#types-de-produits)
 
 ## Aperçu du Projet
 
@@ -152,3 +153,13 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/products            | Crée un nouveau produit          |
 | PATCH   | /api/products/:productId | Met à jour un produit par son ID |
 | DELETE  | /api/products/:productId | Supprime un produit par son ID   |
+
+### Types de Produits
+
+| Méthode | Endpoint                    | Description                              |
+| ------- | --------------------------- | ---------------------------------------- |
+| GET     | /api/products/types         | Renvoie tous les types de produits       |
+| GET     | /api/products/types/:typeId | Renvoie un type de produit par son ID    |
+| POST    | /api/products/types         | Crée un nouveau type de produit          |
+| PATCH   | /api/products/types/:typeId | Met à jour un type de produit par son ID |
+| DELETE  | /api/products/types/:typeId | Supprime un type de produit par son ID   |
