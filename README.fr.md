@@ -31,6 +31,7 @@
   - [Authentification](#authentification)
   - [Clients](#clients)
   - [Employés](#employés)
+  - [Types d'Employés](#types-demployés)
   - [Produits](#produits)
 
 ## Aperçu du Projet
@@ -131,6 +132,16 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/employees     | Crée un nouveau employé          |
 | PATCH   | /api/employees/:id | Met à jour un employé par son ID |
 | DELETE  | /api/employees/:id | Supprime un employé par son ID   |
+
+### Types d'Employés
+
+| Méthode | Endpoint                     | Description                             |
+| ------- | ---------------------------- | --------------------------------------- |
+| GET     | /api/employees/types         | Renvoie tous les types d'employés       |
+| GET     | /api/employees/types/:typeId | Renvoie un type d'employé par son ID    |
+| POST    | /api/employees/types         | Crée un nouveau type d'employé          |
+| PATCH   | /api/employees/types/:typeId | Met à jour un type d'employé par son ID |
+| DELETE  | /api/employees/types/:typeId | Supprime un type d'employé par son ID   |
 
 ### Produits
 

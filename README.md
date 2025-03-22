@@ -31,6 +31,7 @@
   - [Authentication](#authentication)
   - [Customers](#customers)
   - [Employees](#employees)
+  - [Employee Types](#employee-types)
   - [Products](#products)
 
 ## Project Overview
@@ -131,6 +132,16 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/employees     | Creates a new employee             |
 | PATCH  | /api/employees/:id | Updates an existing employee by ID |
 | DELETE | /api/employees/:id | Deletes a employee by ID           |
+
+### Employee Types
+
+| Method | Endpoint                     | Description                             |
+| ------ | ---------------------------- | --------------------------------------- |
+| GET    | /api/employees/types         | Returns all employee types              |
+| GET    | /api/employees/types/:typeId | Returns a single employee type by ID    |
+| POST   | /api/employees/types         | Creates a new employee type             |
+| PATCH  | /api/employees/types/:typeId | Updates an existing employee type by ID |
+| DELETE | /api/employees/types/:typeId | Deletes an employee by ID               |
 
 ### Products
 
