@@ -1,24 +1,24 @@
 import pool from '../config/db.js';
 
-const findAll = async () => {
+const getAllEmployees = async () => {
   const text = 'SELECT id, first_name, last_name, username, type_id FROM employee';
   const result = await pool.query(text);
   return result.rows;
 };
 
-const findById = async (id) => {
+const getEmployeeById = async (id) => {
   const text = 'SELECT id, first_name, last_name, username, type_id FROM employee WHERE id = $1';
   const result = await pool.query(text, [id]);
   return result.rows[0];
 };
 
-const findByUsername = async (username) => {
+const getEmployeeByUsername = async (username) => {
   const text = 'SELECT * FROM employee WHERE username = $1';
   const result = await pool.query(text, [username]);
   return result.rows[0];
 }
 
-const create = async (employeeData) => {
+const createEmployee = async (employeeData) => {
   const text = `
     INSERT INTO employee (
       first_name,
@@ -35,7 +35,7 @@ const create = async (employeeData) => {
   return result.rows[0];
 };
 
-const update = async (id, employeeData) => {
+const updateEmployee = async (id, employeeData) => {
   const text = `
     UPDATE employee
     SET
@@ -52,7 +52,7 @@ const update = async (id, employeeData) => {
   return result.rows[0];
 };
 
-const deleteById = async (id) => {
+const deleteEmployee = async (id) => {
   const text = `
     DELETE FROM employee
     WHERE id = $1
@@ -62,4 +62,11 @@ const deleteById = async (id) => {
   return result.rows[0];
 };
 
-export { findAll, findById, findByUsername, create, update, deleteById };
+export {
+  getAllEmployees,
+  getEmployeeById,
+  getEmployeeByUsername,
+  createEmployee,
+  updateEmployee,
+  deleteEmployee
+};

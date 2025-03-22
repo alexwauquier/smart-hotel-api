@@ -3,7 +3,7 @@ import * as employeeModel from '../models/employee.model.js';
 
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await employeeModel.findAll();
+    const employees = await employeeModel.getAllEmployees();
 
     if (!employees) {
       return res.status(404).json({ error: 'No employees found' })
@@ -17,7 +17,7 @@ const getAllEmployees = async (req, res) => {
 
 const getEmployee = async (req, res) => {
   try {
-    const employee = await employeeModel.findById(req.params.id);
+    const employee = await employeeModel.getEmployeeById(req.params.id);
 
     if (!employee) {
       return res.status(404).json({ error: 'Employee not found' })
@@ -34,7 +34,7 @@ const createEmployee = async (req, res) => {
     const { first_name, last_name, username, password, type_id } = req.body;
     const password_hash = await argon2.hash(password);
 
-    const newEmployee = await employeeModel.create({
+    const newEmployee = await employeeModel.createEmployee({
       first_name,
       last_name,
       username,
@@ -54,7 +54,7 @@ const updateEmployee = async (req, res) => {
     const { first_name, last_name, username, password, type_id } = req.body;
     const password_hash = await argon2.hash(password);
 
-    const updatedEmployee = await employeeModel.update(id, {
+    const updatedEmployee = await employeeModel.updateEmployee(id, {
       first_name,
       last_name,
       username,
@@ -76,7 +76,7 @@ const updateEmployee = async (req, res) => {
 const deleteEmployee = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedEmployee = await employeeModel.deleteById(id);
+    const deletedEmployee = await employeeModel.deleteEmployee(id);
 
     if (!deletedEmployee) {
       return res.status(404).json({ error: 'Employee not found' })
