@@ -6,7 +6,8 @@ const getAllProducts = async () => {
 };
 
 const getProductById = async (id) => {
-  const result = await pool.query('SELECT * FROM product WHERE id = $1', [id]);
+  const text = 'SELECT * FROM product WHERE id = $1';
+  const result = await pool.query(text, [id]);
   return result.rows[0];
 };
 
@@ -43,7 +44,7 @@ const updateProduct = async (id, productData) => {
       stock_quantity = COALESCE($7, stock_quantity),
       limit_quantity = COALESCE($8, limit_quantity)
     WHERE id = $9
-    RETURNING *;
+    RETURNING *
   `;
   const values = [...Object.values(productData), id];
   const result = await pool.query(text, values);
@@ -51,11 +52,7 @@ const updateProduct = async (id, productData) => {
 };
 
 const deleteProduct = async (id) => {
-  const text = `
-    DELETE FROM product
-    WHERE id = $1
-    RETURNING *;
-  `;
+  const text = 'DELETE FROM product WHERE id = $1 RETURNING *';
   const result = await pool.query(text, [id]);
   return result.rows[0];
 };

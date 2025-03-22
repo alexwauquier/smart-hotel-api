@@ -1,13 +1,20 @@
 import pool from '../config/db.js';
 
 const getAllEmployees = async () => {
-  const text = 'SELECT id, first_name, last_name, username, type_id FROM employee';
+  const text = `
+    SELECT id, first_name, last_name, username, type_id
+    FROM employee
+  `;
   const result = await pool.query(text);
   return result.rows;
 };
 
 const getEmployeeById = async (id) => {
-  const text = 'SELECT id, first_name, last_name, username, type_id FROM employee WHERE id = $1';
+  const text = `
+    SELECT id, first_name, last_name, username, type_id
+    FROM employee
+    WHERE id = $1
+  `;
   const result = await pool.query(text, [id]);
   return result.rows[0];
 };
@@ -26,7 +33,7 @@ const createEmployee = async (employeeData) => {
       username,
       password_hash,
       type_id
-    ) 
+    )
     VALUES ($1, $2, $3, $4, $5)
     RETURNING id, first_name, last_name, username, type_id
   `;

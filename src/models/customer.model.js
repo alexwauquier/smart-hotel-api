@@ -12,7 +12,8 @@ const getCustomerByCredentials = async (lastName, spaceId) => {
 };
 
 const getCustomerById = async (id) => {
-  const result = await pool.query('SELECT * FROM customer WHERE id = $1', [id]);
+  const text = 'SELECT * FROM customer WHERE id = $1';
+  const result = await pool.query(text, [id]);
   return result.rows[0];
 };
 
