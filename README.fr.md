@@ -131,7 +131,7 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | ------- | -------------------------- | -------------------------------- |
 | GET     | /api/employees             | Renvoie tous les employés        |
 | GET     | /api/employees/:employeeId | Renvoie un employé par son ID    |
-| POST    | /api/employees             | Crée un nouveau employé          |
+| POST    | /api/employees             | Crée un nouvel employé           |
 | PATCH   | /api/employees/:employeeId | Met à jour un employé par son ID |
 | DELETE  | /api/employees/:employeeId | Supprime un employé par son ID   |
 
