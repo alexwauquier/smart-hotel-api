@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import authRouter from './routes/auth.router.js';
 import customerRouter from './routes/customer.router.js';
@@ -7,6 +8,7 @@ import spaceRouter from './routes/space.router.js';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
