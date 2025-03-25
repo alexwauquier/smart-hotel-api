@@ -13,7 +13,7 @@ CREATE TABLE "employee" (
 	"id"                serial NOT NULL UNIQUE,
 	"first_name"        varchar(40) NOT NULL,
 	"last_name"         varchar(40) NOT NULL,
-	"username"          varchar(40) NOT NULL,
+	"username"          varchar(40) NOT NULL UNIQUE,
 	"password_hash"     varchar(255) NOT NULL,
 	"type_id"           char(2) NOT NULL,
 	PRIMARY KEY ("id")
@@ -22,7 +22,7 @@ CREATE TABLE "employee" (
 
 CREATE TABLE "employee_type" (
 	"id"                char(2) NOT NULL UNIQUE,
-	"label"				varchar(30) NOT NULL,
+	"label"             varchar(30) NOT NULL,
 	PRIMARY KEY ("id")
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE "space" (
 	"id"                serial NOT NULL UNIQUE,
 	"name"              varchar(40) NOT NULL,
 	"type_id"           char(2) NOT NULL,
-	"capacity"			int,
+	"capacity"          int,
 	PRIMARY KEY ("id")
 );
 
@@ -45,11 +45,11 @@ CREATE TABLE "space_type" (
 
 CREATE TABLE "order_header" (
 	"id"                serial NOT NULL UNIQUE,
-	"date"              date NOT NULL,
+	"date"              TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	"customer_id"       int NOT NULL,
-	"employee_id"       int NOT NULL,
-	"status_id"         char(2) NOT NULL,
-	"payment_status"    varchar(30) NOT NULL,
+	"employee_id"       int,
+	"status_id"         char(2) NOT NULL DEFAULT 'PE',
+	"is_paid"           boolean NOT NULL DEFAULT false,
 	PRIMARY KEY ("id")
 );
 
@@ -74,10 +74,10 @@ CREATE TABLE "product" (
 	"id"                serial NOT NULL UNIQUE,
 	"name"              varchar(40) NOT NULL,
 	"description"       text,
-	"ingredients"       text NOT NULL,
+	"ingredients"       text,
 	"type_id"           char(2) NOT NULL,
 	"contains_alcohol"  boolean NOT NULL,
-	"unit_price"        decimal(4,2) NOT NULL,
+	"unit_price"        decimal(5,2) NOT NULL,
 	"stock_quantity"    int,
 	"limit_quantity"    int,
 	PRIMARY KEY ("id")
@@ -187,3 +187,5 @@ ALTER TABLE "sensor_measurement"
 	FOREIGN KEY ("sensor_id") REFERENCES "sensor"("id")
 	ON DELETE CASCADE
 	ON UPDATE CASCADE;
+
+ALTER DATABASE smart_hotel_db SET timezone TO 'Europe/Madrid';
