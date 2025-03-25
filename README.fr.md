@@ -35,6 +35,7 @@
   - [Produits](#produits)
   - [Types de Produits](#types-de-produits)
   - [Espaces](#espaces)
+  - [Types d'Espaces](#types-despaces)
 
 ## Aperçu du Projet
 
@@ -174,3 +175,13 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/spaces          | Crée un nouvel espace           |
 | PATCH   | /api/spaces/:spaceId | Met à jour un espace par son ID |
 | DELETE  | /api/spaces/:spaceId | Supprime un espace par son ID   |
+
+### Types d'Espaces
+
+| Méthode | Endpoint                  | Description                            |
+| ------- | ------------------------- | -------------------------------------- |
+| GET     | /api/spaces/types         | Renvoie tous les types d'espaces       |
+| GET     | /api/spaces/types/:typeId | Renvoie un type d'espace par son ID    |
+| POST    | /api/spaces/types         | Crée un nouveau type d'espace          |
+| PATCH   | /api/spaces/types/:typeId | Met à jour un type d'espace par son ID |
+| DELETE  | /api/spaces/types/:typeId | Supprime un type d'espace par son ID   |

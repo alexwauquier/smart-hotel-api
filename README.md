@@ -35,6 +35,7 @@
   - [Products](#products)
   - [Product Types](#product-types)
   - [Spaces](#spaces)
+  - [Space Types](#space-types)
 
 ## Project Overview
 
@@ -174,3 +175,13 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/spaces          | Creates a new space             |
 | PATCH  | /api/spaces/:spaceId | Updates an existing space by ID |
 | DELETE | /api/spaces/:spaceId | Deletes a space by ID           |
+
+### Space Types
+
+| Method | Endpoint                  | Description                          |
+| ------ | ------------------------- | ------------------------------------ |
+| GET    | /api/spaces/types         | Returns all space types              |
+| GET    | /api/spaces/types/:typeId | Returns a single space type by ID    |
+| POST   | /api/spaces/types         | Creates a new space type             |
+| PATCH  | /api/spaces/types/:typeId | Updates an existing space type by ID |
+| DELETE | /api/spaces/types/:typeId | Deletes a space by ID                |
