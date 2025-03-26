@@ -22,7 +22,7 @@ const loginCustomer = async (req, res) => {
       { expiresIn: '2h' }
     );
 
-    res.json({ token, customer: {
+    res.status(200).json({ token, customer: {
       id: customer.id,
       first_name: customer.first_name,
       last_name: customer.last_name,
@@ -60,7 +60,7 @@ const loginEmployee = async (req, res) => {
       { expiresIn: '2h' }
     );
 
-    res.json({ token, employee: {
+    res.status(200).json({ token, employee: {
       id: employee.id,
       first_name: employee.first_name,
       last_name: employee.last_name,

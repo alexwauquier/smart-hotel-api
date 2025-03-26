@@ -8,7 +8,7 @@ const getAllSpaces = async (req, res) => {
       return res.status(404).json({ error: 'No spaces found' });
     }
 
-    res.json(spaces);
+    res.status(200).json(spaces);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -24,7 +24,7 @@ const getSpace = async (req, res) => {
       return res.status(404).json({ error: 'Space not found' });
     }
 
-    res.json(space);
+    res.status(200).json(space);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
