@@ -15,6 +15,24 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+const getOrderDetails = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const orderHeader = await orderHeaderModel.getOrderHeaderById(orderId);
+
+    if (!orderHeader) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
+
+    res.status(200).json({ order_header: orderHeader, order_lines: orderLines });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 const createOrder = async (req, res) => {
   try {
     const { customer_id: customerId, items } = req.body;
@@ -38,4 +56,4 @@ const createOrder = async (req, res) => {
   }
 };
 
-export { getAllOrders, createOrder };
+export { getAllOrders, getOrderDetails, createOrder };
