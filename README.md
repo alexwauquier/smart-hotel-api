@@ -32,6 +32,7 @@
   - [Customers](#customers)
   - [Employees](#employees)
   - [Employee Types](#employee-types)
+  - [Orders](#orders)
   - [Products](#products)
   - [Product Types](#product-types)
   - [Spaces](#spaces)
@@ -145,6 +146,15 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/employees/types         | Creates a new employee type             |
 | PATCH  | /api/employees/types/:typeId | Updates an existing employee type by ID |
 | DELETE | /api/employees/types/:typeId | Deletes an employee by ID               |
+
+### Orders
+
+| Method | Endpoint                    | Description                  |
+| ------ | --------------------------- | ---------------------------- |
+| GET    | /api/orders                 | Returns all orders           |
+| GET    | /api/orders/:orderId        | Returns a single order by ID |
+| POST   | /api/orders                 | Creates a new order          |
+| PATCH  | /api/orders/:orderId/status | Updates order status by ID   |
 
 ### Products
 

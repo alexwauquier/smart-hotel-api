@@ -32,6 +32,7 @@
   - [Clients](#clients)
   - [Employés](#employés)
   - [Types d'Employés](#types-demployés)
+  - [Commandes](#commandes)
   - [Produits](#produits)
   - [Types de Produits](#types-de-produits)
   - [Espaces](#espaces)
@@ -145,6 +146,15 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/employees/types         | Crée un nouveau type d'employé          |
 | PATCH   | /api/employees/types/:typeId | Met à jour un type d'employé par son ID |
 | DELETE  | /api/employees/types/:typeId | Supprime un type d'employé par son ID   |
+
+### Commandes
+
+| Méthode | Endpoint                    | Description                                    |
+| ------- | --------------------------- | ---------------------------------------------- |
+| GET     | /api/orders                 | Renvoie toutes les commandes                   |
+| GET     | /api/orders/:orderId        | Renvoie une commande par son ID                |
+| POST    | /api/orders                 | Crée une nouvelle commande                     |
+| PATCH   | /api/orders/:orderId/status | Met à jour le statut d'une commande par son ID |
 
 ### Produits
 
