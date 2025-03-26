@@ -12,15 +12,29 @@ const getOrderHeaderById = async (orderId) => {
 };
 
 const createOrderHeader = async (customerId) => {
-  const text = 'INSERT INTO order_header (customer_id) VALUES ($1) RETURNING *';
+  const text = `
+    INSERT INTO order_header (customer_id)
+    VALUES ($1)
+    RETURNING *
+  `;
   const result = await pool.query(text, [customerId]);
   return result.rows[0];
 };
 
 const updateOrderStatus = async (orderId, status) => {
-  const text = 'UPDATE order_header SET status_id = $1 WHERE id = $2 RETURNING *';
+  const text = `
+    UPDATE order_header
+    SET status_id = $1
+    WHERE id = $2
+    RETURNING *
+  `;
   const result = await pool.query(text, [status, orderId]);
   return result.rows[0];
 };
 
-export { getAllOrderHeaders, getOrderHeaderById, createOrderHeader, updateOrderStatus };
+export {
+  getAllOrderHeaders,
+  getOrderHeaderById,
+  createOrderHeader,
+  updateOrderStatus
+};
