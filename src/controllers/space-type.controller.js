@@ -4,7 +4,7 @@ const getAllSpaceTypes = async (req, res) => {
   try {
     const spaceTypes = await spaceTypeModel.getAllSpaceTypes();
 
-    if (!spaceTypes) {
+    if (!spaceTypes.length) {
       return res.status(404).json({ error: 'No space types found' });
     }
 

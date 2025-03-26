@@ -4,7 +4,7 @@ const getAllCustomers = async (req, res) => {
   try {
     const customers = await customerModel.getAllCustomers();
 
-    if (!customers) {
+    if (!customers.length) {
       return res.status(404).json({ error: 'No customers found' });
     }
 

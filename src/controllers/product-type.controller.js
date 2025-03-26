@@ -4,7 +4,7 @@ const getAllProductTypes = async (req, res) => {
   try {
     const productTypes = await productTypeModel.getAllProductTypes();
 
-    if (!productTypes) {
+    if (!productTypes.length) {
       return res.status(404).json({ error: 'No product types found' });
     }
 

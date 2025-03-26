@@ -5,7 +5,7 @@ const getAllEmployees = async (req, res) => {
   try {
     const employees = await employeeModel.getAllEmployees();
 
-    if (!employees) {
+    if (!employees.length) {
       return res.status(404).json({ error: 'No employees found' });
     }
 

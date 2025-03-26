@@ -4,7 +4,7 @@ const getAllEmployeeTypes = async (req, res) => {
   try {
     const employeeTypes = await employeeTypeModel.getAllEmployeeTypes();
 
-    if (!employeeTypes) {
+    if (!employeeTypes.length) {
       return res.status(404).json({ error: 'No employee types found' });
     }
 

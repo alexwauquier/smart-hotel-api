@@ -5,7 +5,7 @@ const getAllOrders = async (req, res) => {
   try {
     const orders = await orderHeaderModel.getAllOrderHeaders();
 
-    if (!orders) {
+    if (!orders.length) {
       return res.status(404).json({ error: 'No orders found' });
     }
 

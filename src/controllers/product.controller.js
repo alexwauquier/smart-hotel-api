@@ -4,7 +4,7 @@ const getAllProducts = async (req, res) => {
   try {
     const products = await productModel.getAllProducts();
 
-    if (!products) {
+    if (!products.length) {
       return res.status(404).json({ error: 'No products found' });
     }
 
