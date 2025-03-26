@@ -32,12 +32,12 @@ const getSpace = async (req, res) => {
 
 const createSpace = async (req, res) => {
   try {
-    const { id, name, type_id, capacity } = req.body;
+    const { id, name, type_id: typeId, capacity } = req.body;
 
     const newSpace = await spaceModel.createSpace({
       id,
       name,
-      type_id,
+      typeId,
       capacity
     });
 
@@ -50,12 +50,12 @@ const createSpace = async (req, res) => {
 const updateSpace = async (req, res) => {
   try {
     const { spaceId } = req.params;
-    const { id, name, type_id, capacity } = req.body;
+    const { id, name, type_id: typeId, capacity } = req.body;
 
     const updatedSpace = await spaceModel.updateSpace(spaceId, {
       id,
       name,
-      type_id,
+      typeId,
       capacity
     });
 

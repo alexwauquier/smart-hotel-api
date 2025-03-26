@@ -33,16 +33,22 @@ const getEmployee = async (req, res) => {
 
 const createEmployee = async (req, res) => {
   try {
-    const { first_name, last_name, username, password, type_id } = req.body;
+    const {
+      first_name: firstName,
+      last_name: lastName,
+      username,
+      password,
+      type_id: typeId
+    } = req.body;
 
-    const password_hash = await argon2.hash(password);
+    const passwordHash = await argon2.hash(password);
 
     const newEmployee = await employeeModel.createEmployee({
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       username,
-      password_hash,
-      type_id
+      passwordHash,
+      typeId
     });
 
     res.status(201).json(newEmployee);
@@ -54,16 +60,22 @@ const createEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
   try {
     const { employeeId } = req.params;
-    const { first_name, last_name, username, password, type_id } = req.body;
+    const {
+      first_name: firstName,
+      last_name: lastName,
+      username,
+      password,
+      type_id: typeId
+    } = req.body;
 
-    const password_hash = await argon2.hash(password);
+    const passwordHash = await argon2.hash(password);
 
     const updatedEmployee = await employeeModel.updateEmployee(employeeId, {
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       username,
-      password_hash,
-      type_id
+      passwordHash,
+      typeId
     });
 
     if (!updatedEmployee) {

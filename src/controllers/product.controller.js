@@ -36,22 +36,22 @@ const createProduct = async (req, res) => {
       name,
       description,
       ingredients,
-      type_id,
-      contains_alcohol,
-      unit_price,
-      stock_quantity,
-      limit_quantity
+      type_id: typeId,
+      contains_alcohol: containsAlcohol,
+      unit_price: unitPrice,
+      stock_quantity: stockQuantity,
+      limit_quantity: limitQuantity
     } = req.body;
 
     const newProduct = await productModel.createProduct({
       name,
       description,
       ingredients,
-      type_id,
-      contains_alcohol,
-      unit_price,
-      stock_quantity,
-      limit_quantity
+      typeId,
+      containsAlcohol,
+      unitPrice,
+      stockQuantity,
+      limitQuantity
     });
 
     res.status(201).json(newProduct);
@@ -67,22 +67,22 @@ const updateProduct = async (req, res) => {
       name,
       description,
       ingredients,
-      type_id,
-      contains_alcohol,
-      unit_price,
-      stock_quantity,
-      limit_quantity
+      type_id: typeId,
+      contains_alcohol: containsAlcohol,
+      unit_price: unitPrice,
+      stock_quantity: stockQuantity,
+      limit_quantity: limitQuantity
     } = req.body;
 
     const updatedProduct = await productModel.updateProduct(productId, {
       name,
       description,
       ingredients,
-      type_id,
-      contains_alcohol,
-      unit_price,
-      stock_quantity,
-      limit_quantity
+      typeId,
+      containsAlcohol,
+      unitPrice,
+      stockQuantity,
+      limitQuantity
     });
 
     if (!updatedProduct) {

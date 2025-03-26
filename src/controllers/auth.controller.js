@@ -5,11 +5,11 @@ import * as employeeModel from '../models/employee.model.js';
 
 const loginCustomer = async (req, res) => {
   try {
-    const { last_name, space_id } = req.body;
+    const { last_name: lastName, space_id: spaceId } = req.body;
 
     const customer = await customerModel.getCustomerByCredentials(
-      last_name,
-      space_id
+      lastName,
+      spaceId
     );
 
     if (!customer) {
