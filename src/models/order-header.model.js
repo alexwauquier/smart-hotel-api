@@ -17,4 +17,10 @@ const createOrderHeader = async (customerId) => {
   return result.rows[0];
 };
 
-export { getAllOrderHeaders, getOrderHeaderById, createOrderHeader };
+const updateOrderStatus = async (orderId, status) => {
+  const text = 'UPDATE order_header SET status_id = $1 WHERE id = $2 RETURNING *';
+  const result = await pool.query(text, [status, orderId]);
+  return result.rows[0];
+};
+
+export { getAllOrderHeaders, getOrderHeaderById, createOrderHeader, updateOrderStatus };

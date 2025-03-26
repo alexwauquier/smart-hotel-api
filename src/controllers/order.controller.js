@@ -56,4 +56,23 @@ const createOrder = async (req, res) => {
   }
 };
 
-export { getAllOrders, getOrderDetails, createOrder };
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    const updatedOrder = await orderHeaderModel.updateOrderStatus(
+      orderId, status
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    res.status(200).json(updatedOrder);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export { getAllOrders, getOrderDetails, createOrder, updateOrderStatus };
