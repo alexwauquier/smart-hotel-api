@@ -3,6 +3,7 @@ import express from 'express';
 import authRouter from './routes/auth.router.js';
 import customerRouter from './routes/customer.router.js';
 import employeeRouter from './routes/employee.router.js';
+import orderRouter from './routes/order.router.js';
 import productRouter from './routes/product.router.js';
 import spaceRouter from './routes/space.router.js';
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/customers', customerRouter);
 app.use('/api/employees', employeeRouter);
+app.use('/api/orders', orderRouter);
 app.use('/api/products', productRouter);
 app.use('/api/spaces', spaceRouter);
 
