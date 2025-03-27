@@ -123,87 +123,87 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | Méthode | Endpoint                          | Description                       |
 | ------- | --------------------------------- | --------------------------------- |
 | GET     | /api/customers                    | Renvoie tous les clients          |
-| GET     | /api/customers/:customerId        | Renvoie un client par son ID      |
+| GET     | /api/customers/:customerId        | Renvoie un client                 |
 | GET     | /api/customers/:customerId/orders | Renvoie les commandes d'un client |
 | POST    | /api/customers                    | Crée un nouveau client            |
-| PATCH   | /api/customers/:customerId        | Met à jour un client par son ID   |
-| DELETE  | /api/customers/:customerId        | Supprime un client par son ID     |
+| PATCH   | /api/customers/:customerId        | Met à jour un client              |
+| DELETE  | /api/customers/:customerId        | Supprime un client                |
 
 ### Employés
 
-| Méthode | Endpoint                   | Description                      |
-| ------- | -------------------------- | -------------------------------- |
-| GET     | /api/employees             | Renvoie tous les employés        |
-| GET     | /api/employees/:employeeId | Renvoie un employé par son ID    |
-| POST    | /api/employees             | Crée un nouvel employé           |
-| PATCH   | /api/employees/:employeeId | Met à jour un employé par son ID |
-| DELETE  | /api/employees/:employeeId | Supprime un employé par son ID   |
+| Méthode | Endpoint                   | Description               |
+| ------- | -------------------------- | ------------------------- |
+| GET     | /api/employees             | Renvoie tous les employés |
+| GET     | /api/employees/:employeeId | Renvoie un employé        |
+| POST    | /api/employees             | Crée un nouvel employé    |
+| PATCH   | /api/employees/:employeeId | Met à jour un employé     |
+| DELETE  | /api/employees/:employeeId | Supprime un employé       |
 
 ### Types d'Employés
 
-| Méthode | Endpoint                     | Description                             |
-| ------- | ---------------------------- | --------------------------------------- |
-| GET     | /api/employees/types         | Renvoie tous les types d'employés       |
-| GET     | /api/employees/types/:typeId | Renvoie un type d'employé par son ID    |
-| POST    | /api/employees/types         | Crée un nouveau type d'employé          |
-| PATCH   | /api/employees/types/:typeId | Met à jour un type d'employé par son ID |
-| DELETE  | /api/employees/types/:typeId | Supprime un type d'employé par son ID   |
+| Méthode | Endpoint                     | Description                       |
+| ------- | ---------------------------- | --------------------------------- |
+| GET     | /api/employees/types         | Renvoie tous les types d'employés |
+| GET     | /api/employees/types/:typeId | Renvoie un type d'employé         |
+| POST    | /api/employees/types         | Crée un nouveau type d'employé    |
+| PATCH   | /api/employees/types/:typeId | Met à jour un type d'employé      |
+| DELETE  | /api/employees/types/:typeId | Supprime un type d'employé        |
 
 ### Commandes
 
-| Méthode | Endpoint                    | Description                                    |
-| ------- | --------------------------- | ---------------------------------------------- |
-| GET     | /api/orders                 | Renvoie toutes les commandes                   |
-| GET     | /api/orders/:orderId        | Renvoie une commande par son ID                |
-| POST    | /api/orders                 | Crée une nouvelle commande                     |
-| PATCH   | /api/orders/:orderId/status | Met à jour le statut d'une commande par son ID |
+| Méthode | Endpoint                    | Description                         |
+| ------- | --------------------------- | ----------------------------------- |
+| GET     | /api/orders                 | Renvoie toutes les commandes        |
+| GET     | /api/orders/:orderId        | Renvoie une commande                |
+| POST    | /api/orders                 | Crée une nouvelle commande          |
+| PATCH   | /api/orders/:orderId/status | Met à jour le statut d'une commande |
 
 ### Statuts de commandes
 
-| Méthode | Endpoint                       | Description                                 |
-| ------- | ------------------------------ | ------------------------------------------- |
-| GET     | /api/orders/statuses           | Renvoie tous les statuts de commandes       |
-| GET     | /api/orders/statuses/:statusId | Renvoie un statut de commande par son ID    |
-| POST    | /api/orders/statuses           | Crée un nouveau statut de commande          |
-| PATCH   | /api/orders/statuses/:statusId | Met à jour un statut de commande par son ID |
-| DELETE  | /api/orders/statuses/:statusId | Supprime un statut de commande par son ID   |
+| Méthode | Endpoint                       | Description                           |
+| ------- | ------------------------------ | ------------------------------------- |
+| GET     | /api/orders/statuses           | Renvoie tous les statuts de commandes |
+| GET     | /api/orders/statuses/:statusId | Renvoie un statut de commande         |
+| POST    | /api/orders/statuses           | Crée un nouveau statut de commande    |
+| PATCH   | /api/orders/statuses/:statusId | Met à jour un statut de commande      |
+| DELETE  | /api/orders/statuses/:statusId | Supprime un statut de commande        |
 
 ### Produits
 
-| Méthode | Endpoint                 | Description                      |
-| ------- | ------------------------ | -------------------------------- |
-| GET     | /api/products            | Renvoie tous les produits        |
-| GET     | /api/products/:productId | Renvoie un produit par son ID    |
-| POST    | /api/products            | Crée un nouveau produit          |
-| PATCH   | /api/products/:productId | Met à jour un produit par son ID |
-| DELETE  | /api/products/:productId | Supprime un produit par son ID   |
+| Méthode | Endpoint                 | Description               |
+| ------- | ------------------------ | ------------------------- |
+| GET     | /api/products            | Renvoie tous les produits |
+| GET     | /api/products/:productId | Renvoie un produit        |
+| POST    | /api/products            | Crée un nouveau produit   |
+| PATCH   | /api/products/:productId | Met à jour un produit     |
+| DELETE  | /api/products/:productId | Supprime un produit       |
 
 ### Types de Produits
 
-| Méthode | Endpoint                    | Description                              |
-| ------- | --------------------------- | ---------------------------------------- |
-| GET     | /api/products/types         | Renvoie tous les types de produits       |
-| GET     | /api/products/types/:typeId | Renvoie un type de produit par son ID    |
-| POST    | /api/products/types         | Crée un nouveau type de produit          |
-| PATCH   | /api/products/types/:typeId | Met à jour un type de produit par son ID |
-| DELETE  | /api/products/types/:typeId | Supprime un type de produit par son ID   |
+| Méthode | Endpoint                    | Description                        |
+| ------- | --------------------------- | ---------------------------------- |
+| GET     | /api/products/types         | Renvoie tous les types de produits |
+| GET     | /api/products/types/:typeId | Renvoie un type de produit         |
+| POST    | /api/products/types         | Crée un nouveau type de produit    |
+| PATCH   | /api/products/types/:typeId | Met à jour un type de produit      |
+| DELETE  | /api/products/types/:typeId | Supprime un type de produit        |
 
 ### Espaces
 
-| Méthode | Endpoint             | Description                     |
-| ------- | -------------------- | ------------------------------- |
-| GET     | /api/spaces          | Renvoie tous les espaces        |
-| GET     | /api/spaces/:spaceId | Renvoie un espace par son ID    |
-| POST    | /api/spaces          | Crée un nouvel espace           |
-| PATCH   | /api/spaces/:spaceId | Met à jour un espace par son ID |
-| DELETE  | /api/spaces/:spaceId | Supprime un espace par son ID   |
+| Méthode | Endpoint             | Description              |
+| ------- | -------------------- | ------------------------ |
+| GET     | /api/spaces          | Renvoie tous les espaces |
+| GET     | /api/spaces/:spaceId | Renvoie un espace        |
+| POST    | /api/spaces          | Crée un nouvel espace    |
+| PATCH   | /api/spaces/:spaceId | Met à jour un espace     |
+| DELETE  | /api/spaces/:spaceId | Supprime un espace       |
 
 ### Types d'Espaces
 
-| Méthode | Endpoint                  | Description                            |
-| ------- | ------------------------- | -------------------------------------- |
-| GET     | /api/spaces/types         | Renvoie tous les types d'espaces       |
-| GET     | /api/spaces/types/:typeId | Renvoie un type d'espace par son ID    |
-| POST    | /api/spaces/types         | Crée un nouveau type d'espace          |
-| PATCH   | /api/spaces/types/:typeId | Met à jour un type d'espace par son ID |
-| DELETE  | /api/spaces/types/:typeId | Supprime un type d'espace par son ID   |
+| Méthode | Endpoint                  | Description                      |
+| ------- | ------------------------- | -------------------------------- |
+| GET     | /api/spaces/types         | Renvoie tous les types d'espaces |
+| GET     | /api/spaces/types/:typeId | Renvoie un type d'espace         |
+| POST    | /api/spaces/types         | Crée un nouveau type d'espace    |
+| PATCH   | /api/spaces/types/:typeId | Met à jour un type d'espace      |
+| DELETE  | /api/spaces/types/:typeId | Supprime un type d'espace        |

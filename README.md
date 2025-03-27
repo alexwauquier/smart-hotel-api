@@ -120,90 +120,90 @@ This will launch a PostgreSQL container with the required configuration for test
 
 ### Customers
 
-| Method | Endpoint                          | Description                        |
-| ------ | --------------------------------- | ---------------------------------- |
-| GET    | /api/customers                    | Returns all customers              |
-| GET    | /api/customers/:customerId        | Returns a single customer by ID    |
-| GET    | /api/customers/:customerId/orders | Returns customer orders            |
-| POST   | /api/customers                    | Creates a new customer             |
-| PATCH  | /api/customers/:customerId        | Updates an existing customer by ID |
-| DELETE | /api/customers/:customerId        | Deletes a customer by ID           |
+| Method | Endpoint                          | Description                  |
+| ------ | --------------------------------- | ---------------------------- |
+| GET    | /api/customers                    | Returns all customers        |
+| GET    | /api/customers/:customerId        | Returns a single customer    |
+| GET    | /api/customers/:customerId/orders | Returns customer orders      |
+| POST   | /api/customers                    | Creates a new customer       |
+| PATCH  | /api/customers/:customerId        | Updates an existing customer |
+| DELETE | /api/customers/:customerId        | Deletes a customer           |
 
 ### Employees
 
-| Method | Endpoint                   | Description                        |
-| ------ | -------------------------- | ---------------------------------- |
-| GET    | /api/employees             | Returns all employees              |
-| GET    | /api/employees/:employeeId | Returns a single employee by ID    |
-| POST   | /api/employees             | Creates a new employee             |
-| PATCH  | /api/employees/:employeeId | Updates an existing employee by ID |
-| DELETE | /api/employees/:employeeId | Deletes an employee by ID          |
+| Method | Endpoint                   | Description                  |
+| ------ | -------------------------- | ---------------------------- |
+| GET    | /api/employees             | Returns all employees        |
+| GET    | /api/employees/:employeeId | Returns a single employee    |
+| POST   | /api/employees             | Creates a new employee       |
+| PATCH  | /api/employees/:employeeId | Updates an existing employee |
+| DELETE | /api/employees/:employeeId | Deletes an employee          |
 
 ### Employee Types
 
-| Method | Endpoint                     | Description                             |
-| ------ | ---------------------------- | --------------------------------------- |
-| GET    | /api/employees/types         | Returns all employee types              |
-| GET    | /api/employees/types/:typeId | Returns a single employee type by ID    |
-| POST   | /api/employees/types         | Creates a new employee type             |
-| PATCH  | /api/employees/types/:typeId | Updates an existing employee type by ID |
-| DELETE | /api/employees/types/:typeId | Deletes an employee by ID               |
+| Method | Endpoint                     | Description                       |
+| ------ | ---------------------------- | --------------------------------- |
+| GET    | /api/employees/types         | Returns all employee types        |
+| GET    | /api/employees/types/:typeId | Returns a single employee type    |
+| POST   | /api/employees/types         | Creates a new employee type       |
+| PATCH  | /api/employees/types/:typeId | Updates an existing employee type |
+| DELETE | /api/employees/types/:typeId | Deletes an employee               |
 
 ### Orders
 
-| Method | Endpoint                    | Description                          |
-| ------ | --------------------------- | ------------------------------------ |
-| GET    | /api/orders                 | Returns all orders                   |
-| GET    | /api/orders/:orderId        | Returns a single order by ID         |
-| POST   | /api/orders                 | Creates a new order                  |
-| PATCH  | /api/orders/:orderId/status | Updates the status of an order by ID |
+| Method | Endpoint                    | Description                    |
+| ------ | --------------------------- | ------------------------------ |
+| GET    | /api/orders                 | Returns all orders             |
+| GET    | /api/orders/:orderId        | Returns a single order         |
+| POST   | /api/orders                 | Creates a new order            |
+| PATCH  | /api/orders/:orderId/status | Updates the status of an order |
 
 ### Order statuses
 
-| Method | Endpoint                       | Description                         |
-| ------ | ------------------------------ | ----------------------------------- |
-| GET    | /api/orders/statuses           | Returns all order statuses          |
-| GET    | /api/orders/statuses/:statusId | Returns a single order status by ID |
-| POST   | /api/orders/statuses           | Creates a new order status          |
-| PATCH  | /api/orders/statuses/:statusId | Updates an order status by ID       |
-| DELETE | /api/orders/statuses/:statusId | Deletes an order status by ID       |
+| Method | Endpoint                       | Description                   |
+| ------ | ------------------------------ | ----------------------------- |
+| GET    | /api/orders/statuses           | Returns all order statuses    |
+| GET    | /api/orders/statuses/:statusId | Returns a single order status |
+| POST   | /api/orders/statuses           | Creates a new order status    |
+| PATCH  | /api/orders/statuses/:statusId | Updates an order status       |
+| DELETE | /api/orders/statuses/:statusId | Deletes an order status       |
 
 ### Products
 
-| Method | Endpoint                 | Description                       |
-| ------ | ------------------------ | --------------------------------- |
-| GET    | /api/products            | Returns all products              |
-| GET    | /api/products/:productId | Returns a single product by ID    |
-| POST   | /api/products            | Creates a new product             |
-| PATCH  | /api/products/:productId | Updates an existing product by ID |
-| DELETE | /api/products/:productId | Deletes a product by ID           |
+| Method | Endpoint                 | Description                 |
+| ------ | ------------------------ | --------------------------- |
+| GET    | /api/products            | Returns all products        |
+| GET    | /api/products/:productId | Returns a single product    |
+| POST   | /api/products            | Creates a new product       |
+| PATCH  | /api/products/:productId | Updates an existing product |
+| DELETE | /api/products/:productId | Deletes a product           |
 
 ### Product Types
 
-| Method | Endpoint                    | Description                            |
-| ------ | --------------------------- | -------------------------------------- |
-| GET    | /api/products/types         | Returns all product types              |
-| GET    | /api/products/types/:typeId | Returns a single product type by ID    |
-| POST   | /api/products/types         | Creates a new product type             |
-| PATCH  | /api/products/types/:typeId | Updates an existing product type by ID |
-| DELETE | /api/products/types/:typeId | Deletes a product by ID                |
+| Method | Endpoint                    | Description                      |
+| ------ | --------------------------- | -------------------------------- |
+| GET    | /api/products/types         | Returns all product types        |
+| GET    | /api/products/types/:typeId | Returns a single product type    |
+| POST   | /api/products/types         | Creates a new product type       |
+| PATCH  | /api/products/types/:typeId | Updates an existing product type |
+| DELETE | /api/products/types/:typeId | Deletes a product type           |
 
 ### Spaces
 
-| Method | Endpoint             | Description                     |
-| ------ | -------------------- | ------------------------------- |
-| GET    | /api/spaces          | Returns all spaces              |
-| GET    | /api/spaces/:spaceId | Returns a single space by ID    |
-| POST   | /api/spaces          | Creates a new space             |
-| PATCH  | /api/spaces/:spaceId | Updates an existing space by ID |
-| DELETE | /api/spaces/:spaceId | Deletes a space by ID           |
+| Method | Endpoint             | Description               |
+| ------ | -------------------- | ------------------------- |
+| GET    | /api/spaces          | Returns all spaces        |
+| GET    | /api/spaces/:spaceId | Returns a single space    |
+| POST   | /api/spaces          | Creates a new space       |
+| PATCH  | /api/spaces/:spaceId | Updates an existing space |
+| DELETE | /api/spaces/:spaceId | Deletes a space           |
 
 ### Space Types
 
-| Method | Endpoint                  | Description                          |
-| ------ | ------------------------- | ------------------------------------ |
-| GET    | /api/spaces/types         | Returns all space types              |
-| GET    | /api/spaces/types/:typeId | Returns a single space type by ID    |
-| POST   | /api/spaces/types         | Creates a new space type             |
-| PATCH  | /api/spaces/types/:typeId | Updates an existing space type by ID |
-| DELETE | /api/spaces/types/:typeId | Deletes a space by ID                |
+| Method | Endpoint                  | Description                    |
+| ------ | ------------------------- | ------------------------------ |
+| GET    | /api/spaces/types         | Returns all space types        |
+| GET    | /api/spaces/types/:typeId | Returns a single space type    |
+| POST   | /api/spaces/types         | Creates a new space type       |
+| PATCH  | /api/spaces/types/:typeId | Updates an existing space type |
+| DELETE | /api/spaces/types/:typeId | Deletes a space                |
