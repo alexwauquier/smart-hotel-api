@@ -120,13 +120,14 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 
 ### Clients
 
-| Méthode | Endpoint                   | Description                     |
-| ------- | -------------------------- | ------------------------------- |
-| GET     | /api/customers             | Renvoie tous les clients        |
-| GET     | /api/customers/:customerId | Renvoie un client par son ID    |
-| POST    | /api/customers             | Crée un nouveau client          |
-| PATCH   | /api/customers/:customerId | Met à jour un client par son ID |
-| DELETE  | /api/customers/:customerId | Supprime un client par son ID   |
+| Méthode | Endpoint                          | Description                       |
+| ------- | --------------------------------- | --------------------------------- |
+| GET     | /api/customers                    | Renvoie tous les clients          |
+| GET     | /api/customers/:customerId        | Renvoie un client par son ID      |
+| GET     | /api/customers/:customerId/orders | Renvoie les commandes d'un client |
+| POST    | /api/customers                    | Crée un nouveau client            |
+| PATCH   | /api/customers/:customerId        | Met à jour un client par son ID   |
+| DELETE  | /api/customers/:customerId        | Supprime un client par son ID     |
 
 ### Employés
 

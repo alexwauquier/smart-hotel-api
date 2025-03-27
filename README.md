@@ -120,13 +120,14 @@ This will launch a PostgreSQL container with the required configuration for test
 
 ### Customers
 
-| Method | Endpoint                   | Description                        |
-| ------ | -------------------------- | ---------------------------------- |
-| GET    | /api/customers             | Returns all customers              |
-| GET    | /api/customers/:customerId | Returns a single customer by ID    |
-| POST   | /api/customers             | Creates a new customer             |
-| PATCH  | /api/customers/:customerId | Updates an existing customer by ID |
-| DELETE | /api/customers/:customerId | Deletes a customer by ID           |
+| Method | Endpoint                          | Description                        |
+| ------ | --------------------------------- | ---------------------------------- |
+| GET    | /api/customers                    | Returns all customers              |
+| GET    | /api/customers/:customerId        | Returns a single customer by ID    |
+| GET    | /api/customers/:customerId/orders | Returns customer orders            |
+| POST   | /api/customers                    | Creates a new customer             |
+| PATCH  | /api/customers/:customerId        | Updates an existing customer by ID |
+| DELETE | /api/customers/:customerId        | Deletes a customer by ID           |
 
 ### Employees
 
