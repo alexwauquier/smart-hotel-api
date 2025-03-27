@@ -35,10 +35,10 @@ const getOrderDetails = async (req, res) => {
 
 const createOrder = async (req, res) => {
   try {
-    const { customer_id: customerId, items } = req.body;
+    const { customer_id: customerId, space_id: spaceId, items } = req.body;
     const orderLines = [];
 
-    const orderHeader = await orderHeaderModel.createOrderHeader(customerId);
+    const orderHeader = await orderHeaderModel.createOrderHeader(customerId, spaceId);
 
     for (const item of items) {
       const orderLine = await orderLineModel.createOrderLine(
