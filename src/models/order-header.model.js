@@ -12,6 +12,16 @@ const getOrderHeaderById = async (orderId) => {
   return result.rows[0];
 };
 
+const getOrdersByCustomerId = async (customerId) => {
+  const text = `
+    SELECT * FROM order_header
+    WHERE customer_id = $1
+    ORDER BY id DESC
+  `;
+  const result = await pool.query(text, [customerId]);
+  return result.rows;
+};
+
 const createOrderHeader = async (customerId, spaceId) => {
   const text = `
     INSERT INTO order_header (customer_id, space_id)
@@ -36,6 +46,7 @@ const updateOrderStatus = async (orderId, status) => {
 export {
   getAllOrderHeaders,
   getOrderHeaderById,
+  getOrdersByCustomerId,
   createOrderHeader,
   updateOrderStatus
 };

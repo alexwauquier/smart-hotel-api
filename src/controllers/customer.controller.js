@@ -1,4 +1,5 @@
 import * as customerModel from '../models/customer.model.js';
+import * as orderHeaderModel from '../models/order-header.model.js';
 
 const getAllCustomers = async (req, res) => {
   try {
@@ -25,6 +26,22 @@ const getCustomer = async (req, res) => {
     }
 
     res.status(200).json(customer);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const getCustomerOrders = async (req, res) => {
+  try {
+    const { customerId } = req.params;
+
+    const orders = await orderHeaderModel.getOrdersByCustomerId(customerId);
+
+    if (!orders.length) {
+      return res.status(404).json({ error: 'No orders found' });
+    }
+
+    res.status(200).json(orders);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -102,6 +119,7 @@ const deleteCustomer = async (req, res) => {
 export {
   getAllCustomers,
   getCustomer,
+  getCustomerOrders,
   createCustomer,
   updateCustomer,
   deleteCustomer
