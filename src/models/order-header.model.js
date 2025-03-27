@@ -1,7 +1,8 @@
 import pool from '../config/db.js';
 
 const getAllOrderHeaders = async () => {
-  const result = await pool.query('SELECT * FROM order_header');
+  const text = 'SELECT * FROM order_header ORDER BY id DESC';
+  const result = await pool.query(text);
   return result.rows;
 };
 

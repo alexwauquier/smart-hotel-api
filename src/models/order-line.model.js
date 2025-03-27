@@ -1,7 +1,11 @@
 import pool from '../config/db.js';
 
 const getOrderLinesByOrderId = async (orderId) => {
-  const text = 'SELECT * FROM order_line WHERE order_header_id = $1';
+  const text = `
+    SELECT * FROM order_line
+    WHERE order_header_id = $1
+    ORDER BY id ASC
+  `;
   const result = await pool.query(text, [orderId]);
   return result.rows;
 };

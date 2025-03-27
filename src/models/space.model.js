@@ -1,7 +1,8 @@
 import pool from '../config/db.js';
 
 const getAllSpaces = async () => {
-  const result = await pool.query('SELECT * FROM space');
+  const text = 'SELECT * FROM space ORDER BY id ASC';
+  const result = await pool.query(text);
   return result.rows;
 };
 

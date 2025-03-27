@@ -1,7 +1,8 @@
 import pool from '../config/db.js';
 
 const getAllCustomers = async () => {
-  const result = await pool.query('SELECT * FROM customer');
+  const text = 'SELECT * FROM customer ORDER BY id ASC';
+  const result = await pool.query(text);
   return result.rows;
 };
 

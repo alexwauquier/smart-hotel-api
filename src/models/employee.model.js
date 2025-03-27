@@ -4,6 +4,7 @@ const getAllEmployees = async () => {
   const text = `
     SELECT id, first_name, last_name, username, type_id
     FROM employee
+    ORDER BY id ASC
   `;
   const result = await pool.query(text);
   return result.rows;
