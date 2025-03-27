@@ -150,12 +150,12 @@ This will launch a PostgreSQL container with the required configuration for test
 
 ### Orders
 
-| Method | Endpoint                    | Description                  |
-| ------ | --------------------------- | ---------------------------- |
-| GET    | /api/orders                 | Returns all orders           |
-| GET    | /api/orders/:orderId        | Returns a single order by ID |
-| POST   | /api/orders                 | Creates a new order          |
-| PATCH  | /api/orders/:orderId/status | Updates order status by ID   |
+| Method | Endpoint                    | Description                          |
+| ------ | --------------------------- | ------------------------------------ |
+| GET    | /api/orders                 | Returns all orders                   |
+| GET    | /api/orders/:orderId        | Returns a single order by ID         |
+| POST   | /api/orders                 | Creates a new order                  |
+| PATCH  | /api/orders/:orderId/status | Updates the status of an order by ID |
 
 ### Order statuses
 
