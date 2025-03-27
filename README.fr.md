@@ -33,6 +33,7 @@
   - [Employés](#employés)
   - [Types d'Employés](#types-demployés)
   - [Commandes](#commandes)
+  - [Statuts de commandes](#statuts-de-commandes)
   - [Produits](#produits)
   - [Types de Produits](#types-de-produits)
   - [Espaces](#espaces)
@@ -155,6 +156,16 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | GET     | /api/orders/:orderId        | Renvoie une commande par son ID                |
 | POST    | /api/orders                 | Crée une nouvelle commande                     |
 | PATCH   | /api/orders/:orderId/status | Met à jour le statut d'une commande par son ID |
+
+### Statuts de commandes
+
+| Méthode | Endpoint                       | Description                                 |
+| ------- | ------------------------------ | ------------------------------------------- |
+| GET     | /api/orders/statuses           | Renvoie tous les statuts de commandes       |
+| GET     | /api/orders/statuses/:statusId | Renvoie un statut de commande par son ID    |
+| POST    | /api/orders/statuses           | Crée un nouveau statut de commande          |
+| PATCH   | /api/orders/statuses/:statusId | Met à jour un statut de commande par son ID |
+| DELETE  | /api/orders/statuses/:statusId | Supprime un statut de commande par son ID   |
 
 ### Produits
 

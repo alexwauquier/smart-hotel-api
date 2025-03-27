@@ -33,6 +33,7 @@
   - [Employees](#employees)
   - [Employee Types](#employee-types)
   - [Orders](#orders)
+  - [Order statuses](#order-statuses)
   - [Products](#products)
   - [Product Types](#product-types)
   - [Spaces](#spaces)
@@ -155,6 +156,16 @@ This will launch a PostgreSQL container with the required configuration for test
 | GET    | /api/orders/:orderId        | Returns a single order by ID |
 | POST   | /api/orders                 | Creates a new order          |
 | PATCH  | /api/orders/:orderId/status | Updates order status by ID   |
+
+### Order statuses
+
+| Method | Endpoint                       | Description                         |
+| ------ | ------------------------------ | ----------------------------------- |
+| GET    | /api/orders/statuses           | Returns all order statuses          |
+| GET    | /api/orders/statuses/:statusId | Returns a single order status by ID |
+| POST   | /api/orders/statuses           | Creates a new order status          |
+| PATCH  | /api/orders/statuses/:statusId | Updates an order status by ID       |
+| DELETE | /api/orders/statuses/:statusId | Deletes an order status by ID       |
 
 ### Products
 
