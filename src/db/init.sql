@@ -48,6 +48,7 @@ CREATE TABLE "order_header" (
 	"date"              TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	"customer_id"       int NOT NULL,
 	"employee_id"       int,
+	"space_id"          int NOT NULL,
 	"status_id"         char(2) NOT NULL DEFAULT 'PE',
 	"is_paid"           boolean NOT NULL DEFAULT false,
 	PRIMARY KEY ("id")
@@ -144,6 +145,12 @@ ALTER TABLE "order_header"
 	ADD CONSTRAINT "fk_order_header_employee_id"
 	FOREIGN KEY ("employee_id") REFERENCES "employee"("id")
 	ON DELETE RESTRICT
+	ON UPDATE CASCADE;
+
+ALTER TABLE "order_header"
+	ADD CONSTRAINT "fk_order_header_space_id"
+	FOREIGN KEY ("space_id") REFERENCES "space"("id")
+	ON DELETE SET NULL
 	ON UPDATE CASCADE;
 
 ALTER TABLE "order_header"
