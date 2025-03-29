@@ -22,13 +22,13 @@ const getOrdersByCustomerId = async (customerId) => {
   return result.rows;
 };
 
-const createOrderHeader = async (customerId, spaceId) => {
+const createOrderHeader = async (client, customerId, spaceId) => {
   const text = `
     INSERT INTO order_header (customer_id, space_id)
     VALUES ($1, $2)
     RETURNING *
   `;
-  const result = await pool.query(text, [customerId, spaceId]);
+  const result = await client.query(text, [customerId, spaceId]);
   return result.rows[0];
 };
 

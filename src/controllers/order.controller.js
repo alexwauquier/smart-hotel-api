@@ -1,5 +1,6 @@
 import * as orderHeaderModel from '../models/order-header.model.js';
 import * as orderLineModel from '../models/order-line.model.js';
+import pool from '../config/db.js';
 
 const getAllOrders = async (req, res) => {
   try {
@@ -34,25 +35,36 @@ const getOrderDetails = async (req, res) => {
 }
 
 const createOrder = async (req, res) => {
+  const client = await pool.connect();
+
   try {
     const { customer_id: customerId, space_id: spaceId, items } = req.body;
     const orderLines = [];
 
-    const orderHeader = await orderHeaderModel.createOrderHeader(customerId, spaceId);
+    await client.query('BEGIN');
+
+    const orderHeader = await orderHeaderModel.createOrderHeader(
+      client, customerId, spaceId
+    );
 
     for (const item of items) {
       const orderLine = await orderLineModel.createOrderLine(
-        orderHeader.id, item.product_id, item.quantity
+        client, orderHeader.id, item.product_id, item.quantity
       );
       orderLines.push(orderLine);
     }
+
+    await client.query('COMMIT');
 
     res.status(201).json({
       order_header: orderHeader,
       order_lines: orderLines
     });
   } catch (err) {
+    await client.query('ROLLBACK');
     res.status(500).json({ error: err.message });
+  } finally {
+    client.release();
   }
 };
 
