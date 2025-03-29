@@ -6,6 +6,7 @@ import employeeRouter from './routes/employee.router.js';
 import orderRouter from './routes/order.router.js';
 import productRouter from './routes/product.router.js';
 import spaceRouter from './routes/space.router.js';
+import { verifyToken } from './middlewares/auth.middleware.js';
 
 const app = express();
 
@@ -17,10 +18,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/customers', customerRouter);
-app.use('/api/employees', employeeRouter);
-app.use('/api/orders', orderRouter);
-app.use('/api/products', productRouter);
-app.use('/api/spaces', spaceRouter);
+app.use('/api/customers', verifyToken, customerRouter);
+app.use('/api/employees', verifyToken, employeeRouter);
+app.use('/api/orders', verifyToken, orderRouter);
+app.use('/api/products', verifyToken, productRouter);
+app.use('/api/spaces', verifyToken, spaceRouter);
 
 export default app;
