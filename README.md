@@ -40,6 +40,8 @@ The Smart Hotel API is the backend for [mobile app](https://github.com/alexwauqu
 - **Node.js**
 - **Express**
 - **PostgreSQL**
+- **Argon2**
+- **JSON Web Token**
 - **Docker**
 
 ## Getting Started
