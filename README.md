@@ -10,7 +10,7 @@
     •
     <a href="#getting-started">Getting Started</a>
     •
-    <a href="#available-routes">Available Routes</a>
+    <a href="#api-documentation">API Documentation</a>
   </h4>
 
   <img src="https://img.shields.io/github/v/release/alexwauquier/smart-hotel-api" />
@@ -27,17 +27,9 @@
   - [Configuration](#configuration)
   - [Running the API Locally](#running-the-api-locally)
   - [Development Database with Docker](#development-database-with-docker)
-- [Available Routes](#available-routes)
+- [API Documentation](#api-documentation)
   - [Authentication](#authentication)
-  - [Customers](#customers)
-  - [Employees](#employees)
-  - [Employee Types](#employee-types)
-  - [Orders](#orders)
-  - [Order statuses](#order-statuses)
-  - [Products](#products)
-  - [Product Types](#product-types)
-  - [Spaces](#spaces)
-  - [Space Types](#space-types)
+  - [Available Routes](#available-routes)
 
 ## Project Overview
 
@@ -109,16 +101,29 @@ docker compose -f compose.development.yaml up -d
 
 This will launch a PostgreSQL container with the required configuration for testing the API.
 
-## Available Routes
+## API Documentation
 
 ### Authentication
+
+This API uses JWT-based authentication. To access protected routes, add the token in the `Authorization` header:
+```
+Authorization: Bearer <your_token_here>
+```
+
+### Available Routes
+
+<details>
+<summary>Authentication</summary>
 
 | Method | Endpoint                 | Description                                       |
 | ------ | ------------------------ | ------------------------------------------------- |
 | POST   | /api/auth/login/customer | Authenticates a customer and returns a JWT token  |
 | POST   | /api/auth/login/employee | Authenticates an employee and returns a JWT token |
 
-### Customers
+</details>
+
+<details>
+<summary>Customers</summary>
 
 | Method | Endpoint                          | Description                  |
 | ------ | --------------------------------- | ---------------------------- |
@@ -129,7 +134,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/customers/:customerId        | Updates an existing customer |
 | DELETE | /api/customers/:customerId        | Deletes a customer           |
 
-### Employees
+</details>
+
+<details>
+<summary>Employees</summary>
 
 | Method | Endpoint                   | Description                  |
 | ------ | -------------------------- | ---------------------------- |
@@ -139,7 +147,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/employees/:employeeId | Updates an existing employee |
 | DELETE | /api/employees/:employeeId | Deletes an employee          |
 
-### Employee Types
+</details>
+
+<details>
+<summary>Employee Types</summary>
 
 | Method | Endpoint                     | Description                       |
 | ------ | ---------------------------- | --------------------------------- |
@@ -149,7 +160,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/employees/types/:typeId | Updates an existing employee type |
 | DELETE | /api/employees/types/:typeId | Deletes an employee               |
 
-### Orders
+</details>
+
+<details>
+<summary>Orders</summary>
 
 | Method | Endpoint                    | Description                    |
 | ------ | --------------------------- | ------------------------------ |
@@ -158,7 +172,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/orders                 | Creates a new order            |
 | PATCH  | /api/orders/:orderId/status | Updates the status of an order |
 
-### Order statuses
+</details>
+
+<details>
+<summary>Order statuses</summary>
 
 | Method | Endpoint                       | Description                   |
 | ------ | ------------------------------ | ----------------------------- |
@@ -168,7 +185,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/orders/statuses/:statusId | Updates an order status       |
 | DELETE | /api/orders/statuses/:statusId | Deletes an order status       |
 
-### Products
+</details>
+
+<details>
+<summary>Products</summary>
 
 | Method | Endpoint                 | Description                 |
 | ------ | ------------------------ | --------------------------- |
@@ -178,7 +198,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/products/:productId | Updates an existing product |
 | DELETE | /api/products/:productId | Deletes a product           |
 
-### Product Types
+</details>
+
+<details>
+<summary>Product Types</summary>
 
 | Method | Endpoint                    | Description                      |
 | ------ | --------------------------- | -------------------------------- |
@@ -188,7 +211,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/products/types/:typeId | Updates an existing product type |
 | DELETE | /api/products/types/:typeId | Deletes a product type           |
 
-### Spaces
+</details>
+
+<details>
+<summary>Spaces</summary>
 
 | Method | Endpoint             | Description               |
 | ------ | -------------------- | ------------------------- |
@@ -198,7 +224,10 @@ This will launch a PostgreSQL container with the required configuration for test
 | PATCH  | /api/spaces/:spaceId | Updates an existing space |
 | DELETE | /api/spaces/:spaceId | Deletes a space           |
 
-### Space Types
+</details>
+
+<details>
+<summary>Space Types</summary>
 
 | Method | Endpoint                  | Description                    |
 | ------ | ------------------------- | ------------------------------ |
@@ -207,3 +236,5 @@ This will launch a PostgreSQL container with the required configuration for test
 | POST   | /api/spaces/types         | Creates a new space type       |
 | PATCH  | /api/spaces/types/:typeId | Updates an existing space type |
 | DELETE | /api/spaces/types/:typeId | Deletes a space                |
+
+</details>

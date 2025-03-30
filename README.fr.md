@@ -10,7 +10,7 @@
     •
     <a href="#pour-commencer">Pour Commencer</a>
     •
-    <a href="#routes-disponibles">Routes Disponibles</a>
+    <a href="#documentation-de-lapi">Documentation de l'API</a>
   </h4>
 
   <img src="https://img.shields.io/github/v/release/alexwauquier/smart-hotel-api?label=version" />
@@ -27,17 +27,9 @@
   - [Configuration](#configuration)
   - [Exécuter l'API Localement](#exécuter-lapi-localement)
   - [Base de Données de Développement avec Docker](#base-de-données-de-développement-avec-docker)
-- [Routes Disponibles](#routes-disponibles)
+- [Documentation de l'API](#documentation-de-lapi)
   - [Authentification](#authentification)
-  - [Clients](#clients)
-  - [Employés](#employés)
-  - [Types d'Employés](#types-demployés)
-  - [Commandes](#commandes)
-  - [Statuts de commandes](#statuts-de-commandes)
-  - [Produits](#produits)
-  - [Types de Produits](#types-de-produits)
-  - [Espaces](#espaces)
-  - [Types d'Espaces](#types-despaces)
+  - [Routes Disponibles](#routes-disponibles)
 
 ## Aperçu du Projet
 
@@ -109,16 +101,29 @@ docker compose -f compose.development.yaml up -d
 
 Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l'API.
 
-## Routes Disponibles
+## Documentation de l'API
 
 ### Authentification
+
+Cette API utilise une authentification basée sur JWT. Pour accéder aux routes protégées, ajoutez le jeton dans l'en-tête `Authorization` :
+```
+Authorization: Bearer <your_token_here>
+```
+
+### Routes Disponibles
+
+<details>
+<summary>Authentification</summary>
 
 | Méthode | Endpoint                 | Description                                    |
 | ------- | ------------------------ | ---------------------------------------------- |
 | POST    | /api/auth/login/customer | Authentifie un client et renvoie un jeton JWT  |
 | POST    | /api/auth/login/employee | Authentifie un employé et renvoie un jeton JWT |
 
-### Clients
+</details>
+
+<details>
+<summary>Clients</summary>
 
 | Méthode | Endpoint                          | Description                       |
 | ------- | --------------------------------- | --------------------------------- |
@@ -129,7 +134,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/customers/:customerId        | Met à jour un client              |
 | DELETE  | /api/customers/:customerId        | Supprime un client                |
 
-### Employés
+</details>
+
+<details>
+<summary>Employés</summary>
 
 | Méthode | Endpoint                   | Description               |
 | ------- | -------------------------- | ------------------------- |
@@ -139,7 +147,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/employees/:employeeId | Met à jour un employé     |
 | DELETE  | /api/employees/:employeeId | Supprime un employé       |
 
-### Types d'Employés
+</details>
+
+<details>
+<summary>Types d'Employés</summary>
 
 | Méthode | Endpoint                     | Description                       |
 | ------- | ---------------------------- | --------------------------------- |
@@ -149,7 +160,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/employees/types/:typeId | Met à jour un type d'employé      |
 | DELETE  | /api/employees/types/:typeId | Supprime un type d'employé        |
 
-### Commandes
+</details>
+
+<details>
+<summary>Commandes</summary>
 
 | Méthode | Endpoint                    | Description                         |
 | ------- | --------------------------- | ----------------------------------- |
@@ -158,7 +172,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/orders                 | Crée une nouvelle commande          |
 | PATCH   | /api/orders/:orderId/status | Met à jour le statut d'une commande |
 
-### Statuts de commandes
+</details>
+
+<details>
+<summary>Statuts de commandes</summary>
 
 | Méthode | Endpoint                       | Description                           |
 | ------- | ------------------------------ | ------------------------------------- |
@@ -168,7 +185,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/orders/statuses/:statusId | Met à jour un statut de commande      |
 | DELETE  | /api/orders/statuses/:statusId | Supprime un statut de commande        |
 
-### Produits
+</details>
+
+<details>
+<summary>Produits</summary>
 
 | Méthode | Endpoint                 | Description               |
 | ------- | ------------------------ | ------------------------- |
@@ -178,7 +198,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/products/:productId | Met à jour un produit     |
 | DELETE  | /api/products/:productId | Supprime un produit       |
 
-### Types de Produits
+</details>
+
+<details>
+<summary>Types de Produits</summary>
 
 | Méthode | Endpoint                    | Description                        |
 | ------- | --------------------------- | ---------------------------------- |
@@ -188,7 +211,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/products/types/:typeId | Met à jour un type de produit      |
 | DELETE  | /api/products/types/:typeId | Supprime un type de produit        |
 
-### Espaces
+</details>
+
+<details>
+<summary>Espaces</summary>
 
 | Méthode | Endpoint             | Description              |
 | ------- | -------------------- | ------------------------ |
@@ -198,7 +224,10 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | PATCH   | /api/spaces/:spaceId | Met à jour un espace     |
 | DELETE  | /api/spaces/:spaceId | Supprime un espace       |
 
-### Types d'Espaces
+</details>
+
+<details>
+<summary>Types d'Espaces</summary>
 
 | Méthode | Endpoint                  | Description                      |
 | ------- | ------------------------- | -------------------------------- |
@@ -207,3 +236,5 @@ Ceci lancera un conteneur PostgreSQL avec la configuration requise pour tester l
 | POST    | /api/spaces/types         | Crée un nouveau type d'espace    |
 | PATCH   | /api/spaces/types/:typeId | Met à jour un type d'espace      |
 | DELETE  | /api/spaces/types/:typeId | Supprime un type d'espace        |
+
+</details>
