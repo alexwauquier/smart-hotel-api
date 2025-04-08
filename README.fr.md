@@ -177,7 +177,7 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
-<summary>Statuts de commandes</summary>
+<summary>Statuts de Commandes</summary>
 
 | Méthode | Endpoint                       | Description                           |
 | ------- | ------------------------------ | ------------------------------------- |

@@ -177,7 +177,7 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
-<summary>Order statuses</summary>
+<summary>Order Statuses</summary>
 
 | Method | Endpoint                       | Description                   |
 | ------ | ------------------------------ | ----------------------------- |
@@ -263,6 +263,6 @@ Authorization: Bearer <your_token_here>
 | GET    | /api/spaces/types/:typeId | Returns a single space type    |
 | POST   | /api/spaces/types         | Creates a new space type       |
 | PATCH  | /api/spaces/types/:typeId | Updates an existing space type |
-| DELETE | /api/spaces/types/:typeId | Deletes a space                |
+| DELETE | /api/spaces/types/:typeId | Deletes a space type           |
 
 </details>
