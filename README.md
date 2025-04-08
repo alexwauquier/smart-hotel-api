@@ -46,7 +46,7 @@ The Smart Hotel API is the backend for [mobile app](https://github.com/alexwauqu
 
 ## Getting Started
 
-### Requirements 
+### Requirements
 
 - [Node.js](https://nodejs.org/) (>=22.9.0 for development)
 - [PostgreSQL](https://www.postgresql.org/) (if not using Docker)
@@ -212,6 +212,19 @@ Authorization: Bearer <your_token_here>
 | POST   | /api/products/types         | Creates a new product type       |
 | PATCH  | /api/products/types/:typeId | Updates an existing product type |
 | DELETE | /api/products/types/:typeId | Deletes a product type           |
+
+</details>
+
+<details>
+<summary>Sensors</summary>
+
+| Method | Endpoint                | Description                |
+| ------ | ----------------------- | -------------------------- |
+| GET    | /api/sensors            | Returns all sensors        |
+| GET    | /api/sensors/:sensorsId | Returns a single sensor    |
+| POST   | /api/sensors            | Creates a new sensor       |
+| PATCH  | /api/sensors/:sensorsId | Updates an existing sensor |
+| DELETE | /api/sensors/:sensorsId | Deletes a sensor           |
 
 </details>
 

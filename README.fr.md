@@ -216,6 +216,19 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
+<summary>Capteurs</summary>
+
+| Méthode | Endpoint                | Description               |
+| ------- | ----------------------- | ------------------------- |
+| GET     | /api/sensors            | Renvoie tous les capteurs |
+| GET     | /api/sensors/:sensorsId | Renvoie un capteur        |
+| POST    | /api/sensors            | Crée un nouveau capteur   |
+| PATCH   | /api/sensors/:sensorsId | Met à jour un capteur     |
+| DELETE  | /api/sensors/:sensorsId | Supprime un capteur       |
+
+</details>
+
+<details>
 <summary>Espaces</summary>
 
 | Méthode | Endpoint             | Description              |
