@@ -229,6 +229,19 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
+<summary>Sensor Types</summary>
+
+| Method | Endpoint                   | Description                     |
+| ------ | -------------------------- | ------------------------------- |
+| GET    | /api/sensors/types         | Returns all sensor types        |
+| GET    | /api/sensors/types/:typeId | Returns a single sensor type    |
+| POST   | /api/sensors/types         | Creates a new sensor type       |
+| PATCH  | /api/sensors/types/:typeId | Updates an existing sensor type |
+| DELETE | /api/sensors/types/:typeId | Deletes a sensor type           |
+
+</details>
+
+<details>
 <summary>Spaces</summary>
 
 | Method | Endpoint             | Description               |

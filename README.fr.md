@@ -229,6 +229,19 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
+<summary>Types de Capteurs</summary>
+
+| Méthode | Endpoint                   | Description                        |
+| ------- | -------------------------- | ---------------------------------- |
+| GET     | /api/sensors/types         | Renvoie tous les types de capteurs |
+| GET     | /api/sensors/types/:typeId | Renvoie un type de capteur         |
+| POST    | /api/sensors/types         | Crée un nouveau type de capteur    |
+| PATCH   | /api/sensors/types/:typeId | Met à jour un type de capteur      |
+| DELETE  | /api/sensors/types/:typeId | Supprime un type de capteur        |
+
+</details>
+
+<details>
 <summary>Espaces</summary>
 
 | Méthode | Endpoint             | Description              |
