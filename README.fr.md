@@ -165,6 +165,17 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
+<summary>Mesures</summary>
+
+| Méthode | Endpoint                    | Description                      |
+| ------- | --------------------------- | -------------------------------- |
+| GET     | /api/measurements           | Renvoie toutes les mesures       |
+| GET     | /api/measurements/:sensorId | Renvoie les mesures d'un capteur |
+| POST    | /api/measurements           | Crée une nouvelle mesure         |
+
+</details>
+
+<details>
 <summary>Commandes</summary>
 
 | Méthode | Endpoint                    | Description                         |
