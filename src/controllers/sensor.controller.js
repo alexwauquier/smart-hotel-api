@@ -1,8 +1,11 @@
 import * as sensorModel from '../models/sensor.model.js';
 
-const getAllSensors = async (req, res) => {
+const getSensors = async (req, res) => {
   try {
-    const sensors = await sensorModel.getAllSensors();
+    const { page = 1, limit = 50, type_id: typeId, space_id: spaceId } = req.query;
+    const offset = (page - 1) * limit;
+
+    const sensors = await sensorModel.getSensors(limit, offset, typeId, spaceId);
 
     if (!sensors.length) {
       return res.status(404).json({ error: 'No sensors found' });
@@ -84,7 +87,7 @@ const deleteSensor = async (req, res) => {
 };
 
 export {
-  getAllSensors,
+  getSensors,
   getSensor,
   createSensor,
   updateSensor,

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use('/types', sensorTypeRouter);
 
-router.get('/', sensorController.getAllSensors);
+router.get('/', sensorController.getSensors);
 router.get('/:sensorId', sensorController.getSensor);
 router.post('/', sensorController.createSensor);
 router.patch('/:sensorId', sensorController.updateSensor);

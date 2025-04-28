@@ -1,8 +1,32 @@
 import pool from '../config/db.js';
 
-const getAllSensors = async () => {
-  const text = 'SELECT * FROM sensor ORDER BY id ASC';
-  const result = await pool.query(text);
+const getSensors = async (limit, offset, typeId, spaceId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  if (spaceId) {
+    values.push(spaceId);
+    whereClauses.push(`space_id = $${values.length}`);
+  }
+
+  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `
+    SELECT * FROM sensor
+    ${where}
+    ORDER BY id ASC
+    LIMIT $${values.length + 1}
+    OFFSET $${values.length + 2}
+  `;
+
+  values.push(limit, offset);
+
+  const result = await pool.query(text, values);
   return result.rows;
 };
 
@@ -49,7 +73,7 @@ const deleteSensor = async (sensorId) => {
 };
 
 export {
-  getAllSensors,
+  getSensors,
   getSensorById,
   createSensor,
   updateSensor,
