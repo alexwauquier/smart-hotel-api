@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use('/statuses', orderStatusRouter);
 
-router.get('/', orderController.getAllOrders);
+router.get('/', orderController.getOrders);
 router.get('/:orderId', orderController.getOrderDetails);
 router.post('/', orderController.createOrder);
 router.patch('/:orderId/status', orderController.updateOrderStatus);

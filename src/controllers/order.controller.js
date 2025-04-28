@@ -2,9 +2,12 @@ import * as orderHeaderModel from '../models/order-header.model.js';
 import * as orderLineModel from '../models/order-line.model.js';
 import pool from '../config/db.js';
 
-const getAllOrders = async (req, res) => {
+const getOrders = async (req, res) => {
   try {
-    const orders = await orderHeaderModel.getAllOrderHeaders();
+    const { page = 1, limit = 50, status_id: statusId } = req.query;
+    const offset = (page - 1) * limit;
+
+    const orders = await orderHeaderModel.getOrderHeaders(limit, offset, statusId);
 
     if (!orders.length) {
       return res.status(404).json({ error: 'No orders found' });
@@ -87,4 +90,4 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-export { getAllOrders, getOrderDetails, createOrder, updateOrderStatus };
+export { getOrders, getOrderDetails, createOrder, updateOrderStatus };

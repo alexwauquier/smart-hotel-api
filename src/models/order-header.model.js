@@ -1,8 +1,27 @@
 import pool from '../config/db.js';
 
-const getAllOrderHeaders = async () => {
-  const text = 'SELECT * FROM order_header ORDER BY id DESC';
-  const result = await pool.query(text);
+const getOrderHeaders = async (limit, offset, statusId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (statusId) {
+    values.push(statusId);
+    whereClauses.push(`status_id = $${values.length}`);
+  }
+
+  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `
+    SELECT * FROM order_header
+    ${where}
+    ORDER BY id DESC
+    LIMIT $${values.length + 1}
+    OFFSET $${values.length + 2}
+  `;
+
+  values.push(limit, offset);
+
+  const result = await pool.query(text, values);
   return result.rows;
 };
 
@@ -44,7 +63,7 @@ const updateOrderStatus = async (orderId, status) => {
 };
 
 export {
-  getAllOrderHeaders,
+  getOrderHeaders,
   getOrderHeaderById,
   getOrdersByCustomerId,
   createOrderHeader,
