@@ -1,8 +1,11 @@
 import * as spaceModel from '../models/space.model.js';
 
-const getAllSpaces = async (req, res) => {
+const getSpaces = async (req, res) => {
   try {
-    const spaces = await spaceModel.getAllSpaces();
+    const { page = 1, limit = 50, type_id: typeId, capacity } = req.query;
+    const offset = (page - 1) * limit;
+
+    const spaces = await spaceModel.getSpaces(limit, offset, typeId, capacity);
 
     if (!spaces.length) {
       return res.status(404).json({ error: 'No spaces found' });
@@ -86,7 +89,7 @@ const deleteSpace = async (req, res) => {
 };
 
 export {
-  getAllSpaces,
+  getSpaces,
   getSpace,
   createSpace,
   updateSpace,

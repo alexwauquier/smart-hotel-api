@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use('/types', spaceTypeRouter);
 
-router.get('/', spaceController.getAllSpaces);
+router.get('/', spaceController.getSpaces);
 router.get('/:spaceId', spaceController.getSpace);
 router.post('/', spaceController.createSpace);
 router.patch('/:spaceId', spaceController.updateSpace);

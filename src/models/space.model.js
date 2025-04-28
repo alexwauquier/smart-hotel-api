@@ -1,8 +1,32 @@
 import pool from '../config/db.js';
 
-const getAllSpaces = async () => {
-  const text = 'SELECT * FROM space ORDER BY id ASC';
-  const result = await pool.query(text);
+const getSpaces = async (limit, offset, typeId, capacity) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  if (capacity) {
+    values.push(capacity);
+    whereClauses.push(`capacity = $${values.length}`);
+  }
+
+  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `
+    SELECT * FROM space
+    ${where}
+    ORDER BY id ASC
+    LIMIT $${values.length + 1}
+    OFFSET $${values.length + 2}
+  `;
+
+  values.push(limit, offset);
+
+  const result = await pool.query(text, values);
   return result.rows;
 };
 
@@ -51,7 +75,7 @@ const deleteSpace = async (spaceId) => {
 };
 
 export {
-  getAllSpaces,
+  getSpaces,
   getSpaceById,
   createSpace,
   updateSpace,
