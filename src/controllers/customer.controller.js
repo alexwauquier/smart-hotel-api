@@ -1,9 +1,12 @@
 import * as customerModel from '../models/customer.model.js';
 import * as orderHeaderModel from '../models/order-header.model.js';
 
-const getAllCustomers = async (req, res) => {
+const getCustomers = async (req, res) => {
   try {
-    const customers = await customerModel.getAllCustomers();
+    const { page = 1, limit = 50, space_id: spaceId } = req.query;
+    const offset = (page - 1) * limit;
+
+    const customers = await customerModel.getCustomers(limit, offset, spaceId);
 
     if (!customers.length) {
       return res.status(404).json({ error: 'No customers found' });
@@ -117,7 +120,7 @@ const deleteCustomer = async (req, res) => {
 };
 
 export {
-  getAllCustomers,
+  getCustomers,
   getCustomer,
   getCustomerOrders,
   createCustomer,

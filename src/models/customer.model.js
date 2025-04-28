@@ -1,8 +1,27 @@
 import pool from '../config/db.js';
 
-const getAllCustomers = async () => {
-  const text = 'SELECT * FROM customer ORDER BY id ASC';
-  const result = await pool.query(text);
+const getCustomers = async (limit, offset, spaceId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (spaceId) {
+    values.push(spaceId);
+    whereClauses.push(`space_id = $${values.length}`);
+  }
+
+  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `
+    SELECT * FROM customer
+    ${where}
+    ORDER BY id ASC
+    LIMIT $${values.length + 1}
+    OFFSET $${values.length + 2}
+  `;
+
+  values.push(limit, offset);
+
+  const result = await pool.query(text, values);
   return result.rows;
 };
 
@@ -59,7 +78,7 @@ const deleteCustomer = async (customerId) => {
 };
 
 export {
-  getAllCustomers,
+  getCustomers,
   getCustomerByCredentials,
   getCustomerById,
   createCustomer,
