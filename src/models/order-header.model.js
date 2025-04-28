@@ -14,7 +14,7 @@ const getOrderHeaders = async (limit, offset, statusId) => {
   const text = `
     SELECT * FROM order_header
     ${where}
-    ORDER BY id DESC
+    ORDER BY id ASC
     LIMIT $${values.length + 1}
     OFFSET $${values.length + 2}
   `;
