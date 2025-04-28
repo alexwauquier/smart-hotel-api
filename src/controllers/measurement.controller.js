@@ -1,8 +1,11 @@
 import * as measurementModel from '../models/measurement.model.js';
 
-const getAllMeasurements = async (req, res) => {
+const getMeasurements = async (req, res) => {
   try {
-    const measurements = await measurementModel.getAllMeasurements();
+    const { page = 1, limit = 50, sensor_id: sensorId } = req.query;
+    const offset = (page - 1) * limit;
+
+    const measurements = await measurementModel.getMeasurements(limit, offset, sensorId);
 
     if (!measurements.length) {
       return res.status(404).json({ error: 'No measurements found' });
@@ -49,7 +52,7 @@ const createMeasurement = async (req, res) => {
 };
 
 export {
-  getAllMeasurements,
+  getMeasurements,
   getSensorMeasurements,
   createMeasurement
 };
