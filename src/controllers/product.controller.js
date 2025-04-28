@@ -1,8 +1,11 @@
 import * as productModel from '../models/product.model.js';
 
-const getAllProducts = async (req, res) => {
+const getProducts = async (req, res) => {
   try {
-    const products = await productModel.getAllProducts();
+    const { page = 1, limit = 50, type_id: typeId, contains_alcohol: containsAlcohol } = req.query;
+    const offset = (page - 1) * limit;
+
+    const products = await productModel.getProducts(limit, offset, typeId, containsAlcohol);
 
     if (!products.length) {
       return res.status(404).json({ error: 'No products found' });
@@ -112,7 +115,7 @@ const deleteProduct = async (req, res) => {
 };
 
 export {
-  getAllProducts,
+  getProducts,
   getProduct,
   createProduct,
   updateProduct,

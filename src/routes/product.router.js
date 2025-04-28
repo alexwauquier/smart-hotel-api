@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use('/types', productTypeRouter);
 
-router.get('/', productController.getAllProducts);
+router.get('/', productController.getProducts);
 router.get('/:productId', productController.getProduct);
 router.post('/', productController.createProduct);
 router.patch('/:productId', productController.updateProduct);

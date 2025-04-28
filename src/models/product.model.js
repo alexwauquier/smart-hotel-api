@@ -1,8 +1,32 @@
 import pool from '../config/db.js';
 
-const getAllProducts = async () => {
-  const text = 'SELECT * FROM product ORDER BY id ASC';
-  const result = await pool.query(text);
+const getProducts = async (limit, offset, typeId, containsAlcohol) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  if (containsAlcohol) {
+    values.push(containsAlcohol);
+    whereClauses.push(`contains_alcohol = $${values.length}`);
+  }
+
+  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `
+    SELECT * FROM product
+    ${where}
+    ORDER BY id ASC
+    LIMIT $${values.length + 1}
+    OFFSET $${values.length + 2}
+  `;
+
+  values.push(limit, offset);
+
+  const result = await pool.query(text, values);
   return result.rows;
 };
 
@@ -59,7 +83,7 @@ const deleteProduct = async (productId) => {
 };
 
 export {
-  getAllProducts,
+  getProducts,
   getProductById,
   createProduct,
   updateProduct,
