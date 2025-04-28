@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use('/types', employeeTypeRouter);
 
-router.get('/', employeeController.getAllEmployees);
+router.get('/', employeeController.getEmployees);
 router.get('/:employeeId', employeeController.getEmployee);
 router.post('/', employeeController.createEmployee);
 router.patch('/:employeeId', employeeController.updateEmployee);

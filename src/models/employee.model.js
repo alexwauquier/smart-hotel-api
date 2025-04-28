@@ -1,12 +1,28 @@
 import pool from '../config/db.js';
 
-const getAllEmployees = async () => {
+const getEmployees = async (limit, offset, typeId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
   const text = `
     SELECT id, first_name, last_name, username, type_id
     FROM employee
+    ${where}
     ORDER BY id ASC
+    LIMIT $${values.length + 1}
+    OFFSET $${values.length + 2}
   `;
-  const result = await pool.query(text);
+
+  values.push(limit, offset);
+
+  const result = await pool.query(text, values);
   return result.rows;
 };
 
@@ -71,7 +87,7 @@ const deleteEmployee = async (employeeId) => {
 };
 
 export {
-  getAllEmployees,
+  getEmployees,
   getEmployeeById,
   getEmployeeByUsername,
   createEmployee,

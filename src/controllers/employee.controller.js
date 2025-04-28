@@ -1,9 +1,12 @@
 import * as argon2 from 'argon2';
 import * as employeeModel from '../models/employee.model.js';
 
-const getAllEmployees = async (req, res) => {
+const getEmployees = async (req, res) => {
   try {
-    const employees = await employeeModel.getAllEmployees();
+    const { page = 1, limit = 50, type_id: typeId } = req.query;
+    const offset = (page - 1) * limit;
+
+    const employees = await employeeModel.getEmployees(limit, offset, typeId);
 
     if (!employees.length) {
       return res.status(404).json({ error: 'No employees found' });
@@ -105,7 +108,7 @@ const deleteEmployee = async (req, res) => {
 };
 
 export {
-  getAllEmployees,
+  getEmployees,
   getEmployee,
   createEmployee,
   updateEmployee,
