@@ -13,7 +13,13 @@ const loginCustomer = async (req, res) => {
     );
 
     if (!customer) {
-      return res.status(401).json({ error: 'Authentication failed' });
+      return res.status(401).json({
+        success: false,
+        error: {
+          code: 401,
+          message: 'Invalid last name or room number'
+        }
+      });
     }
 
     const token = jwt.sign(
@@ -31,7 +37,13 @@ const loginCustomer = async (req, res) => {
       space_id: customer.space_id
     } });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 }
 
@@ -42,7 +54,13 @@ const loginEmployee = async (req, res) => {
     const employee = await employeeModel.getEmployeeByUsername(username);
 
     if (!employee) {
-      return res.status(401).json({ error: 'Authentication failed' });
+      return res.status(401).json({
+        success: false,
+        error: {
+          code: 401,
+          message: 'Invalid username'
+        }
+      });
     }
 
     const isValidPassword = await argon2.verify(
@@ -51,7 +69,13 @@ const loginEmployee = async (req, res) => {
     );
 
     if (!isValidPassword) {
-      return res.status(401).json({ error: 'Authentication failed' });
+      return res.status(401).json({
+        success: false,
+        error: {
+          code: 401,
+          message: 'Invalid password'
+        }
+      });
     }
 
     const token = jwt.sign(
@@ -67,7 +91,13 @@ const loginEmployee = async (req, res) => {
       type_id: employee.type_id
     } });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 401,
+        message: err.message
+      }
+    });
   }
 }
 
