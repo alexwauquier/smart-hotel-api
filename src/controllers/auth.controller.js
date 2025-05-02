@@ -94,7 +94,7 @@ const loginEmployee = async (req, res) => {
     res.status(500).json({
       success: false,
       error: {
-        code: 401,
+        code: 500,
         message: err.message
       }
     });
