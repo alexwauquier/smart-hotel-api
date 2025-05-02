@@ -9,12 +9,24 @@ const getCustomers = async (req, res) => {
     const customers = await customerModel.getCustomers(limit, offset, spaceId);
 
     if (!customers.length) {
-      return res.status(404).json({ error: 'No customers found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No customers found'
+        }
+      });
     }
 
     res.status(200).json(customers);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -25,12 +37,24 @@ const getCustomer = async (req, res) => {
     const customer = await customerModel.getCustomerById(customerId);
 
     if (!customer) {
-      return res.status(404).json({ error: 'Customer not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Customer not found'
+        }
+      });
     }
 
     res.status(200).json(customer);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -41,12 +65,24 @@ const getCustomerOrders = async (req, res) => {
     const orders = await orderHeaderModel.getOrdersByCustomerId(customerId);
 
     if (!orders.length) {
-      return res.status(404).json({ error: 'No orders found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No orders found'
+        }
+      });
     }
 
     res.status(200).json(orders);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -70,7 +106,13 @@ const createCustomer = async (req, res) => {
 
     res.status(201).json(newCustomer);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -94,12 +136,24 @@ const updateCustomer = async (req, res) => {
     });
 
     if (!updatedCustomer) {
-      return res.status(404).json({ error: 'Customer not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Customer not found'
+        }
+      });
     }
 
     res.status(200).json(updatedCustomer);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -110,12 +164,24 @@ const deleteCustomer = async (req, res) => {
     const deletedCustomer = await customerModel.deleteCustomer(customerId);
 
     if (!deletedCustomer) {
-      return res.status(404).json({ error: 'Customer not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Customer not found'
+        }
+      });
     }
 
     res.status(200).json(deletedCustomer);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
