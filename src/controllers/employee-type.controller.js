@@ -5,12 +5,24 @@ const getAllEmployeeTypes = async (req, res) => {
     const employeeTypes = await employeeTypeModel.getAllEmployeeTypes();
 
     if (!employeeTypes.length) {
-      return res.status(404).json({ error: 'No employee types found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No employee types found'
+        }
+      });
     }
 
     res.status(200).json(employeeTypes);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -23,12 +35,24 @@ const getEmployeeType = async (req, res) => {
     );
 
     if (!employeeType) {
-      return res.status(404).json({ error: 'Employee type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Employee type not found'
+        }
+      });
     }
 
     res.status(200).json(employeeType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -43,7 +67,13 @@ const createEmployeeType = async (req, res) => {
 
     res.status(201).json(newEmployeeType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -60,12 +90,24 @@ const updateEmployeeType = async (req, res) => {
     );
 
     if (!updatedEmployeeType) {
-      return res.status(404).json({ error: 'Employee type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Employee type not found'
+        }
+      });
     }
 
     res.status(200).json(updatedEmployeeType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -78,12 +120,24 @@ const deleteEmployeeType = async (req, res) => {
     );
 
     if (!deletedEmployeeType) {
-      return res.status(404).json({ error: 'Employee type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Employee type not found'
+        }
+      });
     }
 
     res.status(200).json(deletedEmployeeType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 

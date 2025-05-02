@@ -9,12 +9,24 @@ const getEmployees = async (req, res) => {
     const employees = await employeeModel.getEmployees(limit, offset, typeId);
 
     if (!employees.length) {
-      return res.status(404).json({ error: 'No employees found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No employees found'
+        }
+      });
     }
 
     res.status(200).json(employees);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -25,12 +37,24 @@ const getEmployee = async (req, res) => {
     const employee = await employeeModel.getEmployeeById(employeeId);
 
     if (!employee) {
-      return res.status(404).json({ error: 'Employee not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Employee not found'
+        }
+      });
     }
 
     res.status(200).json(employee);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -56,7 +80,13 @@ const createEmployee = async (req, res) => {
 
     res.status(201).json(newEmployee);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -82,12 +112,24 @@ const updateEmployee = async (req, res) => {
     });
 
     if (!updatedEmployee) {
-      return res.status(404).json({ error: 'Employee not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Employee not found'
+        }
+      });
     }
 
     res.status(200).json(updatedEmployee);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -98,12 +140,24 @@ const deleteEmployee = async (req, res) => {
     const deletedEmployee = await employeeModel.deleteEmployee(employeeId);
 
     if (!deletedEmployee) {
-      return res.status(404).json({ error: 'Employee not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Employee not found'
+        }
+      });
     }
 
     res.status(200).json(deletedEmployee);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
