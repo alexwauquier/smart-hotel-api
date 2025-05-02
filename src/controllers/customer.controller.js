@@ -96,6 +96,16 @@ const createCustomer = async (req, res) => {
       space_id
     } = req.body;
 
+    if (!first_name || !last_name || !arrival_date || !departure_date || !space_id) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Required fields missing'
+        }
+      });
+    }
+
     const newCustomer = await customerModel.createCustomer({
       first_name,
       last_name,

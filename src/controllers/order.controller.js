@@ -66,6 +66,17 @@ const createOrder = async (req, res) => {
 
   try {
     const { customer_id: customerId, space_id: spaceId, items } = req.body;
+
+    if (!customerId || !spaceId || !items) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Required fields missing'
+        }
+      });
+    }
+
     const orderLines = [];
 
     await client.query('BEGIN');
@@ -105,6 +116,16 @@ const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
     const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing status'
+        }
+      });
+    }
 
     const updatedOrder = await orderHeaderModel.updateOrderStatus(
       orderId, status

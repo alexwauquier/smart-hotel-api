@@ -61,6 +61,16 @@ const createSensor = async (req, res) => {
   try {
     const { name, type_id: typeId, space_id: spaceId } = req.body;
 
+    if (!name || !typeId) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing name or type_id'
+        }
+      });
+    }
+
     const newSensor = await sensorModel.createSensor({
       name,
       typeId,

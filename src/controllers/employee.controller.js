@@ -68,6 +68,16 @@ const createEmployee = async (req, res) => {
       type_id: typeId
     } = req.body;
 
+    if (!firstName || !lastName || !username || !password || !typeId) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Required fields missing'
+        }
+      });
+    }
+
     const passwordHash = await argon2.hash(password);
 
     const newEmployee = await employeeModel.createEmployee({

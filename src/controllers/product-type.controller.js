@@ -60,6 +60,16 @@ const createProductType = async (req, res) => {
   try {
     const { id, label } = req.body;
 
+    if (!id || !label) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing id or label'
+        }
+      });
+    }
+
     const newProductType = await productTypeModel.createProductType({
       id,
       label

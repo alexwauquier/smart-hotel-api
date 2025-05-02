@@ -7,6 +7,16 @@ const loginCustomer = async (req, res) => {
   try {
     const { last_name: lastName, space_id: spaceId } = req.body;
 
+    if (!lastName || !spaceId) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing last_name or space_id'
+        }
+      });
+    }
+
     const customer = await customerModel.getCustomerByCredentials(
       lastName,
       spaceId
@@ -50,6 +60,16 @@ const loginCustomer = async (req, res) => {
 const loginEmployee = async (req, res) => {
   try {
     const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing username or password'
+        }
+      });
+    }
 
     const employee = await employeeModel.getEmployeeByUsername(username);
 

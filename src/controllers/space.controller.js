@@ -61,6 +61,16 @@ const createSpace = async (req, res) => {
   try {
     const { id, name, type_id: typeId, capacity } = req.body;
 
+    if (!id || !name || !typeId) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Required fields missing'
+        }
+      });
+    }
+
     const newSpace = await spaceModel.createSpace({
       id,
       name,

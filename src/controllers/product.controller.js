@@ -70,6 +70,16 @@ const createProduct = async (req, res) => {
       limit_quantity: limitQuantity
     } = req.body;
 
+    if (!name || !typeId || !containsAlcohol || !unitPrice) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Required fields missing'
+        }
+      });
+    }
+
     const newProduct = await productModel.createProduct({
       name,
       description,

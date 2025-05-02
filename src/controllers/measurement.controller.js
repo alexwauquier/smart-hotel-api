@@ -64,6 +64,16 @@ const createMeasurement = async (req, res) => {
       value
     } = req.body;
 
+    if (!sensorId || !value) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing sensor_id or value'
+        }
+      });
+    }
+
     const newMeasurement = await measurementModel.createMeasurement({
       sensorId,
       value
