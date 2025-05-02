@@ -8,12 +8,24 @@ const getSpaces = async (req, res) => {
     const spaces = await spaceModel.getSpaces(limit, offset, typeId, capacity);
 
     if (!spaces.length) {
-      return res.status(404).json({ error: 'No spaces found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No spaces found'
+        }
+      });
     }
 
     res.status(200).json(spaces);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -24,12 +36,24 @@ const getSpace = async (req, res) => {
     const space = await spaceModel.getSpaceById(spaceId);
 
     if (!space) {
-      return res.status(404).json({ error: 'Space not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Space not found'
+        }
+      });
     }
 
     res.status(200).json(space);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -46,7 +70,13 @@ const createSpace = async (req, res) => {
 
     res.status(201).json(newSpace);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -63,12 +93,24 @@ const updateSpace = async (req, res) => {
     });
 
     if (!updatedSpace) {
-      return res.status(404).json({ error: 'Space not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Space not found'
+        }
+      });
     }
 
     res.status(200).json(updatedSpace);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -79,12 +121,24 @@ const deleteSpace = async (req, res) => {
     const deletedSpace = await spaceModel.deleteSpace(spaceId);
 
     if (!deletedSpace) {
-      return res.status(404).json({ error: 'Space not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Space not found'
+        }
+      });
     }
 
     res.status(200).json(deletedSpace);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 

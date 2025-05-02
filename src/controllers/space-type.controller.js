@@ -5,12 +5,24 @@ const getAllSpaceTypes = async (req, res) => {
     const spaceTypes = await spaceTypeModel.getAllSpaceTypes();
 
     if (!spaceTypes.length) {
-      return res.status(404).json({ error: 'No space types found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No space types found'
+        }
+      });
     }
 
     res.status(200).json(spaceTypes);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -21,12 +33,24 @@ const getSpaceType = async (req, res) => {
     const spaceType = await spaceTypeModel.getSpaceTypeById(spaceId);
 
     if (!spaceType) {
-      return res.status(404).json({ error: 'Space type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Space type not found'
+        }
+      });
     }
 
     res.status(200).json(spaceType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -38,7 +62,13 @@ const createSpaceType = async (req, res) => {
 
     res.status(201).json(newSpaceType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -52,12 +82,24 @@ const updateSpaceType = async (req, res) => {
     );
 
     if (!updatedSpaceType) {
-      return res.status(404).json({ error: 'Space type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Space type not found'
+        }
+      });
     }
 
     res.status(200).json(updatedSpaceType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -68,12 +110,24 @@ const deleteSpaceType = async (req, res) => {
     const deletedSpaceType = await spaceTypeModel.deleteSpaceType(spaceId);
 
     if (!deletedSpaceType) {
-      return res.status(404).json({ error: 'Space type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Space type not found'
+        }
+      });
     }
 
     res.status(200).json(deletedSpaceType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
