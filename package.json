@@ -16,7 +16,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node --env-file=.env.development --env-file-if-exists=.env.development.local src/server.js",
-    "start:dev": "nodemon --env-file=.env.development --env-file-if-exists=.env.development.local src/server.js",
+    "dev": "nodemon --env-file=.env.development --env-file-if-exists=.env.development.local src/server.js",
     "version:major": "npm version major --git-tag-version=false",
     "version:minor": "npm version minor --git-tag-version=false",
     "version:patch": "npm version patch --git-tag-version=false"
