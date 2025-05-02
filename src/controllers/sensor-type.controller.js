@@ -5,12 +5,24 @@ const getAllSensorTypes = async (req, res) => {
     const sensorTypes = await sensorTypeModel.getAllSensorTypes();
 
     if (!sensorTypes.length) {
-      return res.status(404).json({ error: 'No sensor types found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No sensor types found'
+        }
+      });
     }
 
     res.status(200).json(sensorTypes);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -21,12 +33,24 @@ const getSensorType = async (req, res) => {
     const sensorType = await sensorTypeModel.getSensorTypeById(sensorId);
 
     if (!sensorType) {
-      return res.status(404).json({ error: 'Sensor type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor type not found'
+        }
+      });
     }
 
     res.status(200).json(sensorType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -38,7 +62,13 @@ const createSensorType = async (req, res) => {
 
     res.status(201).json(newSensorType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -52,12 +82,24 @@ const updateSensorType = async (req, res) => {
     );
 
     if (!updatedSensorType) {
-      return res.status(404).json({ error: 'Sensor type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor type not found'
+        }
+      });
     }
 
     res.status(200).json(updatedSensorType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -68,12 +110,24 @@ const deleteSensorType = async (req, res) => {
     const deletedSensorType = await sensorTypeModel.deleteSensorType(sensorId);
 
     if (!deletedSensorType) {
-      return res.status(404).json({ error: 'Sensor type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor type not found'
+        }
+      });
     }
 
     res.status(200).json(deletedSensorType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 

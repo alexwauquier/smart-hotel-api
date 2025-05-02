@@ -8,12 +8,24 @@ const getSensors = async (req, res) => {
     const sensors = await sensorModel.getSensors(limit, offset, typeId, spaceId);
 
     if (!sensors.length) {
-      return res.status(404).json({ error: 'No sensors found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No sensors found'
+        }
+      });
     }
 
     res.status(200).json(sensors);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -24,12 +36,24 @@ const getSensor = async (req, res) => {
     const sensor = await sensorModel.getSensorById(sensorId);
 
     if (!sensor) {
-      return res.status(404).json({ error: 'Sensor not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor not found'
+        }
+      });
     }
 
     res.status(200).json(sensor);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -45,7 +69,13 @@ const createSensor = async (req, res) => {
 
     res.status(201).json(newSensor);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -61,12 +91,24 @@ const updateSensor = async (req, res) => {
     });
 
     if (!updatedSensor) {
-      return res.status(404).json({ error: 'Sensor not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor not found'
+        }
+      });
     }
 
     res.status(200).json(updatedSensor);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -77,12 +119,24 @@ const deleteSensor = async (req, res) => {
     const deletedSensor = await sensorModel.deleteSensor(sensorId);
 
     if (!deletedSensor) {
-      return res.status(404).json({ error: 'Sensor not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor not found'
+        }
+      });
     }
 
     res.status(200).json(deletedSensor);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
