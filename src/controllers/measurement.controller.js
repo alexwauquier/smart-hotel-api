@@ -8,12 +8,24 @@ const getMeasurements = async (req, res) => {
     const measurements = await measurementModel.getMeasurements(limit, offset, sensorId);
 
     if (!measurements.length) {
-      return res.status(404).json({ error: 'No measurements found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No measurements found'
+        }
+      });
     }
 
     res.status(200).json(measurements);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -24,12 +36,24 @@ const getSensorMeasurements = async (req, res) => {
     const sensorMeasurements = await measurementModel.getMeasurementsBySensorId(sensorId);
 
     if (!sensorMeasurements.length) {
-      return res.status(404).json({ error: 'Sensor measurements not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Sensor measurements not found'
+        }
+      });
     }
 
     res.status(200).json(sensorMeasurements);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -47,7 +71,13 @@ const createMeasurement = async (req, res) => {
 
     res.status(201).json(newMeasurement);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
