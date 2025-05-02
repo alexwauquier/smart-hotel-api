@@ -5,12 +5,24 @@ const getAllProductTypes = async (req, res) => {
     const productTypes = await productTypeModel.getAllProductTypes();
 
     if (!productTypes.length) {
-      return res.status(404).json({ error: 'No product types found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No product types found'
+        }
+      });
     }
 
     res.status(200).json(productTypes);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -23,12 +35,24 @@ const getProductType = async (req, res) => {
     );
 
     if (!productType) {
-      return res.status(404).json({ error: 'Product type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Product type not found'
+        }
+      });
     }
 
     res.status(200).json(productType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -43,7 +67,13 @@ const createProductType = async (req, res) => {
 
     res.status(201).json(newProductType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -60,12 +90,24 @@ const updateProductType = async (req, res) => {
     );
 
     if (!updatedProductType) {
-      return res.status(404).json({ error: 'Product type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Product type not found'
+        }
+      });
     }
 
     res.status(200).json(updatedProductType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -78,12 +120,24 @@ const deleteProductType = async (req, res) => {
     );
 
     if (!deletedProductType) {
-      return res.status(404).json({ error: 'Product type not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Product type not found'
+        }
+      });
     }
 
     res.status(200).json(deletedProductType);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 

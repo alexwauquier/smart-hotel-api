@@ -8,12 +8,24 @@ const getProducts = async (req, res) => {
     const products = await productModel.getProducts(limit, offset, typeId, containsAlcohol);
 
     if (!products.length) {
-      return res.status(404).json({ error: 'No products found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No products found'
+        }
+      });
     }
 
     res.status(200).json(products);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -24,12 +36,24 @@ const getProduct = async (req, res) => {
     const product = await productModel.getProductById(productId);
 
     if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Product not found'
+        }
+      });
     }
 
     res.status(200).json(product);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -59,7 +83,13 @@ const createProduct = async (req, res) => {
 
     res.status(201).json(newProduct);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -89,12 +119,24 @@ const updateProduct = async (req, res) => {
     });
 
     if (!updatedProduct) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Product not found'
+        }
+      });
     }
 
     res.status(200).json(updatedProduct);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -105,12 +147,24 @@ const deleteProduct = async (req, res) => {
     const deletedProduct = await productModel.deleteProduct(productId);
 
     if (!deletedProduct) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Product not found'
+        }
+      });
     }
 
     res.status(200).json(deletedProduct);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
