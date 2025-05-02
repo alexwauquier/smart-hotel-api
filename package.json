@@ -1,6 +1,6 @@
 {
   "name": "smart-hotel-api",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "A RESTful API built with Express for the Smart Hotel project",
   "homepage": "https://github.com/alexwauquier/smart-hotel-api#readme",
   "bugs": {
