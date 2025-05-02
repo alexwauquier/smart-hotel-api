@@ -5,12 +5,24 @@ const getAllOrderStatuses = async (req, res) => {
     const orderStatuses = await orderStatusModel.getAllOrderStatuses();
 
     if (!orderStatuses.length) {
-      return res.status(404).json({ error: 'No order statuses found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No order statuses found'
+        }
+      });
     }
 
     res.status(200).json(orderStatuses);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -21,12 +33,24 @@ const getOrderStatus = async (req, res) => {
     const orderStatus = await orderStatusModel.getOrderStatusById(statusId);
 
     if (!orderStatus) {
-      return res.status(404).json({ error: 'Order status not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Order status not found'
+        }
+      });
     }
 
     res.status(200).json(orderStatus);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -40,7 +64,13 @@ const createOrderStatus = async (req, res) => {
 
     res.status(201).json(newOrderStatus);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -54,12 +84,24 @@ const updateOrderStatus = async (req, res) => {
     );
 
     if (!updatedOrderStatus) {
-      return res.status(404).json({ error: 'Order status not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Order status not found'
+        }
+      });
     }
 
     res.status(200).json(updatedOrderStatus);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -72,12 +114,24 @@ const deleteOrderStatus = async (req, res) => {
     );
 
     if (!deletedOrderStatus) {
-      return res.status(404).json({ error: 'Order status not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Order status not found'
+        }
+      });
     }
 
     res.status(200).json(deletedOrderStatus);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 

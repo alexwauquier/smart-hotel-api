@@ -10,12 +10,24 @@ const getOrders = async (req, res) => {
     const orders = await orderHeaderModel.getOrderHeaders(limit, offset, statusId);
 
     if (!orders.length) {
-      return res.status(404).json({ error: 'No orders found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'No orders found'
+        }
+      });
     }
 
     res.status(200).json(orders);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
@@ -26,14 +38,26 @@ const getOrderDetails = async (req, res) => {
     const orderHeader = await orderHeaderModel.getOrderHeaderById(orderId);
 
     if (!orderHeader) {
-      return res.status(404).json({ error: 'Order not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Order not found'
+        }
+      });
     }
 
     const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
 
     res.status(200).json({ order_header: orderHeader, order_lines: orderLines });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 }
 
@@ -65,7 +89,13 @@ const createOrder = async (req, res) => {
     });
   } catch (err) {
     await client.query('ROLLBACK');
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   } finally {
     client.release();
   }
@@ -81,12 +111,24 @@ const updateOrderStatus = async (req, res) => {
     );
 
     if (!updatedOrder) {
-      return res.status(404).json({ error: 'Order not found' });
+      return res.status(404).json({
+        success: false,
+        error:  {
+          code: 404,
+          message: 'Order not found'
+        }
+      });
     }
 
     res.status(200).json(updatedOrder);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({
+      success: false,
+      error:  {
+        code: 500,
+        message: err.message
+      }
+    });
   }
 };
 
