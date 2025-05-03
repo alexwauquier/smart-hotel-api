@@ -20,11 +20,36 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRouter);
-app.use('/api/customers', verifyToken, verifyRole(['customer', 'employee']), customerRouter);
-app.use('/api/employees', verifyToken, verifyRole(['employee']), employeeRouter);
-app.use('/api/measurements', verifyToken, verifyRole(['customer', 'employee']), measurementRouter);
-app.use('/api/orders', verifyToken, verifyRole(['customer', 'employee']), orderRouter);
-app.use('/api/products', verifyToken, verifyRole(['customer', 'employee']), productRouter);
+app.use(
+  '/api/customers',
+  verifyToken,
+  verifyRole(['customer', 'employee']),
+  customerRouter
+);
+app.use(
+  '/api/employees',
+  verifyToken,
+  verifyRole(['employee']),
+  employeeRouter
+);
+app.use(
+  '/api/measurements',
+  verifyToken,
+  verifyRole(['customer', 'employee']),
+  measurementRouter
+);
+app.use(
+  '/api/orders',
+  verifyToken,
+  verifyRole(['customer', 'employee']),
+  orderRouter
+);
+app.use(
+  '/api/products',
+  verifyToken,
+  verifyRole(['customer', 'employee']),
+  productRouter
+);
 app.use('/api/sensors', verifyToken, verifyRole(['employee']), sensorsRouter);
 app.use('/api/spaces', verifyToken, verifyRole(['employee']), spaceRouter);
 

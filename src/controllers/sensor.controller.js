@@ -2,15 +2,25 @@ import * as sensorModel from '../models/sensor.model.js';
 
 const getSensors = async (req, res) => {
   try {
-    const { page = 1, limit = 50, type_id: typeId, space_id: spaceId } = req.query;
+    const {
+      page = 1,
+      limit = 50,
+      type_id: typeId,
+      space_id: spaceId
+    } = req.query;
     const offset = (page - 1) * limit;
 
-    const sensors = await sensorModel.getSensors(limit, offset, typeId, spaceId);
+    const sensors = await sensorModel.getSensors(
+      limit,
+      offset,
+      typeId,
+      spaceId
+    );
 
     if (!sensors.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No sensors found'
         }
@@ -21,7 +31,7 @@ const getSensors = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -38,7 +48,7 @@ const getSensor = async (req, res) => {
     if (!sensor) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor not found'
         }
@@ -49,7 +59,7 @@ const getSensor = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -81,7 +91,7 @@ const createSensor = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -103,7 +113,7 @@ const updateSensor = async (req, res) => {
     if (!updatedSensor) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor not found'
         }
@@ -114,7 +124,7 @@ const updateSensor = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -131,7 +141,7 @@ const deleteSensor = async (req, res) => {
     if (!deletedSensor) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor not found'
         }
@@ -142,7 +152,7 @@ const deleteSensor = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -150,10 +160,4 @@ const deleteSensor = async (req, res) => {
   }
 };
 
-export {
-  getSensors,
-  getSensor,
-  createSensor,
-  updateSensor,
-  deleteSensor
-};
+export { getSensors, getSensor, createSensor, updateSensor, deleteSensor };

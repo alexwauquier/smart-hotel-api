@@ -7,7 +7,7 @@ const getAllEmployeeTypes = async (req, res) => {
     if (!employeeTypes.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No employee types found'
         }
@@ -18,7 +18,7 @@ const getAllEmployeeTypes = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -30,14 +30,12 @@ const getEmployeeType = async (req, res) => {
   try {
     const { typeId } = req.params;
 
-    const employeeType = await employeeTypeModel.getEmployeeTypeById(
-      typeId
-    );
+    const employeeType = await employeeTypeModel.getEmployeeTypeById(typeId);
 
     if (!employeeType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Employee type not found'
         }
@@ -48,7 +46,7 @@ const getEmployeeType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -79,7 +77,7 @@ const createEmployeeType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -93,7 +91,8 @@ const updateEmployeeType = async (req, res) => {
     const { id, label } = req.body;
 
     const updatedEmployeeType = await employeeTypeModel.updateEmployeeType(
-      typeId, {
+      typeId,
+      {
         id,
         label
       }
@@ -102,7 +101,7 @@ const updateEmployeeType = async (req, res) => {
     if (!updatedEmployeeType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Employee type not found'
         }
@@ -113,7 +112,7 @@ const updateEmployeeType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -125,14 +124,13 @@ const deleteEmployeeType = async (req, res) => {
   try {
     const { typeId } = req.params;
 
-    const deletedEmployeeType = await employeeTypeModel.deleteEmployeeType(
-      typeId
-    );
+    const deletedEmployeeType =
+      await employeeTypeModel.deleteEmployeeType(typeId);
 
     if (!deletedEmployeeType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Employee type not found'
         }
@@ -143,7 +141,7 @@ const deleteEmployeeType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

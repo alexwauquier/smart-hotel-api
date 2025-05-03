@@ -10,6 +10,10 @@ router.use('/statuses', verifyRole(['employee']), orderStatusRouter);
 router.get('/', verifyRole(['employee']), orderController.getOrders);
 router.get('/:orderId', orderController.getOrderDetails);
 router.post('/', orderController.createOrder);
-router.patch('/:orderId/status', verifyRole(['employee']), orderController.updateOrderStatus);
+router.patch(
+  '/:orderId/status',
+  verifyRole(['employee']),
+  orderController.updateOrderStatus
+);
 
 export default router;

@@ -7,7 +7,7 @@ const getAllOrderStatuses = async (req, res) => {
     if (!orderStatuses.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No order statuses found'
         }
@@ -18,7 +18,7 @@ const getAllOrderStatuses = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -35,7 +35,7 @@ const getOrderStatus = async (req, res) => {
     if (!orderStatus) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Order status not found'
         }
@@ -46,7 +46,7 @@ const getOrderStatus = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -68,15 +68,16 @@ const createOrderStatus = async (req, res) => {
       });
     }
 
-    const newOrderStatus = await orderStatusModel.createOrderStatus(
-      { id, label }
-    );
+    const newOrderStatus = await orderStatusModel.createOrderStatus({
+      id,
+      label
+    });
 
     res.status(201).json(newOrderStatus);
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -90,13 +91,14 @@ const updateOrderStatus = async (req, res) => {
     const { id, label } = req.body;
 
     const updatedOrderStatus = await orderStatusModel.updateOrderStatus(
-      statusId, { id, label }
+      statusId,
+      { id, label }
     );
 
     if (!updatedOrderStatus) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Order status not found'
         }
@@ -107,7 +109,7 @@ const updateOrderStatus = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -119,14 +121,13 @@ const deleteOrderStatus = async (req, res) => {
   try {
     const { statusId } = req.params;
 
-    const deletedOrderStatus = await orderStatusModel.deleteOrderStatus(
-      statusId
-    );
+    const deletedOrderStatus =
+      await orderStatusModel.deleteOrderStatus(statusId);
 
     if (!deletedOrderStatus) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Order status not found'
         }
@@ -137,7 +138,7 @@ const deleteOrderStatus = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

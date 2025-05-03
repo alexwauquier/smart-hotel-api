@@ -9,7 +9,8 @@ const getOrderHeaders = async (limit, offset, statusId) => {
     whereClauses.push(`status_id = $${values.length}`);
   }
 
-  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
   const text = `
     SELECT * FROM order_header

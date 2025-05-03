@@ -5,12 +5,16 @@ const getMeasurements = async (req, res) => {
     const { page = 1, limit = 50, sensor_id: sensorId } = req.query;
     const offset = (page - 1) * limit;
 
-    const measurements = await measurementModel.getMeasurements(limit, offset, sensorId);
+    const measurements = await measurementModel.getMeasurements(
+      limit,
+      offset,
+      sensorId
+    );
 
     if (!measurements.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No measurements found'
         }
@@ -21,7 +25,7 @@ const getMeasurements = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -33,12 +37,13 @@ const getSensorMeasurements = async (req, res) => {
   try {
     const { sensorId } = req.params;
 
-    const sensorMeasurements = await measurementModel.getMeasurementsBySensorId(sensorId);
+    const sensorMeasurements =
+      await measurementModel.getMeasurementsBySensorId(sensorId);
 
     if (!sensorMeasurements.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor measurements not found'
         }
@@ -49,7 +54,7 @@ const getSensorMeasurements = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -59,10 +64,7 @@ const getSensorMeasurements = async (req, res) => {
 
 const createMeasurement = async (req, res) => {
   try {
-    const {
-      sensor_id: sensorId,
-      value
-    } = req.body;
+    const { sensor_id: sensorId, value } = req.body;
 
     if (!sensorId || !value) {
       return res.status(400).json({
@@ -83,7 +85,7 @@ const createMeasurement = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -91,8 +93,4 @@ const createMeasurement = async (req, res) => {
   }
 };
 
-export {
-  getMeasurements,
-  getSensorMeasurements,
-  createMeasurement
-};
+export { getMeasurements, getSensorMeasurements, createMeasurement };

@@ -14,7 +14,8 @@ const getProducts = async (limit, offset, typeId, containsAlcohol) => {
     whereClauses.push(`contains_alcohol = $${values.length}`);
   }
 
-  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
   const text = `
     SELECT * FROM product

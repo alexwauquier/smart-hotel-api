@@ -7,7 +7,7 @@ const getAllSpaceTypes = async (req, res) => {
     if (!spaceTypes.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No space types found'
         }
@@ -18,7 +18,7 @@ const getAllSpaceTypes = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -35,7 +35,7 @@ const getSpaceType = async (req, res) => {
     if (!spaceType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Space type not found'
         }
@@ -46,7 +46,7 @@ const getSpaceType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -74,7 +74,7 @@ const createSpaceType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -87,14 +87,15 @@ const updateSpaceType = async (req, res) => {
     const { spaceId } = req.params;
     const { id, label } = req.body;
 
-    const updatedSpaceType = await spaceTypeModel.updateSpaceType(
-      spaceId, { id, label }
-    );
+    const updatedSpaceType = await spaceTypeModel.updateSpaceType(spaceId, {
+      id,
+      label
+    });
 
     if (!updatedSpaceType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Space type not found'
         }
@@ -105,7 +106,7 @@ const updateSpaceType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -122,7 +123,7 @@ const deleteSpaceType = async (req, res) => {
     if (!deletedSpaceType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Space type not found'
         }
@@ -133,7 +134,7 @@ const deleteSpaceType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

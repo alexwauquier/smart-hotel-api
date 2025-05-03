@@ -55,16 +55,19 @@ The Smart Hotel API is the backend for [mobile app](https://github.com/alexwauqu
 ### Installation
 
 1. Clone the repository:
+
 ```
 git clone https://github.com/alexwauquier/smart-hotel-api.git
 ```
 
 2. Navigate to the project directory:
+
 ```
 cd smart-hotel-api
 ```
 
 3. Install dependencies:
+
 ```
 npm install
 ```
@@ -86,6 +89,7 @@ This project includes a default `.env.development` file. You can override this b
 ### Running the API Locally
 
 To start the API in development mode with automatic restarts:
+
 ```
 npm run start:dev
 ```
@@ -97,6 +101,7 @@ The API will be available at `http://localhost:3000`.
 For local development, a PostgreSQL database can be set up using Docker Compose. A `compose.development.yaml` file is provided for this setup.
 
 To start the database:
+
 ```
 docker compose -f compose.development.yaml up -d
 ```
@@ -108,6 +113,7 @@ This will launch a PostgreSQL container with the required configuration for test
 ### Authentication
 
 This API uses JWT-based authentication. To access protected routes, add the token in the `Authorization` header:
+
 ```
 Authorization: Bearer <your_token_here>
 ```

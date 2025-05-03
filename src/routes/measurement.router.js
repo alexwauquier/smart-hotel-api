@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.get('/', measurementController.getMeasurements);
 router.get('/:sensorId', measurementController.getSensorMeasurements);
-router.post('/', verifyRole(['employee']), measurementController.createMeasurement);
+router.post(
+  '/',
+  verifyRole(['employee']),
+  measurementController.createMeasurement
+);
 
 export default router;

@@ -7,7 +7,7 @@ const getAllSensorTypes = async (req, res) => {
     if (!sensorTypes.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No sensor types found'
         }
@@ -18,7 +18,7 @@ const getAllSensorTypes = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -35,7 +35,7 @@ const getSensorType = async (req, res) => {
     if (!sensorType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor type not found'
         }
@@ -46,7 +46,7 @@ const getSensorType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -74,7 +74,7 @@ const createSensorType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -87,14 +87,15 @@ const updateSensorType = async (req, res) => {
     const { sensorId } = req.params;
     const { id, label } = req.body;
 
-    const updatedSensorType = await sensorTypeModel.updateSensorType(
-      sensorId, { id, label }
-    );
+    const updatedSensorType = await sensorTypeModel.updateSensorType(sensorId, {
+      id,
+      label
+    });
 
     if (!updatedSensorType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor type not found'
         }
@@ -105,7 +106,7 @@ const updateSensorType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -122,7 +123,7 @@ const deleteSensorType = async (req, res) => {
     if (!deletedSensorType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Sensor type not found'
         }
@@ -133,7 +134,7 @@ const deleteSensorType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

@@ -9,7 +9,8 @@ const getEmployees = async (limit, offset, typeId) => {
     whereClauses.push(`type_id = $${values.length}`);
   }
 
-  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
   const text = `
     SELECT id, first_name, last_name, username, type_id
@@ -40,7 +41,7 @@ const getEmployeeByUsername = async (username) => {
   const text = 'SELECT * FROM employee WHERE username = $1';
   const result = await pool.query(text, [username]);
   return result.rows[0];
-}
+};
 
 const createEmployee = async (employeeData) => {
   const text = `

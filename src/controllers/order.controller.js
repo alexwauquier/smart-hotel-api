@@ -7,12 +7,16 @@ const getOrders = async (req, res) => {
     const { page = 1, limit = 50, status_id: statusId } = req.query;
     const offset = (page - 1) * limit;
 
-    const orders = await orderHeaderModel.getOrderHeaders(limit, offset, statusId);
+    const orders = await orderHeaderModel.getOrderHeaders(
+      limit,
+      offset,
+      statusId
+    );
 
     if (!orders.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No orders found'
         }
@@ -23,7 +27,7 @@ const getOrders = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -40,7 +44,7 @@ const getOrderDetails = async (req, res) => {
     if (!orderHeader) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Order not found'
         }
@@ -49,17 +53,19 @@ const getOrderDetails = async (req, res) => {
 
     const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
 
-    res.status(200).json({ order_header: orderHeader, order_lines: orderLines });
+    res
+      .status(200)
+      .json({ order_header: orderHeader, order_lines: orderLines });
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
     });
   }
-}
+};
 
 const createOrder = async (req, res) => {
   const client = await pool.connect();
@@ -82,12 +88,17 @@ const createOrder = async (req, res) => {
     await client.query('BEGIN');
 
     const orderHeader = await orderHeaderModel.createOrderHeader(
-      client, customerId, spaceId
+      client,
+      customerId,
+      spaceId
     );
 
     for (const item of items) {
       const orderLine = await orderLineModel.createOrderLine(
-        client, orderHeader.id, item.product_id, item.quantity
+        client,
+        orderHeader.id,
+        item.product_id,
+        item.quantity
       );
       orderLines.push(orderLine);
     }
@@ -102,7 +113,7 @@ const createOrder = async (req, res) => {
     await client.query('ROLLBACK');
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -128,13 +139,14 @@ const updateOrderStatus = async (req, res) => {
     }
 
     const updatedOrder = await orderHeaderModel.updateOrderStatus(
-      orderId, status
+      orderId,
+      status
     );
 
     if (!updatedOrder) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Order not found'
         }
@@ -145,7 +157,7 @@ const updateOrderStatus = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

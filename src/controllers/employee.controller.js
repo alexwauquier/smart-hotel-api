@@ -11,7 +11,7 @@ const getEmployees = async (req, res) => {
     if (!employees.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No employees found'
         }
@@ -22,7 +22,7 @@ const getEmployees = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -39,7 +39,7 @@ const getEmployee = async (req, res) => {
     if (!employee) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Employee not found'
         }
@@ -50,7 +50,7 @@ const getEmployee = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -92,7 +92,7 @@ const createEmployee = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -124,7 +124,7 @@ const updateEmployee = async (req, res) => {
     if (!updatedEmployee) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Employee not found'
         }
@@ -135,7 +135,7 @@ const updateEmployee = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -152,7 +152,7 @@ const deleteEmployee = async (req, res) => {
     if (!deletedEmployee) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Employee not found'
         }
@@ -163,7 +163,7 @@ const deleteEmployee = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

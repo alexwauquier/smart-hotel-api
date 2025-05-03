@@ -9,7 +9,8 @@ const getMeasurements = async (limit, offset, sensorId) => {
     whereClauses.push(`sensor_id = $${values.length}`);
   }
 
-  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
   const text = `
     SELECT * FROM sensor_measurement
@@ -49,8 +50,4 @@ const createMeasurement = async (measurementData) => {
   return result.rows[0];
 };
 
-export {
-  getMeasurements,
-  getMeasurementsBySensorId,
-  createMeasurement
-};
+export { getMeasurements, getMeasurementsBySensorId, createMeasurement };

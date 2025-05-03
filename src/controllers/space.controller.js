@@ -10,7 +10,7 @@ const getSpaces = async (req, res) => {
     if (!spaces.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No spaces found'
         }
@@ -21,7 +21,7 @@ const getSpaces = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -38,7 +38,7 @@ const getSpace = async (req, res) => {
     if (!space) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Space not found'
         }
@@ -49,7 +49,7 @@ const getSpace = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -82,7 +82,7 @@ const createSpace = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -105,7 +105,7 @@ const updateSpace = async (req, res) => {
     if (!updatedSpace) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Space not found'
         }
@@ -116,7 +116,7 @@ const updateSpace = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -133,7 +133,7 @@ const deleteSpace = async (req, res) => {
     if (!deletedSpace) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Space not found'
         }
@@ -144,7 +144,7 @@ const deleteSpace = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -152,10 +152,4 @@ const deleteSpace = async (req, res) => {
   }
 };
 
-export {
-  getSpaces,
-  getSpace,
-  createSpace,
-  updateSpace,
-  deleteSpace
-};
+export { getSpaces, getSpace, createSpace, updateSpace, deleteSpace };

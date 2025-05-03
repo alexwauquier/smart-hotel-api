@@ -14,7 +14,8 @@ const getSpaces = async (limit, offset, typeId, capacity) => {
     whereClauses.push(`capacity = $${values.length}`);
   }
 
-  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
   const text = `
     SELECT * FROM space
@@ -74,10 +75,4 @@ const deleteSpace = async (spaceId) => {
   return result.rows[0];
 };
 
-export {
-  getSpaces,
-  getSpaceById,
-  createSpace,
-  updateSpace,
-  deleteSpace
-};
+export { getSpaces, getSpaceById, createSpace, updateSpace, deleteSpace };

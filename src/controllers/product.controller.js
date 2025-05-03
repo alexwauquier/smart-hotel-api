@@ -2,15 +2,25 @@ import * as productModel from '../models/product.model.js';
 
 const getProducts = async (req, res) => {
   try {
-    const { page = 1, limit = 50, type_id: typeId, contains_alcohol: containsAlcohol } = req.query;
+    const {
+      page = 1,
+      limit = 50,
+      type_id: typeId,
+      contains_alcohol: containsAlcohol
+    } = req.query;
     const offset = (page - 1) * limit;
 
-    const products = await productModel.getProducts(limit, offset, typeId, containsAlcohol);
+    const products = await productModel.getProducts(
+      limit,
+      offset,
+      typeId,
+      containsAlcohol
+    );
 
     if (!products.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No products found'
         }
@@ -21,7 +31,7 @@ const getProducts = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -38,7 +48,7 @@ const getProduct = async (req, res) => {
     if (!product) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Product not found'
         }
@@ -49,7 +59,7 @@ const getProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -95,7 +105,7 @@ const createProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -131,7 +141,7 @@ const updateProduct = async (req, res) => {
     if (!updatedProduct) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Product not found'
         }
@@ -142,7 +152,7 @@ const updateProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -159,7 +169,7 @@ const deleteProduct = async (req, res) => {
     if (!deletedProduct) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Product not found'
         }
@@ -170,7 +180,7 @@ const deleteProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -178,10 +188,4 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-export {
-  getProducts,
-  getProduct,
-  createProduct,
-  updateProduct,
-  deleteProduct
-};
+export { getProducts, getProduct, createProduct, updateProduct, deleteProduct };

@@ -7,7 +7,7 @@ const getAllProductTypes = async (req, res) => {
     if (!productTypes.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No product types found'
         }
@@ -18,7 +18,7 @@ const getAllProductTypes = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -30,14 +30,12 @@ const getProductType = async (req, res) => {
   try {
     const { typeId } = req.params;
 
-    const productType = await productTypeModel.getProductTypeById(
-      typeId
-    );
+    const productType = await productTypeModel.getProductTypeById(typeId);
 
     if (!productType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Product type not found'
         }
@@ -48,7 +46,7 @@ const getProductType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -79,7 +77,7 @@ const createProductType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -93,7 +91,8 @@ const updateProductType = async (req, res) => {
     const { id, label } = req.body;
 
     const updatedProductType = await productTypeModel.updateProductType(
-      typeId, {
+      typeId,
+      {
         id,
         label
       }
@@ -102,7 +101,7 @@ const updateProductType = async (req, res) => {
     if (!updatedProductType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Product type not found'
         }
@@ -113,7 +112,7 @@ const updateProductType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }
@@ -125,14 +124,12 @@ const deleteProductType = async (req, res) => {
   try {
     const { typeId } = req.params;
 
-    const deletedProductType = await productTypeModel.deleteProductType(
-      typeId
-    );
+    const deletedProductType = await productTypeModel.deleteProductType(typeId);
 
     if (!deletedProductType) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Product type not found'
         }
@@ -143,7 +140,7 @@ const deleteProductType = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      error:  {
+      error: {
         code: 500,
         message: err.message
       }

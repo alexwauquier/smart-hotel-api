@@ -10,7 +10,15 @@ router.use('/types', verifyRole(['employee']), productTypeRouter);
 router.get('/', productController.getProducts);
 router.get('/:productId', productController.getProduct);
 router.post('/', verifyRole(['employee']), productController.createProduct);
-router.patch('/:productId', verifyRole(['employee']), productController.updateProduct);
-router.delete('/:productId', verifyRole(['employee']), productController.deleteProduct);
+router.patch(
+  '/:productId',
+  verifyRole(['employee']),
+  productController.updateProduct
+);
+router.delete(
+  '/:productId',
+  verifyRole(['employee']),
+  productController.deleteProduct
+);
 
 export default router;

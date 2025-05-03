@@ -11,7 +11,7 @@ const getCustomers = async (req, res) => {
     if (!customers.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No customers found'
         }
@@ -39,7 +39,7 @@ const getCustomer = async (req, res) => {
     if (!customer) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Customer not found'
         }
@@ -67,7 +67,7 @@ const getCustomerOrders = async (req, res) => {
     if (!orders.length) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'No orders found'
         }
@@ -88,15 +88,16 @@ const getCustomerOrders = async (req, res) => {
 
 const createCustomer = async (req, res) => {
   try {
-    const {
-      first_name,
-      last_name,
-      arrival_date,
-      departure_date,
-      space_id
-    } = req.body;
+    const { first_name, last_name, arrival_date, departure_date, space_id } =
+      req.body;
 
-    if (!first_name || !last_name || !arrival_date || !departure_date || !space_id) {
+    if (
+      !first_name ||
+      !last_name ||
+      !arrival_date ||
+      !departure_date ||
+      !space_id
+    ) {
       return res.status(400).json({
         success: false,
         error: {
@@ -129,13 +130,8 @@ const createCustomer = async (req, res) => {
 const updateCustomer = async (req, res) => {
   try {
     const { customerId } = req.params;
-    const {
-      first_name,
-      last_name,
-      arrival_date,
-      departure_date,
-      space_id
-    } = req.body;
+    const { first_name, last_name, arrival_date, departure_date, space_id } =
+      req.body;
 
     const updatedCustomer = await customerModel.updateCustomer(customerId, {
       first_name,
@@ -148,7 +144,7 @@ const updateCustomer = async (req, res) => {
     if (!updatedCustomer) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Customer not found'
         }
@@ -176,7 +172,7 @@ const deleteCustomer = async (req, res) => {
     if (!deletedCustomer) {
       return res.status(404).json({
         success: false,
-        error:  {
+        error: {
           code: 404,
           message: 'Customer not found'
         }

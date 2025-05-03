@@ -8,7 +8,15 @@ router.get('/', verifyRole(['employee']), customerController.getCustomers);
 router.get('/:customerId', customerController.getCustomer);
 router.get('/:customerId/orders', customerController.getCustomerOrders);
 router.post('/', verifyRole(['employee']), customerController.createCustomer);
-router.patch('/:customerId', verifyRole(['employee']), customerController.updateCustomer);
-router.delete('/:customerId', verifyRole(['employee']), customerController.deleteCustomer);
+router.patch(
+  '/:customerId',
+  verifyRole(['employee']),
+  customerController.updateCustomer
+);
+router.delete(
+  '/:customerId',
+  verifyRole(['employee']),
+  customerController.deleteCustomer
+);
 
 export default router;

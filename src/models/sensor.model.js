@@ -14,7 +14,8 @@ const getSensors = async (limit, offset, typeId, spaceId) => {
     whereClauses.push(`space_id = $${values.length}`);
   }
 
-  const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
   const text = `
     SELECT * FROM sensor
@@ -72,10 +73,4 @@ const deleteSensor = async (sensorId) => {
   return result.rows[0];
 };
 
-export {
-  getSensors,
-  getSensorById,
-  createSensor,
-  updateSensor,
-  deleteSensor
-};
+export { getSensors, getSensorById, createSensor, updateSensor, deleteSensor };

@@ -38,14 +38,17 @@ const loginCustomer = async (req, res) => {
       { expiresIn: '2h' }
     );
 
-    res.status(200).json({ token, customer: {
-      id: customer.id,
-      first_name: customer.first_name,
-      last_name: customer.last_name,
-      arrival_date: customer.arrival_date,
-      departure_date: customer.departure_date,
-      space_id: customer.space_id
-    } });
+    res.status(200).json({
+      token,
+      customer: {
+        id: customer.id,
+        first_name: customer.first_name,
+        last_name: customer.last_name,
+        arrival_date: customer.arrival_date,
+        departure_date: customer.departure_date,
+        space_id: customer.space_id
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -55,7 +58,7 @@ const loginCustomer = async (req, res) => {
       }
     });
   }
-}
+};
 
 const loginEmployee = async (req, res) => {
   try {
@@ -104,12 +107,15 @@ const loginEmployee = async (req, res) => {
       { expiresIn: '2h' }
     );
 
-    res.status(200).json({ token, employee: {
-      id: employee.id,
-      first_name: employee.first_name,
-      last_name: employee.last_name,
-      type_id: employee.type_id
-    } });
+    res.status(200).json({
+      token,
+      employee: {
+        id: employee.id,
+        first_name: employee.first_name,
+        last_name: employee.last_name,
+        type_id: employee.type_id
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -119,6 +125,6 @@ const loginEmployee = async (req, res) => {
       }
     });
   }
-}
+};
 
 export { loginCustomer, loginEmployee };
