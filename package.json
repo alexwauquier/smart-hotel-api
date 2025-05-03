@@ -17,6 +17,8 @@
   "scripts": {
     "start": "node --env-file=.env.development --env-file-if-exists=.env.development.local src/server.js",
     "dev": "nodemon --env-file=.env.development --env-file-if-exists=.env.development.local src/server.js",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "version:major": "npm version major --git-tag-version=false",
     "version:minor": "npm version minor --git-tag-version=false",
     "version:patch": "npm version patch --git-tag-version=false"
