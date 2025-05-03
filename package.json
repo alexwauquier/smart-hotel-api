@@ -29,7 +29,8 @@
     "pg": "^8.15.6"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "prettier": "3.5.3"
   },
   "private": true
 }
