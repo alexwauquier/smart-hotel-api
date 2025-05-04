@@ -23,7 +23,12 @@ const getOrders = async (req, res) => {
       });
     }
 
-    res.status(200).json(orders);
+    res.status(200).json({
+      success: true,
+      data: {
+        orders
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -53,9 +58,21 @@ const getOrderDetails = async (req, res) => {
 
     const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
 
-    res
-      .status(200)
-      .json({ order_header: orderHeader, order_lines: orderLines });
+    res.status(200).json({
+      success: true,
+      data: {
+        order: {
+          id: orderHeader.id,
+          date: orderHeader.date,
+          customer_id: orderHeader.customer_id,
+          employee_id: orderHeader.employee_id,
+          space_id: orderHeader.space_id,
+          status_id: orderHeader.status_id,
+          is_paid: orderHeader.is_paid,
+          line_items: orderLines
+        }
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -106,8 +123,19 @@ const createOrder = async (req, res) => {
     await client.query('COMMIT');
 
     res.status(201).json({
-      order_header: orderHeader,
-      order_lines: orderLines
+      success: true,
+      data: {
+        order: {
+          id: orderHeader.id,
+          date: orderHeader.date,
+          customer_id: orderHeader.customer_id,
+          employee_id: orderHeader.employee_id,
+          space_id: orderHeader.space_id,
+          status_id: orderHeader.status_id,
+          is_paid: orderHeader.is_paid,
+          line_items: orderLines
+        }
+      }
     });
   } catch (err) {
     await client.query('ROLLBACK');
@@ -153,7 +181,12 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedOrder);
+    res.status(200).json({
+      success: true,
+      data: {
+        order: updatedOrder
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

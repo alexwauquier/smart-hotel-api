@@ -27,7 +27,12 @@ const getProducts = async (req, res) => {
       });
     }
 
-    res.status(200).json(products);
+    res.status(200).json({
+      success: true,
+      data: {
+        products: products
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -55,7 +60,12 @@ const getProduct = async (req, res) => {
       });
     }
 
-    res.status(200).json(product);
+    res.status(200).json({
+      success: true,
+      data: {
+        product
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -101,7 +111,12 @@ const createProduct = async (req, res) => {
       limitQuantity
     });
 
-    res.status(201).json(newProduct);
+    res.status(201).json({
+      success: true,
+      data: {
+        product: newProduct
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -148,7 +163,12 @@ const updateProduct = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedProduct);
+    res.status(200).json({
+      success: true,
+      data: {
+        product: updatedProduct
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -176,7 +196,10 @@ const deleteProduct = async (req, res) => {
       });
     }
 
-    res.status(200).json(deletedProduct);
+    res.status(200).json({
+      success: true,
+      message: 'Product successfully deleted'
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

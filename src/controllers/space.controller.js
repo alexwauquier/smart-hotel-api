@@ -17,7 +17,12 @@ const getSpaces = async (req, res) => {
       });
     }
 
-    res.status(200).json(spaces);
+    res.status(200).json({
+      success: true,
+      data: {
+        spaces
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -45,7 +50,12 @@ const getSpace = async (req, res) => {
       });
     }
 
-    res.status(200).json(space);
+    res.status(200).json({
+      success: true,
+      data: {
+        space
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -78,7 +88,12 @@ const createSpace = async (req, res) => {
       capacity
     });
 
-    res.status(201).json(newSpace);
+    res.status(201).json({
+      success: true,
+      data: {
+        space: newSpace
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -112,7 +127,12 @@ const updateSpace = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedSpace);
+    res.status(200).json({
+      success: true,
+      data: {
+        space: updatedSpace
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -140,7 +160,10 @@ const deleteSpace = async (req, res) => {
       });
     }
 
-    res.status(200).json(deletedSpace);
+    res.status(200).json({
+      success: true,
+      message: 'Space successfully deleted'
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

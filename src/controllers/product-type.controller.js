@@ -14,7 +14,12 @@ const getAllProductTypes = async (req, res) => {
       });
     }
 
-    res.status(200).json(productTypes);
+    res.status(200).json({
+      success: true,
+      data: {
+        product_types: productTypes
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -42,7 +47,12 @@ const getProductType = async (req, res) => {
       });
     }
 
-    res.status(200).json(productType);
+    res.status(200).json({
+      success: true,
+      data: {
+        product_type: productType
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -73,7 +83,12 @@ const createProductType = async (req, res) => {
       label
     });
 
-    res.status(201).json(newProductType);
+    res.status(201).json({
+      success: true,
+      data: {
+        product_type: newProductType
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -108,7 +123,12 @@ const updateProductType = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedProductType);
+    res.status(200).json({
+      success: true,
+      data: {
+        product_type: updatedProductType
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -136,7 +156,10 @@ const deleteProductType = async (req, res) => {
       });
     }
 
-    res.status(200).json(deletedProductType);
+    res.status(200).json({
+      success: true,
+      message: 'Product type successfully deleted'
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

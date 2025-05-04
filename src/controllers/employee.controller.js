@@ -18,7 +18,12 @@ const getEmployees = async (req, res) => {
       });
     }
 
-    res.status(200).json(employees);
+    res.status(200).json({
+      success: true,
+      data: {
+        employees
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -46,7 +51,12 @@ const getEmployee = async (req, res) => {
       });
     }
 
-    res.status(200).json(employee);
+    res.status(200).json({
+      success: true,
+      data: {
+        employee
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -88,7 +98,12 @@ const createEmployee = async (req, res) => {
       typeId
     });
 
-    res.status(201).json(newEmployee);
+    res.status(201).json({
+      success: true,
+      data: {
+        employee: newEmployee
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -131,7 +146,12 @@ const updateEmployee = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedEmployee);
+    res.status(200).json({
+      success: true,
+      data: {
+        employee: updatedEmployee
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -159,7 +179,10 @@ const deleteEmployee = async (req, res) => {
       });
     }
 
-    res.status(200).json(deletedEmployee);
+    res.status(200).json({
+      success: true,
+      message: 'Employee successfully deleted'
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

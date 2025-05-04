@@ -39,14 +39,10 @@ const loginCustomer = async (req, res) => {
     );
 
     res.status(200).json({
-      token,
-      customer: {
-        id: customer.id,
-        first_name: customer.first_name,
-        last_name: customer.last_name,
-        arrival_date: customer.arrival_date,
-        departure_date: customer.departure_date,
-        space_id: customer.space_id
+      success: true,
+      data: {
+        customer,
+        token
       }
     });
   } catch (err) {
@@ -108,12 +104,15 @@ const loginEmployee = async (req, res) => {
     );
 
     res.status(200).json({
-      token,
-      employee: {
-        id: employee.id,
-        first_name: employee.first_name,
-        last_name: employee.last_name,
-        type_id: employee.type_id
+      success: true,
+      data: {
+        employee: {
+          id: employee.id,
+          first_name: employee.first_name,
+          last_name: employee.last_name,
+          type_id: employee.type_id
+        },
+        token
       }
     });
   } catch (err) {

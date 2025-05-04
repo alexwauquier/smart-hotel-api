@@ -18,7 +18,12 @@ const getCustomers = async (req, res) => {
       });
     }
 
-    res.status(200).json(customers);
+    res.status(200).json({
+      success: true,
+      data: {
+        customers
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -46,7 +51,12 @@ const getCustomer = async (req, res) => {
       });
     }
 
-    res.status(200).json(customer);
+    res.status(200).json({
+      success: true,
+      data: {
+        customer
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -74,7 +84,12 @@ const getCustomerOrders = async (req, res) => {
       });
     }
 
-    res.status(200).json(orders);
+    res.status(200).json({
+      success: true,
+      data: {
+        orders
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -115,7 +130,12 @@ const createCustomer = async (req, res) => {
       space_id
     });
 
-    res.status(201).json(newCustomer);
+    res.status(201).json({
+      success: true,
+      data: {
+        customer: newCustomer
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -151,7 +171,12 @@ const updateCustomer = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedCustomer);
+    res.status(200).json({
+      success: true,
+      data: {
+        customer: updatedCustomer
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -179,7 +204,10 @@ const deleteCustomer = async (req, res) => {
       });
     }
 
-    res.status(200).json(deletedCustomer);
+    res.status(200).json({
+      success: true,
+      message: 'Customer successfully deleted'
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

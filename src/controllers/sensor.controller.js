@@ -27,7 +27,12 @@ const getSensors = async (req, res) => {
       });
     }
 
-    res.status(200).json(sensors);
+    res.status(200).json({
+      success: true,
+      data: {
+        sensors
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -55,7 +60,12 @@ const getSensor = async (req, res) => {
       });
     }
 
-    res.status(200).json(sensor);
+    res.status(200).json({
+      success: true,
+      data: {
+        sensor
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -87,7 +97,12 @@ const createSensor = async (req, res) => {
       spaceId
     });
 
-    res.status(201).json(newSensor);
+    res.status(201).json({
+      success: true,
+      data: {
+        sensor: newSensor
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -120,7 +135,12 @@ const updateSensor = async (req, res) => {
       });
     }
 
-    res.status(200).json(updatedSensor);
+    res.status(200).json({
+      success: true,
+      data: {
+        sensor: updatedSensor
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -148,7 +168,10 @@ const deleteSensor = async (req, res) => {
       });
     }
 
-    res.status(200).json(deletedSensor);
+    res.status(200).json({
+      success: true,
+      message: 'Sensor successfully deleted'
+    });
   } catch (err) {
     res.status(500).json({
       success: false,

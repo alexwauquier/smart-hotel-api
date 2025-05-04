@@ -21,7 +21,12 @@ const getMeasurements = async (req, res) => {
       });
     }
 
-    res.status(200).json(measurements);
+    res.status(200).json({
+      success: true,
+      data: {
+        measurements
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -50,7 +55,12 @@ const getSensorMeasurements = async (req, res) => {
       });
     }
 
-    res.status(200).json(sensorMeasurements);
+    res.status(200).json({
+      success: true,
+      data: {
+        sensor_measurements: sensorMeasurements
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -81,7 +91,12 @@ const createMeasurement = async (req, res) => {
       value
     });
 
-    res.status(201).json(newMeasurement);
+    res.status(201).json({
+      success: true,
+      data: {
+        measurement: newMeasurement
+      }
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
