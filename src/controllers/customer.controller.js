@@ -166,11 +166,11 @@ const createCustomer = async (req, res) => {
       success: true,
       data: {
         customer: {
-          id: customer.id,
-          first_name: customer.first_name,
-          last_name: customer.last_name,
-          arrival_date: customer.arrival_date,
-          departure_date: customer.departure_date,
+          id: newCustomer.id,
+          first_name: newCustomer.first_name,
+          last_name: newCustomer.last_name,
+          arrival_date: newCustomer.arrival_date,
+          departure_date: newCustomer.departure_date,
           space: {
             id: space.id,
             name: space.name
