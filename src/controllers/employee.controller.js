@@ -1,5 +1,6 @@
 import * as argon2 from 'argon2';
 import * as employeeModel from '../models/employee.model.js';
+import * as employeeTypeModel from '../models/employee-type.model.js';
 
 const getEmployees = async (req, res) => {
   try {
@@ -18,10 +19,22 @@ const getEmployees = async (req, res) => {
       });
     }
 
+    const employeesData = await Promise.all(
+      employees.map(async (employee) => {
+        const employeeType = await employeeTypeModel.getEmployeeTypeById(
+          employee.type_id
+        );
+        return {
+          ...employee,
+          type_label: employeeType.label
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        employees
+        employees: employeesData
       }
     });
   } catch (err) {
@@ -51,10 +64,19 @@ const getEmployee = async (req, res) => {
       });
     }
 
+    const employeeType = await employeeTypeModel.getEmployeeTypeById(
+      employee.type_id
+    );
+
+    const employeeData = {
+      ...employee,
+      type_label: employeeType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        employee
+        employee: employeeData
       }
     });
   } catch (err) {
@@ -98,10 +120,19 @@ const createEmployee = async (req, res) => {
       typeId
     });
 
+    const employeeType = await employeeTypeModel.getEmployeeTypeById(
+      newEmployee.type_id
+    );
+
+    const employeeData = {
+      ...newEmployee,
+      type_label: employeeType.label
+    };
+
     res.status(201).json({
       success: true,
       data: {
-        employee: newEmployee
+        employee: employeeData
       }
     });
   } catch (err) {
@@ -146,10 +177,19 @@ const updateEmployee = async (req, res) => {
       });
     }
 
+    const employeeType = await employeeTypeModel.getEmployeeTypeById(
+      updatedEmployee.type_id
+    );
+
+    const employeeData = {
+      ...updatedEmployee,
+      type_label: employeeType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        employee: updatedEmployee
+        employee: employeeData
       }
     });
   } catch (err) {

@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import * as argon2 from 'argon2';
 import * as customerModel from '../models/customer.model.js';
 import * as employeeModel from '../models/employee.model.js';
+import * as employeeTypeModel from '../models/employee-type.model.js';
 
 const loginCustomer = async (req, res) => {
   try {
@@ -103,6 +104,10 @@ const loginEmployee = async (req, res) => {
       { expiresIn: '2h' }
     );
 
+    const employeeType = await employeeTypeModel.getEmployeeTypeById(
+      employee.type_id
+    );
+
     res.status(200).json({
       success: true,
       data: {
@@ -110,7 +115,8 @@ const loginEmployee = async (req, res) => {
           id: employee.id,
           first_name: employee.first_name,
           last_name: employee.last_name,
-          type_id: employee.type_id
+          type_id: employee.type_id,
+          type_label: employeeType.label
         },
         token
       }

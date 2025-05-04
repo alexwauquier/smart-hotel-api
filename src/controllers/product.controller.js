@@ -1,4 +1,5 @@
 import * as productModel from '../models/product.model.js';
+import * as productTypeModel from '../models/product-type.model.js';
 
 const getProducts = async (req, res) => {
   try {
@@ -27,10 +28,22 @@ const getProducts = async (req, res) => {
       });
     }
 
+    const productsData = await Promise.all(
+      products.map(async (product) => {
+        const productType = await productTypeModel.getProductTypeById(
+          product.type_id
+        );
+        return {
+          ...product,
+          type_label: productType.label
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        products: products
+        products: productsData
       }
     });
   } catch (err) {
@@ -60,10 +73,19 @@ const getProduct = async (req, res) => {
       });
     }
 
+    const productType = await productTypeModel.getProductTypeById(
+      product.type_id
+    );
+
+    const productData = {
+      ...product,
+      type_label: productType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        product
+        product: productData
       }
     });
   } catch (err) {
@@ -111,10 +133,19 @@ const createProduct = async (req, res) => {
       limitQuantity
     });
 
+    const productType = await productTypeModel.getProductTypeById(
+      newProduct.type_id
+    );
+
+    const productData = {
+      ...newProduct,
+      type_label: productType.label
+    };
+
     res.status(201).json({
       success: true,
       data: {
-        product: newProduct
+        product: productData
       }
     });
   } catch (err) {
@@ -163,10 +194,19 @@ const updateProduct = async (req, res) => {
       });
     }
 
+    const productType = await productTypeModel.getProductTypeById(
+      updatedProduct.type_id
+    );
+
+    const productData = {
+      ...updatedProduct,
+      type_label: productType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        product: updatedProduct
+        product: productData
       }
     });
   } catch (err) {

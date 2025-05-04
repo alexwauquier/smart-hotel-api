@@ -1,4 +1,5 @@
 import * as spaceModel from '../models/space.model.js';
+import * as spaceTypeModel from '../models/space-type.model.js';
 
 const getSpaces = async (req, res) => {
   try {
@@ -17,10 +18,20 @@ const getSpaces = async (req, res) => {
       });
     }
 
+    const spacesData = await Promise.all(
+      spaces.map(async (space) => {
+        const spaceType = await spaceTypeModel.getSpaceTypeById(space.type_id);
+        return {
+          ...space,
+          type_label: spaceType.label
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        spaces
+        spaces: spacesData
       }
     });
   } catch (err) {
@@ -50,10 +61,17 @@ const getSpace = async (req, res) => {
       });
     }
 
+    const spaceType = await spaceTypeModel.getSpaceTypeById(space.type_id);
+
+    const spaceData = {
+      ...space,
+      type_label: spaceType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        space
+        space: spaceData
       }
     });
   } catch (err) {
@@ -88,10 +106,17 @@ const createSpace = async (req, res) => {
       capacity
     });
 
+    const spaceType = await spaceTypeModel.getSpaceTypeById(newSpace.type_id);
+
+    const spaceData = {
+      ...newSpace,
+      type_label: spaceType.label
+    };
+
     res.status(201).json({
       success: true,
       data: {
-        space: newSpace
+        space: spaceData
       }
     });
   } catch (err) {
@@ -127,10 +152,19 @@ const updateSpace = async (req, res) => {
       });
     }
 
+    const spaceType = await spaceTypeModel.getSpaceTypeById(
+      updatedSpace.type_id
+    );
+
+    const spaceData = {
+      ...updatedSpace,
+      type_label: spaceType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        space: updatedSpace
+        space: spaceData
       }
     });
   } catch (err) {

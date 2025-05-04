@@ -1,4 +1,5 @@
 import * as sensorModel from '../models/sensor.model.js';
+import * as sensorTypeModel from '../models/sensor-type.model.js';
 
 const getSensors = async (req, res) => {
   try {
@@ -27,10 +28,22 @@ const getSensors = async (req, res) => {
       });
     }
 
+    const sensorsData = await Promise.all(
+      sensors.map(async (sensor) => {
+        const sensorType = await sensorTypeModel.getSensorTypeById(
+          sensor.type_id
+        );
+        return {
+          ...sensor,
+          type_label: sensorType.label
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        sensors
+        sensors: sensorsData
       }
     });
   } catch (err) {
@@ -60,10 +73,17 @@ const getSensor = async (req, res) => {
       });
     }
 
+    const sensorType = await sensorTypeModel.getSensorTypeById(sensor.type_id);
+
+    const sensorData = {
+      ...sensor,
+      type_label: sensorType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        sensor
+        sensor: sensorData
       }
     });
   } catch (err) {
@@ -97,10 +117,19 @@ const createSensor = async (req, res) => {
       spaceId
     });
 
+    const sensorType = await sensorTypeModel.getSensorTypeById(
+      newSensor.type_id
+    );
+
+    const sensorData = {
+      ...newSensor,
+      type_label: sensorType.label
+    };
+
     res.status(201).json({
       success: true,
       data: {
-        sensor: newSensor
+        sensor: sensorData
       }
     });
   } catch (err) {
@@ -135,10 +164,19 @@ const updateSensor = async (req, res) => {
       });
     }
 
+    const sensorType = await sensorTypeModel.getSensorTypeById(
+      updatedSensor.type_id
+    );
+
+    const sensorData = {
+      ...updatedSensor,
+      type_label: sensorType.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        sensor: updatedSensor
+        sensor: sensorData
       }
     });
   } catch (err) {
