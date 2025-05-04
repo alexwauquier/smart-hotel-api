@@ -1,5 +1,6 @@
 import * as customerModel from '../models/customer.model.js';
 import * as orderHeaderModel from '../models/order-header.model.js';
+import * as orderStatusModel from '../models/order-status.model.js';
 import * as spaceModel from '../models/space.model.js';
 
 const getCustomers = async (req, res) => {
@@ -114,10 +115,35 @@ const getCustomerOrders = async (req, res) => {
       });
     }
 
+    const customerOrdersData = await Promise.all(
+      orders.map(async (order) => {
+        const orderStatus = await orderStatusModel.getOrderStatusById(
+          order.status_id
+        );
+
+        const space = await spaceModel.getSpaceById(customerId);
+        return {
+          id: order.id,
+          date: order.date,
+          customer_id: order.customer_id,
+          employee_id: order.employee_id,
+          space: {
+            id: space.id,
+            name: space.name
+          },
+          status: {
+            id: orderStatus.id,
+            label: orderStatus.label
+          },
+          is_paid: order.is_paid
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        orders
+        orders: customerOrdersData
       }
     });
   } catch (err) {
