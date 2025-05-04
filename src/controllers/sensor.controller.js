@@ -1,5 +1,6 @@
 import * as sensorModel from '../models/sensor.model.js';
 import * as sensorTypeModel from '../models/sensor-type.model.js';
+import * as spaceModel from '../models/space.model.js';
 
 const getSensors = async (req, res) => {
   try {
@@ -33,13 +34,17 @@ const getSensors = async (req, res) => {
         const sensorType = await sensorTypeModel.getSensorTypeById(
           sensor.type_id
         );
+
+        const space = await spaceModel.getSpaceById(sensor.space_id);
+
         return {
           id: sensor.id,
           name: sensor.name,
           type_id: sensor.type_id,
           type_label: sensorType.label,
           space: {
-            id: sensor.space_id
+            id: space.id,
+            name: space.name
           }
         };
       })
@@ -80,6 +85,8 @@ const getSensor = async (req, res) => {
 
     const sensorType = await sensorTypeModel.getSensorTypeById(sensor.type_id);
 
+    const space = await spaceModel.getSpaceById(sensor.space_id);
+
     res.status(200).json({
       success: true,
       data: {
@@ -89,7 +96,8 @@ const getSensor = async (req, res) => {
           type_id: sensor.type_id,
           type_label: sensorType.label,
           space: {
-            id: sensor.space_id
+            id: space.id,
+            name: space.name
           }
         }
       }
@@ -129,6 +137,8 @@ const createSensor = async (req, res) => {
       newSensor.type_id
     );
 
+    const space = await spaceModel.getSpaceById(newSensor.space_id);
+
     res.status(201).json({
       success: true,
       data: {
@@ -138,7 +148,8 @@ const createSensor = async (req, res) => {
           type_id: newSensor.type_id,
           type_label: sensorType.label,
           space: {
-            id: newSensor.space_id
+            id: space.id,
+            name: space.name
           }
         }
       }
@@ -179,6 +190,8 @@ const updateSensor = async (req, res) => {
       updatedSensor.type_id
     );
 
+    const space = await spaceModel.getSpaceById(updatedSensor.space_id);
+
     res.status(200).json({
       success: true,
       data: {
@@ -188,7 +201,8 @@ const updateSensor = async (req, res) => {
           type_id: updatedSensor.type_id,
           type_label: sensorType.label,
           space: {
-            id: updatedSensor.space_id
+            id: space.id,
+            name: space.name
           }
         }
       }
