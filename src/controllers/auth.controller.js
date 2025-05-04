@@ -3,6 +3,7 @@ import * as argon2 from 'argon2';
 import * as customerModel from '../models/customer.model.js';
 import * as employeeModel from '../models/employee.model.js';
 import * as employeeTypeModel from '../models/employee-type.model.js';
+import * as spaceModel from '../models/space.model.js';
 
 const loginCustomer = async (req, res) => {
   try {
@@ -39,10 +40,17 @@ const loginCustomer = async (req, res) => {
       { expiresIn: '2h' }
     );
 
+    const space = await spaceModel.getSpaceById(customer.space_id);
+
+    const customerData = {
+      ...customer,
+      space_name: space.name
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        customer,
+        customer: customerData,
         token
       }
     });

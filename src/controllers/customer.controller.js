@@ -1,5 +1,6 @@
 import * as customerModel from '../models/customer.model.js';
 import * as orderHeaderModel from '../models/order-header.model.js';
+import * as spaceModel from '../models/space.model.js';
 
 const getCustomers = async (req, res) => {
   try {
@@ -18,10 +19,20 @@ const getCustomers = async (req, res) => {
       });
     }
 
+    const customersData = await Promise.all(
+      customers.map(async (customer) => {
+        const space = await spaceModel.getSpaceById(customer.space_id);
+        return {
+          ...customer,
+          space_name: space.name
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        customers
+        customers: customersData
       }
     });
   } catch (err) {
@@ -51,10 +62,17 @@ const getCustomer = async (req, res) => {
       });
     }
 
+    const space = await spaceModel.getSpaceById(customer.space_id);
+
+    const customerData = {
+      ...customer,
+      space_name: space.name
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        customer
+        customer: customerData
       }
     });
   } catch (err) {
@@ -130,10 +148,17 @@ const createCustomer = async (req, res) => {
       space_id
     });
 
+    const space = await spaceModel.getSpaceById(newCustomer.space_id);
+
+    const customerData = {
+      ...newCustomer,
+      space_name: space.name
+    };
+
     res.status(201).json({
       success: true,
       data: {
-        customer: newCustomer
+        customer: customerData
       }
     });
   } catch (err) {
@@ -171,10 +196,17 @@ const updateCustomer = async (req, res) => {
       });
     }
 
+    const space = await spaceModel.getSpaceById(updatedCustomer.space_id);
+
+    const customerData = {
+      ...updatedCustomer,
+      space_name: space.name
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        customer: updatedCustomer
+        customer: customerData
       }
     });
   } catch (err) {
