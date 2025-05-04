@@ -126,10 +126,10 @@ const getCustomerOrders = async (req, res) => {
         );
 
         const space = await spaceModel.getSpaceById(customerId);
+
         return {
           id: order.id,
           date: order.date,
-          employee_id: order.employee_id,
           space: {
             id: space.id,
             name: space.name
