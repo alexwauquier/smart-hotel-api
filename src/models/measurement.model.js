@@ -28,7 +28,7 @@ const getMeasurements = async (limit, offset, sensorId) => {
 
 const getMeasurementsBySensorId = async (sensorId) => {
   const text = `
-    SELECT * FROM sensor_measurement
+    SELECT id, value, timestamp FROM sensor_measurement
     WHERE sensor_id = $1
     ORDER BY id DESC
   `;

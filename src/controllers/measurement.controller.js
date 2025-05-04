@@ -1,4 +1,7 @@
 import * as measurementModel from '../models/measurement.model.js';
+import * as sensorModel from '../models/sensor.model.js';
+import * as sensorTypeModel from '../models/sensor-type.model.js';
+import * as spaceModel from '../models/space.model.js';
 
 const getMeasurements = async (req, res) => {
   try {
@@ -55,10 +58,26 @@ const getSensorMeasurements = async (req, res) => {
       });
     }
 
+    const sensor = await sensorModel.getSensorById(sensorId);
+    const sensorType = await sensorTypeModel.getSensorTypeById(sensor.type_id);
+    const space = await spaceModel.getSpaceById(sensor.space_id);
+
     res.status(200).json({
       success: true,
       data: {
-        sensor_measurements: sensorMeasurements
+        sensor: {
+          id: sensor.id,
+          name: sensor.name,
+          type: {
+            id: sensorType.id,
+            label: sensorType.label
+          },
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        },
+        measurements: sensorMeasurements
       }
     });
   } catch (err) {
