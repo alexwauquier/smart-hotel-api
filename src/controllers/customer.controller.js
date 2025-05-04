@@ -115,17 +115,12 @@ const getCustomerOrders = async (req, res) => {
       });
     }
 
-    const customer = await customerModel.getCustomerById(customerId);
-
-    const space = await spaceModel.getSpaceById(customer.space_id);
-
     const customerOrdersData = await Promise.all(
       orders.map(async (order) => {
         const orderStatus = await orderStatusModel.getOrderStatusById(
           order.status_id
         );
-
-        const space = await spaceModel.getSpaceById(customerId);
+        const space = await spaceModel.getSpaceById(order.space_id);
 
         return {
           id: order.id,
@@ -142,6 +137,9 @@ const getCustomerOrders = async (req, res) => {
         };
       })
     );
+
+    const customer = await customerModel.getCustomerById(customerId);
+    const space = await spaceModel.getSpaceById(customer.space_id);
 
     res.status(200).json({
       success: true,
