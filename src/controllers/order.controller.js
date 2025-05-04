@@ -42,8 +42,10 @@ const getOrders = async (req, res) => {
             id: space.id,
             name: space.name
           },
-          status_id: order.status_id,
-          status_label: orderStatus.label,
+          status: {
+            id: orderStatus.status_id,
+            label: orderStatus.label
+          },
           is_paid: order.is_paid
         };
       })
@@ -102,8 +104,10 @@ const getOrderDetails = async (req, res) => {
             id: space.id,
             name: space.name
           },
-          status_id: orderHeader.status_id,
-          status_label: orderStatus.label,
+          status: {
+            id: orderStatus.status_id,
+            label: orderStatus.label
+          },
           is_paid: orderHeader.is_paid,
           line_items: orderLines
         }
@@ -176,8 +180,10 @@ const createOrder = async (req, res) => {
             id: space.id,
             name: space.name
           },
-          status_id: orderHeader.status_id,
-          status_label: orderStatus.label,
+          status: {
+            id: orderStatus.status_id,
+            label: orderStatus.label
+          },
           is_paid: orderHeader.is_paid,
           line_items: orderLines
         }
@@ -245,8 +251,10 @@ const updateOrderStatus = async (req, res) => {
             id: space.id,
             name: space.name
           },
-          status_id: updatedOrder.status_id,
-          status_label: orderStatus.label,
+          status: {
+            id: orderStatus.status_id,
+            label: orderStatus.label
+          },
           is_paid: updatedOrder.is_paid
         }
       }
