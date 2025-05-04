@@ -115,6 +115,10 @@ const getCustomerOrders = async (req, res) => {
       });
     }
 
+    const customer = await customerModel.getCustomerById(customerId);
+
+    const space = await spaceModel.getSpaceById(customer.space_id);
+
     const customerOrdersData = await Promise.all(
       orders.map(async (order) => {
         const orderStatus = await orderStatusModel.getOrderStatusById(
@@ -125,7 +129,6 @@ const getCustomerOrders = async (req, res) => {
         return {
           id: order.id,
           date: order.date,
-          customer_id: order.customer_id,
           employee_id: order.employee_id,
           space: {
             id: space.id,
@@ -143,6 +146,17 @@ const getCustomerOrders = async (req, res) => {
     res.status(200).json({
       success: true,
       data: {
+        customer: {
+          id: customer.id,
+          first_name: customer.first_name,
+          last_name: customer.last_name,
+          arrival_date: customer.arrival_date,
+          departure_date: customer.departure_date,
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        },
         orders: customerOrdersData
       }
     });
