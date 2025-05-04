@@ -1,6 +1,7 @@
 import * as orderHeaderModel from '../models/order-header.model.js';
 import * as orderLineModel from '../models/order-line.model.js';
 import * as orderStatusModel from '../models/order-status.model.js';
+import * as spaceModel from '../models/space.model.js';
 import pool from '../config/db.js';
 
 const getOrders = async (req, res) => {
@@ -29,8 +30,14 @@ const getOrders = async (req, res) => {
         const orderStatus = await orderStatusModel.getOrderStatusById(
           order.status_id
         );
+
+        const space = await spaceModel.getSpaceById(
+          order.space_id
+        );
+
         return {
           ...order,
+          space_name: space.name,
           status_label: orderStatus.label
         };
       })
@@ -75,6 +82,10 @@ const getOrderDetails = async (req, res) => {
       orderHeader.status_id
     );
 
+    const space = await spaceModel.getSpaceById(
+      orderHeader.space_id
+    );
+
     res.status(200).json({
       success: true,
       data: {
@@ -84,6 +95,7 @@ const getOrderDetails = async (req, res) => {
           customer_id: orderHeader.customer_id,
           employee_id: orderHeader.employee_id,
           space_id: orderHeader.space_id,
+          space_name: space.name,
           status_id: orderHeader.status_id,
           status_label: orderStatus.label,
           is_paid: orderHeader.is_paid,
@@ -144,6 +156,10 @@ const createOrder = async (req, res) => {
       orderHeader.status_id
     );
 
+    const space = await spaceModel.getSpaceById(
+      orderHeader.space_id
+    );
+
     res.status(201).json({
       success: true,
       data: {
@@ -153,6 +169,7 @@ const createOrder = async (req, res) => {
           customer_id: orderHeader.customer_id,
           employee_id: orderHeader.employee_id,
           space_id: orderHeader.space_id,
+          space_name: space.name,
           status_id: orderHeader.status_id,
           status_label: orderStatus.label,
           is_paid: orderHeader.is_paid,
@@ -208,8 +225,13 @@ const updateOrderStatus = async (req, res) => {
       updatedOrder.status_id
     );
 
+    const space = await spaceModel.getSpaceById(
+      updatedOrder.space_id
+    );
+
     const orderData = {
       ...updatedOrder,
+      space_name: space.name,
       status_label: orderStatus.label
     };
 
