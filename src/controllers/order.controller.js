@@ -43,7 +43,7 @@ const getOrders = async (req, res) => {
             name: space.name
           },
           status: {
-            id: orderStatus.status_id,
+            id: orderStatus.id,
             label: orderStatus.label
           },
           is_paid: order.is_paid
@@ -105,7 +105,7 @@ const getOrderDetails = async (req, res) => {
             name: space.name
           },
           status: {
-            id: orderStatus.status_id,
+            id: orderStatus.id,
             label: orderStatus.label
           },
           is_paid: orderHeader.is_paid,
@@ -181,7 +181,7 @@ const createOrder = async (req, res) => {
             name: space.name
           },
           status: {
-            id: orderStatus.status_id,
+            id: orderStatus.id,
             label: orderStatus.label
           },
           is_paid: orderHeader.is_paid,
@@ -252,7 +252,7 @@ const updateOrderStatus = async (req, res) => {
             name: space.name
           },
           status: {
-            id: orderStatus.status_id,
+            id: orderStatus.id,
             label: orderStatus.label
           },
           is_paid: updatedOrder.is_paid
