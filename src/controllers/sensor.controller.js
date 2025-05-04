@@ -34,8 +34,13 @@ const getSensors = async (req, res) => {
           sensor.type_id
         );
         return {
-          ...sensor,
-          type_label: sensorType.label
+          id: sensor.id,
+          name: sensor.name,
+          type_id: sensor.type_id,
+          type_label: sensorType.label,
+          space: {
+            id: sensor.space_id
+          }
         };
       })
     );
@@ -75,15 +80,18 @@ const getSensor = async (req, res) => {
 
     const sensorType = await sensorTypeModel.getSensorTypeById(sensor.type_id);
 
-    const sensorData = {
-      ...sensor,
-      type_label: sensorType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        sensor: sensorData
+        sensor: {
+          id: sensor.id,
+          name: sensor.name,
+          type_id: sensor.type_id,
+          type_label: sensorType.label,
+          space: {
+            id: sensor.space_id
+          }
+        }
       }
     });
   } catch (err) {
@@ -121,15 +129,18 @@ const createSensor = async (req, res) => {
       newSensor.type_id
     );
 
-    const sensorData = {
-      ...newSensor,
-      type_label: sensorType.label
-    };
-
     res.status(201).json({
       success: true,
       data: {
-        sensor: sensorData
+        sensor: {
+          id: newSensor.id,
+          name: newSensor.name,
+          type_id: newSensor.type_id,
+          type_label: sensorType.label,
+          space: {
+            id: newSensor.space_id
+          }
+        }
       }
     });
   } catch (err) {
@@ -168,15 +179,18 @@ const updateSensor = async (req, res) => {
       updatedSensor.type_id
     );
 
-    const sensorData = {
-      ...updatedSensor,
-      type_label: sensorType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        sensor: sensorData
+        sensor: {
+          id: updatedSensor.id,
+          name: updatedSensor.name,
+          type_id: updatedSensor.type_id,
+          type_label: sensorType.label,
+          space: {
+            id: updatedSensor.space_id
+          }
+        }
       }
     });
   } catch (err) {

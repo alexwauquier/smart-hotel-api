@@ -23,8 +23,15 @@ const getCustomers = async (req, res) => {
       customers.map(async (customer) => {
         const space = await spaceModel.getSpaceById(customer.space_id);
         return {
-          ...customer,
-          space_name: space.name
+          id: customer.id,
+          first_name: customer.first_name,
+          last_name: customer.last_name,
+          arrival_date: customer.arrival_date,
+          departure_date: customer.departure_date,
+          space: {
+            id: space.id,
+            name: space.name
+          }
         };
       })
     );
@@ -64,15 +71,20 @@ const getCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(customer.space_id);
 
-    const customerData = {
-      ...customer,
-      space_name: space.name
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        customer: customerData
+        customer: {
+          id: customer.id,
+          first_name: customer.first_name,
+          last_name: customer.last_name,
+          arrival_date: customer.arrival_date,
+          departure_date: customer.departure_date,
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        }
       }
     });
   } catch (err) {
@@ -150,15 +162,20 @@ const createCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(newCustomer.space_id);
 
-    const customerData = {
-      ...newCustomer,
-      space_name: space.name
-    };
-
     res.status(201).json({
       success: true,
       data: {
-        customer: customerData
+        customer: {
+          id: customer.id,
+          first_name: customer.first_name,
+          last_name: customer.last_name,
+          arrival_date: customer.arrival_date,
+          departure_date: customer.departure_date,
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        }
       }
     });
   } catch (err) {
@@ -198,15 +215,20 @@ const updateCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(updatedCustomer.space_id);
 
-    const customerData = {
-      ...updatedCustomer,
-      space_name: space.name
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        customer: customerData
+        customer: {
+          id: updatedCustomer.id,
+          first_name: updatedCustomer.first_name,
+          last_name: updatedCustomer.last_name,
+          arrival_date: updatedCustomer.arrival_date,
+          departure_date: updatedCustomer.departure_date,
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        }
       }
     });
   } catch (err) {

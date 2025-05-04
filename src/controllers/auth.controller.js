@@ -42,15 +42,20 @@ const loginCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(customer.space_id);
 
-    const customerData = {
-      ...customer,
-      space_name: space.name
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        customer: customerData,
+        customer: {
+          id: customer.id,
+          first_name: customer.first_name,
+          last_name: customer.last_name,
+          arrival_date: customer.arrival_date,
+          departure_date: customer.departure_date,
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        },
         token
       }
     });

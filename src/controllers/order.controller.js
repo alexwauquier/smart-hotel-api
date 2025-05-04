@@ -31,14 +31,20 @@ const getOrders = async (req, res) => {
           order.status_id
         );
 
-        const space = await spaceModel.getSpaceById(
-          order.space_id
-        );
+        const space = await spaceModel.getSpaceById(order.space_id);
 
         return {
-          ...order,
-          space_name: space.name,
-          status_label: orderStatus.label
+          id: order.id,
+          date: order.date,
+          customer_id: order.customer_id,
+          employee_id: order.employee_id,
+          space: {
+            id: space.id,
+            name: space.name
+          },
+          status_id: order.status_id,
+          status_label: orderStatus.label,
+          is_paid: order.is_paid
         };
       })
     );
@@ -82,9 +88,7 @@ const getOrderDetails = async (req, res) => {
       orderHeader.status_id
     );
 
-    const space = await spaceModel.getSpaceById(
-      orderHeader.space_id
-    );
+    const space = await spaceModel.getSpaceById(orderHeader.space_id);
 
     res.status(200).json({
       success: true,
@@ -94,8 +98,10 @@ const getOrderDetails = async (req, res) => {
           date: orderHeader.date,
           customer_id: orderHeader.customer_id,
           employee_id: orderHeader.employee_id,
-          space_id: orderHeader.space_id,
-          space_name: space.name,
+          space: {
+            id: space.id,
+            name: space.name
+          },
           status_id: orderHeader.status_id,
           status_label: orderStatus.label,
           is_paid: orderHeader.is_paid,
@@ -156,9 +162,7 @@ const createOrder = async (req, res) => {
       orderHeader.status_id
     );
 
-    const space = await spaceModel.getSpaceById(
-      orderHeader.space_id
-    );
+    const space = await spaceModel.getSpaceById(orderHeader.space_id);
 
     res.status(201).json({
       success: true,
@@ -168,8 +172,10 @@ const createOrder = async (req, res) => {
           date: orderHeader.date,
           customer_id: orderHeader.customer_id,
           employee_id: orderHeader.employee_id,
-          space_id: orderHeader.space_id,
-          space_name: space.name,
+          space: {
+            id: space.id,
+            name: space.name
+          },
           status_id: orderHeader.status_id,
           status_label: orderStatus.label,
           is_paid: orderHeader.is_paid,
@@ -225,20 +231,24 @@ const updateOrderStatus = async (req, res) => {
       updatedOrder.status_id
     );
 
-    const space = await spaceModel.getSpaceById(
-      updatedOrder.space_id
-    );
-
-    const orderData = {
-      ...updatedOrder,
-      space_name: space.name,
-      status_label: orderStatus.label
-    };
+    const space = await spaceModel.getSpaceById(updatedOrder.space_id);
 
     res.status(200).json({
       success: true,
       data: {
-        order: orderData
+        order: {
+          id: updatedOrder.id,
+          date: updatedOrder.date,
+          customer_id: updatedOrder.customer_id,
+          employee_id: updatedOrder.employee_id,
+          space: {
+            id: space.id,
+            name: space.name
+          },
+          status_id: updatedOrder.status_id,
+          status_label: orderStatus.label,
+          is_paid: updatedOrder.is_paid
+        }
       }
     });
   } catch (err) {
