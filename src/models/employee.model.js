@@ -70,7 +70,7 @@ const updateEmployee = async (employeeId, employeeData) => {
       password_hash = COALESCE($4, password_hash),
       type_id = COALESCE($5, type_id)
     WHERE id = $6
-    RETURNING id, first_name, last_name, type_id
+    RETURNING id, first_name, last_name, username, type_id
   `;
   const values = [...Object.values(employeeData), employeeId];
   const result = await pool.query(text, values);
