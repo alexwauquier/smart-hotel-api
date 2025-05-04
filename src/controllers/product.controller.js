@@ -34,8 +34,18 @@ const getProducts = async (req, res) => {
           product.type_id
         );
         return {
-          ...product,
-          type_label: productType.label
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          ingredients: product.ingredients,
+          type: {
+            id: productType.id,
+            label: productType.label
+          },
+          contains_alcohol: product.contains_alcohol,
+          unit_price: product.unit_price,
+          stock_quantity: product.stock_quantity,
+          limit_quantity: product.limit_quantity
         };
       })
     );
@@ -77,15 +87,23 @@ const getProduct = async (req, res) => {
       product.type_id
     );
 
-    const productData = {
-      ...product,
-      type_label: productType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        product: productData
+        product: {
+          id: product.id,
+          name: product.name,
+          description: product.description,
+          ingredients: product.ingredients,
+          type: {
+            id: productType.id,
+            label: productType.label
+          },
+          contains_alcohol: product.contains_alcohol,
+          unit_price: product.unit_price,
+          stock_quantity: product.stock_quantity,
+          limit_quantity: product.limit_quantity
+        }
       }
     });
   } catch (err) {
@@ -137,15 +155,23 @@ const createProduct = async (req, res) => {
       newProduct.type_id
     );
 
-    const productData = {
-      ...newProduct,
-      type_label: productType.label
-    };
-
     res.status(201).json({
       success: true,
       data: {
-        product: productData
+        product: {
+          id: newProduct.id,
+          name: newProduct.name,
+          description: newProduct.description,
+          ingredients: newProduct.ingredients,
+          type: {
+            id: productType.id,
+            label: productType.label
+          },
+          contains_alcohol: newProduct.contains_alcohol,
+          unit_price: newProduct.unit_price,
+          stock_quantity: newProduct.stock_quantity,
+          limit_quantity: newProduct.limit_quantity
+        }
       }
     });
   } catch (err) {
@@ -198,15 +224,23 @@ const updateProduct = async (req, res) => {
       updatedProduct.type_id
     );
 
-    const productData = {
-      ...updatedProduct,
-      type_label: productType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        product: productData
+        product: {
+          id: updatedProduct.id,
+          name: updatedProduct.name,
+          description: updatedProduct.description,
+          ingredients: updatedProduct.ingredients,
+          type: {
+            id: productType.id,
+            label: productType.label
+          },
+          contains_alcohol: updatedProduct.contains_alcohol,
+          unit_price: updatedProduct.unit_price,
+          stock_quantity: updatedProduct.stock_quantity,
+          limit_quantity: updatedProduct.limit_quantity
+        }
       }
     });
   } catch (err) {

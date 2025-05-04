@@ -22,8 +22,13 @@ const getSpaces = async (req, res) => {
       spaces.map(async (space) => {
         const spaceType = await spaceTypeModel.getSpaceTypeById(space.type_id);
         return {
-          ...space,
-          type_label: spaceType.label
+          id: space.id,
+          name: space.name,
+          type: {
+            id: spaceType.id,
+            label: spaceType.label
+          },
+          capacity: space.capacity
         };
       })
     );
@@ -63,15 +68,18 @@ const getSpace = async (req, res) => {
 
     const spaceType = await spaceTypeModel.getSpaceTypeById(space.type_id);
 
-    const spaceData = {
-      ...space,
-      type_label: spaceType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        space: spaceData
+        space: {
+          id: space.id,
+          name: space.name,
+          type: {
+            id: spaceType.id,
+            label: spaceType.label
+          },
+          capacity: space.capacity
+        }
       }
     });
   } catch (err) {
@@ -108,15 +116,18 @@ const createSpace = async (req, res) => {
 
     const spaceType = await spaceTypeModel.getSpaceTypeById(newSpace.type_id);
 
-    const spaceData = {
-      ...newSpace,
-      type_label: spaceType.label
-    };
-
     res.status(201).json({
       success: true,
       data: {
-        space: spaceData
+        space: {
+          id: newSpace.id,
+          name: newSpace.name,
+          type: {
+            id: spaceType.id,
+            label: spaceType.label
+          },
+          capacity: newSpace.capacity
+        }
       }
     });
   } catch (err) {
@@ -156,15 +167,18 @@ const updateSpace = async (req, res) => {
       updatedSpace.type_id
     );
 
-    const spaceData = {
-      ...updatedSpace,
-      type_label: spaceType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        space: spaceData
+        space: {
+          id: updatedSpace.id,
+          name: updatedSpace.name,
+          type: {
+            id: spaceType.id,
+            label: spaceType.label
+          },
+          capacity: updatedSpace.capacity
+        }
       }
     });
   } catch (err) {

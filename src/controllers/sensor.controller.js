@@ -40,8 +40,10 @@ const getSensors = async (req, res) => {
         return {
           id: sensor.id,
           name: sensor.name,
-          type_id: sensor.type_id,
-          type_label: sensorType.label,
+          type: {
+            id: sensorType.type_id,
+            label: sensorType.label
+          },
           space: {
             id: space.id,
             name: space.name
@@ -93,8 +95,10 @@ const getSensor = async (req, res) => {
         sensor: {
           id: sensor.id,
           name: sensor.name,
-          type_id: sensor.type_id,
-          type_label: sensorType.label,
+          type: {
+            id: sensorType.type_id,
+            label: sensorType.label
+          },
           space: {
             id: space.id,
             name: space.name
@@ -145,8 +149,10 @@ const createSensor = async (req, res) => {
         sensor: {
           id: newSensor.id,
           name: newSensor.name,
-          type_id: newSensor.type_id,
-          type_label: sensorType.label,
+          type: {
+            id: sensorType.type_id,
+            label: sensorType.label
+          },
           space: {
             id: space.id,
             name: space.name
@@ -198,8 +204,10 @@ const updateSensor = async (req, res) => {
         sensor: {
           id: updatedSensor.id,
           name: updatedSensor.name,
-          type_id: updatedSensor.type_id,
-          type_label: sensorType.label,
+          type: {
+            id: sensorType.type_id,
+            label: sensorType.label
+          },
           space: {
             id: space.id,
             name: space.name

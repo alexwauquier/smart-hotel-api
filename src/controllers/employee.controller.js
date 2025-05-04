@@ -25,8 +25,14 @@ const getEmployees = async (req, res) => {
           employee.type_id
         );
         return {
-          ...employee,
-          type_label: employeeType.label
+          id: employee.id,
+          first_name: employee.first_name,
+          last_name: employee.last_name,
+          username: employee.username,
+          type: {
+            id: employeeType.id,
+            label: employeeType.label
+          }
         };
       })
     );
@@ -68,15 +74,19 @@ const getEmployee = async (req, res) => {
       employee.type_id
     );
 
-    const employeeData = {
-      ...employee,
-      type_label: employeeType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        employee: employeeData
+        employee: {
+          id: employee.id,
+          first_name: employee.first_name,
+          last_name: employee.last_name,
+          username: employee.username,
+          type: {
+            id: employeeType.id,
+            label: employeeType.label
+          }
+        }
       }
     });
   } catch (err) {
@@ -124,15 +134,19 @@ const createEmployee = async (req, res) => {
       newEmployee.type_id
     );
 
-    const employeeData = {
-      ...newEmployee,
-      type_label: employeeType.label
-    };
-
     res.status(201).json({
       success: true,
       data: {
-        employee: employeeData
+        employee: {
+          id: newEmployee.id,
+          first_name: newEmployee.first_name,
+          last_name: newEmployee.last_name,
+          username: newEmployee.username,
+          type: {
+            id: employeeType.id,
+            label: employeeType.label
+          }
+        }
       }
     });
   } catch (err) {
@@ -181,15 +195,19 @@ const updateEmployee = async (req, res) => {
       updatedEmployee.type_id
     );
 
-    const employeeData = {
-      ...updatedEmployee,
-      type_label: employeeType.label
-    };
-
     res.status(200).json({
       success: true,
       data: {
-        employee: employeeData
+        employee: {
+          id: updatedEmployee.id,
+          first_name: updatedEmployee.first_name,
+          last_name: updatedEmployee.last_name,
+          username: updatedEmployee.username,
+          type: {
+            id: employeeType.id,
+            label: employeeType.label
+          }
+        }
       }
     });
   } catch (err) {

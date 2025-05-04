@@ -128,8 +128,10 @@ const loginEmployee = async (req, res) => {
           id: employee.id,
           first_name: employee.first_name,
           last_name: employee.last_name,
-          type_id: employee.type_id,
-          type_label: employeeType.label
+          type: {
+            id: employeeType.id,
+            label: employeeType.label
+          }
         },
         token
       }
