@@ -1,5 +1,6 @@
 import * as orderHeaderModel from '../models/order-header.model.js';
 import * as orderLineModel from '../models/order-line.model.js';
+import * as orderStatusModel from '../models/order-status.model.js';
 import pool from '../config/db.js';
 
 const getOrders = async (req, res) => {
@@ -23,10 +24,22 @@ const getOrders = async (req, res) => {
       });
     }
 
+    const ordersData = await Promise.all(
+      orders.map(async (order) => {
+        const orderStatus = await orderStatusModel.getOrderStatusById(
+          order.status_id
+        );
+        return {
+          ...order,
+          status_label: orderStatus.label
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
-        orders
+        orders: ordersData
       }
     });
   } catch (err) {
@@ -58,6 +71,10 @@ const getOrderDetails = async (req, res) => {
 
     const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
 
+    const orderStatus = await orderStatusModel.getOrderStatusById(
+      orderHeader.status_id
+    );
+
     res.status(200).json({
       success: true,
       data: {
@@ -68,6 +85,7 @@ const getOrderDetails = async (req, res) => {
           employee_id: orderHeader.employee_id,
           space_id: orderHeader.space_id,
           status_id: orderHeader.status_id,
+          status_label: orderStatus.label,
           is_paid: orderHeader.is_paid,
           line_items: orderLines
         }
@@ -122,6 +140,10 @@ const createOrder = async (req, res) => {
 
     await client.query('COMMIT');
 
+    const orderStatus = await orderStatusModel.getOrderStatusById(
+      orderHeader.status_id
+    );
+
     res.status(201).json({
       success: true,
       data: {
@@ -132,6 +154,7 @@ const createOrder = async (req, res) => {
           employee_id: orderHeader.employee_id,
           space_id: orderHeader.space_id,
           status_id: orderHeader.status_id,
+          status_label: orderStatus.label,
           is_paid: orderHeader.is_paid,
           line_items: orderLines
         }
@@ -181,10 +204,19 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
+    const orderStatus = await orderStatusModel.getOrderStatusById(
+      updatedOrder.status_id
+    );
+
+    const orderData = {
+      ...updatedOrder,
+      status_label: orderStatus.label
+    };
+
     res.status(200).json({
       success: true,
       data: {
-        order: updatedOrder
+        order: orderData
       }
     });
   } catch (err) {
