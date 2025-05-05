@@ -3,6 +3,7 @@ import * as employeeModel from '../models/employee.model.js';
 import * as orderHeaderModel from '../models/order-header.model.js';
 import * as orderLineModel from '../models/order-line.model.js';
 import * as orderStatusModel from '../models/order-status.model.js';
+import * as productModel from '../models/product.model.js';
 import * as spaceModel from '../models/space.model.js';
 import pool from '../config/db.js';
 
@@ -106,6 +107,21 @@ const getOrderDetails = async (req, res) => {
     );
     const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
 
+    const orderLinesData = await Promise.all(
+      orderLines.map(async (orderLine) => {
+        const product = await productModel.getProductById(orderLine.product_id);
+        return {
+          id: orderLine.id,
+          product: {
+            id: product.id,
+            name: product.name,
+            unit_price: product.unit_price
+          },
+          quantity: orderLine.product_quantity
+        };
+      })
+    );
+
     res.status(200).json({
       success: true,
       data: {
@@ -128,7 +144,7 @@ const getOrderDetails = async (req, res) => {
             label: orderStatus.label
           },
           is_paid: orderHeader.is_paid,
-          line_items: orderLines
+          line_items: orderLinesData
         }
       }
     });
@@ -190,6 +206,21 @@ const createOrder = async (req, res) => {
       orderHeader.status_id
     );
 
+    const orderLinesData = await Promise.all(
+      orderLines.map(async (orderLine) => {
+        const product = await productModel.getProductById(orderLine.product_id);
+        return {
+          id: orderLine.id,
+          product: {
+            id: product.id,
+            name: product.name,
+            unit_price: product.unit_price
+          },
+          quantity: orderLine.product_quantity
+        };
+      })
+    );
+
     res.status(201).json({
       success: true,
       data: {
@@ -212,7 +243,7 @@ const createOrder = async (req, res) => {
             label: orderStatus.label
           },
           is_paid: orderHeader.is_paid,
-          line_items: orderLines
+          line_items: orderLinesData
         }
       }
     });
@@ -268,6 +299,22 @@ const updateOrderStatus = async (req, res) => {
     const orderStatus = await orderStatusModel.getOrderStatusById(
       updatedOrder.status_id
     );
+    const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
+
+    const orderLinesData = await Promise.all(
+      orderLines.map(async (orderLine) => {
+        const product = await productModel.getProductById(orderLine.product_id);
+        return {
+          id: orderLine.id,
+          product: {
+            id: product.id,
+            name: product.name,
+            unit_price: product.unit_price
+          },
+          quantity: orderLine.product_quantity
+        };
+      })
+    );
 
     res.status(200).json({
       success: true,
@@ -290,7 +337,8 @@ const updateOrderStatus = async (req, res) => {
             id: orderStatus.id,
             label: orderStatus.label
           },
-          is_paid: updatedOrder.is_paid
+          is_paid: updatedOrder.is_paid,
+          line_items: orderLinesData
         }
       }
     });
