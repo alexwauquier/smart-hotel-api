@@ -122,6 +122,10 @@ const getOrderDetails = async (req, res) => {
       })
     );
 
+    const totalPrice = orderLinesData.reduce((total, line) => {
+      return total + line.product.unit_price * line.quantity;
+    }, 0);
+
     res.status(200).json({
       success: true,
       data: {
@@ -144,7 +148,8 @@ const getOrderDetails = async (req, res) => {
             label: orderStatus.label
           },
           is_paid: orderHeader.is_paid,
-          line_items: orderLinesData
+          line_items: orderLinesData,
+          total_price: totalPrice
         }
       }
     });
@@ -221,6 +226,10 @@ const createOrder = async (req, res) => {
       })
     );
 
+    const totalPrice = orderLinesData.reduce((total, line) => {
+      return total + line.product.unit_price * line.quantity;
+    }, 0);
+
     res.status(201).json({
       success: true,
       data: {
@@ -243,7 +252,8 @@ const createOrder = async (req, res) => {
             label: orderStatus.label
           },
           is_paid: orderHeader.is_paid,
-          line_items: orderLinesData
+          line_items: orderLinesData,
+          total_price: totalPrice
         }
       }
     });
@@ -316,6 +326,10 @@ const updateOrderStatus = async (req, res) => {
       })
     );
 
+    const totalPrice = orderLinesData.reduce((total, line) => {
+      return total + line.product.unit_price * line.quantity;
+    }, 0);
+
     res.status(200).json({
       success: true,
       data: {
@@ -338,7 +352,8 @@ const updateOrderStatus = async (req, res) => {
             label: orderStatus.label
           },
           is_paid: updatedOrder.is_paid,
-          line_items: orderLinesData
+          line_items: orderLinesData,
+          total_price: totalPrice
         }
       }
     });
