@@ -1,3 +1,4 @@
+import * as measurementModel from '../models/measurement.model.js';
 import * as sensorModel from '../models/sensor.model.js';
 import * as sensorTypeModel from '../models/sensor-type.model.js';
 import * as spaceModel from '../models/space.model.js';
@@ -103,6 +104,98 @@ const getSensor = async (req, res) => {
             id: space.id,
             name: space.name
           }
+        }
+      }
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
+  }
+};
+
+const getSensorMeasurements = async (req, res) => {
+  try {
+    const { sensorId } = req.params;
+
+    const sensorMeasurements =
+      await measurementModel.getMeasurementsBySensorId(sensorId);
+
+    if (!sensorMeasurements.length) {
+      return res.status(404).json({
+        success: false,
+        error: {
+          code: 404,
+          message: 'No sensor measurements found'
+        }
+      });
+    }
+
+    const sensor = await sensorModel.getSensorById(sensorId);
+    const sensorType = await sensorTypeModel.getSensorTypeById(sensor.type_id);
+    const space = await spaceModel.getSpaceById(sensor.space_id);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        sensor: {
+          id: sensor.id,
+          name: sensor.name,
+          type: {
+            id: sensorType.id,
+            label: sensorType.label
+          },
+          space: {
+            id: space.id,
+            name: space.name
+          }
+        },
+        measurements: sensorMeasurements
+      }
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
+  }
+};
+
+const createSensorMeasurement = async (req, res) => {
+  try {
+    const { sensorId } = req.params;
+    const { value } = req.body;
+
+    if (!value) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing value'
+        }
+      });
+    }
+
+    const newMeasurement = await measurementModel.createMeasurement({
+      sensorId,
+      value
+    });
+    const sensor = await sensorModel.getSensorById(sensorId);
+
+    res.status(201).json({
+      success: true,
+      data: {
+        measurement: {
+          id: newMeasurement.id,
+          value: newMeasurement.value,
+          timestamp: newMeasurement.timestamp
         }
       }
     });
@@ -257,4 +350,12 @@ const deleteSensor = async (req, res) => {
   }
 };
 
-export { getSensors, getSensor, createSensor, updateSensor, deleteSensor };
+export {
+  getSensors,
+  getSensor,
+  getSensorMeasurements,
+  createSensorMeasurement,
+  createSensor,
+  updateSensor,
+  deleteSensor
+};

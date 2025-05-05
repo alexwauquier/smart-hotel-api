@@ -1,31 +1,5 @@
 import pool from '../config/db.js';
 
-const getMeasurements = async (limit, offset, sensorId) => {
-  let whereClauses = [];
-  let values = [];
-
-  if (sensorId) {
-    values.push(sensorId);
-    whereClauses.push(`sensor_id = $${values.length}`);
-  }
-
-  const where =
-    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
-
-  const text = `
-    SELECT * FROM sensor_measurement
-    ${where}
-    ORDER BY id DESC
-    LIMIT $${values.length + 1}
-    OFFSET $${values.length + 2}
-  `;
-
-  values.push(limit, offset);
-
-  const result = await pool.query(text, values);
-  return result.rows;
-};
-
 const getMeasurementsBySensorId = async (sensorId) => {
   const text = `
     SELECT id, value, timestamp FROM sensor_measurement
@@ -50,4 +24,4 @@ const createMeasurement = async (measurementData) => {
   return result.rows[0];
 };
 
-export { getMeasurements, getMeasurementsBySensorId, createMeasurement };
+export { getMeasurementsBySensorId, createMeasurement };
