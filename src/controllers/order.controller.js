@@ -1,3 +1,5 @@
+import * as customerModel from '../models/customer.model.js';
+import * as employeeModel from '../models/employee.model.js';
 import * as orderHeaderModel from '../models/order-header.model.js';
 import * as orderLineModel from '../models/order-line.model.js';
 import * as orderStatusModel from '../models/order-status.model.js';
@@ -30,14 +32,22 @@ const getOrders = async (req, res) => {
         const orderStatus = await orderStatusModel.getOrderStatusById(
           order.status_id
         );
-
+        const customer = await customerModel.getCustomerById(order.customer_id);
+        const employee = order.employee_id
+          ? await employeeModel.getEmployeeById(order.employee_id)
+          : null;
         const space = await spaceModel.getSpaceById(order.space_id);
 
         return {
           id: order.id,
           date: order.date,
-          customer_id: order.customer_id,
-          employee_id: order.employee_id,
+          customer: {
+            first_name: customer.first_name,
+            last_name: customer.last_name
+          },
+          employee: employee
+            ? { first_name: employee.first_name, last_name: employee.last_name }
+            : null,
           space: {
             id: space.id,
             name: space.name
@@ -84,13 +94,17 @@ const getOrderDetails = async (req, res) => {
       });
     }
 
-    const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
-
+    const customer = await customerModel.getCustomerById(
+      orderHeader.customer_id
+    );
+    const employee = orderHeader.employee_id
+      ? await employeeModel.getEmployeeById(orderHeader.employee_id)
+      : null;
+    const space = await spaceModel.getSpaceById(orderHeader.space_id);
     const orderStatus = await orderStatusModel.getOrderStatusById(
       orderHeader.status_id
     );
-
-    const space = await spaceModel.getSpaceById(orderHeader.space_id);
+    const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
 
     res.status(200).json({
       success: true,
@@ -98,8 +112,13 @@ const getOrderDetails = async (req, res) => {
         order: {
           id: orderHeader.id,
           date: orderHeader.date,
-          customer_id: orderHeader.customer_id,
-          employee_id: orderHeader.employee_id,
+          customer: {
+            first_name: customer.first_name,
+            last_name: customer.last_name
+          },
+          employee: employee
+            ? { first_name: employee.first_name, last_name: employee.last_name }
+            : null,
           space: {
             id: space.id,
             name: space.name
@@ -162,11 +181,14 @@ const createOrder = async (req, res) => {
 
     await client.query('COMMIT');
 
+    const customer = await customerModel.getCustomerById(orderHeader.customer_id);
+    const employee = orderHeader.employee_id
+      ? await employeeModel.getEmployeeById(orderHeader.employee_id)
+      : null;
+    const space = await spaceModel.getSpaceById(orderHeader.space_id);
     const orderStatus = await orderStatusModel.getOrderStatusById(
       orderHeader.status_id
     );
-
-    const space = await spaceModel.getSpaceById(orderHeader.space_id);
 
     res.status(201).json({
       success: true,
@@ -174,8 +196,13 @@ const createOrder = async (req, res) => {
         order: {
           id: orderHeader.id,
           date: orderHeader.date,
-          customer_id: orderHeader.customer_id,
-          employee_id: orderHeader.employee_id,
+          customer: {
+            first_name: customer.first_name,
+            last_name: customer.last_name
+          },
+          employee: employee
+            ? { first_name: employee.first_name, last_name: employee.last_name }
+            : null,
           space: {
             id: space.id,
             name: space.name
@@ -233,11 +260,14 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
+    const customer = await customerModel.getCustomerById(updatedOrder.customer_id);
+    const employee = updatedOrder.employee_id
+      ? await employeeModel.getEmployeeById(updatedOrder.employee_id)
+      : null;
+    const space = await spaceModel.getSpaceById(updatedOrder.space_id);
     const orderStatus = await orderStatusModel.getOrderStatusById(
       updatedOrder.status_id
     );
-
-    const space = await spaceModel.getSpaceById(updatedOrder.space_id);
 
     res.status(200).json({
       success: true,
@@ -245,8 +275,13 @@ const updateOrderStatus = async (req, res) => {
         order: {
           id: updatedOrder.id,
           date: updatedOrder.date,
-          customer_id: updatedOrder.customer_id,
-          employee_id: updatedOrder.employee_id,
+          customer: {
+            first_name: customer.first_name,
+            last_name: customer.last_name
+          },
+          employee: employee
+            ? { first_name: employee.first_name, last_name: employee.last_name }
+            : null,
           space: {
             id: space.id,
             name: space.name
