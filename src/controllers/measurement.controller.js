@@ -109,11 +109,16 @@ const createMeasurement = async (req, res) => {
       sensorId,
       value
     });
+    const sensor = await sensorModel.getSensorById(sensorId);
 
     res.status(201).json({
       success: true,
       data: {
-        measurement: newMeasurement
+        measurement: {
+          id: newMeasurement.id,
+          value: newMeasurement.value,
+          timestamp: newMeasurement.timestamp
+        }
       }
     });
   } catch (err) {
