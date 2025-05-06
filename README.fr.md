@@ -135,7 +135,7 @@ Authorization: Bearer <your_token_here>
 
 | Méthode | Endpoint                          | Description                       |
 | ------- | --------------------------------- | --------------------------------- |
-| GET     | /api/customers                    | Renvoie tous les clients          |
+| GET     | /api/customers                    | Renvoie une liste de clients      |
 | GET     | /api/customers/:customerId        | Renvoie un client                 |
 | GET     | /api/customers/:customerId/orders | Renvoie les commandes d'un client |
 | POST    | /api/customers                    | Crée un nouveau client            |
@@ -147,13 +147,13 @@ Authorization: Bearer <your_token_here>
 <details>
 <summary>Employés</summary>
 
-| Méthode | Endpoint                   | Description               |
-| ------- | -------------------------- | ------------------------- |
-| GET     | /api/employees             | Renvoie tous les employés |
-| GET     | /api/employees/:employeeId | Renvoie un employé        |
-| POST    | /api/employees             | Crée un nouvel employé    |
-| PATCH   | /api/employees/:employeeId | Met à jour un employé     |
-| DELETE  | /api/employees/:employeeId | Supprime un employé       |
+| Méthode | Endpoint                   | Description                  |
+| ------- | -------------------------- | ---------------------------- |
+| GET     | /api/employees             | Renvoie une liste d'employés |
+| GET     | /api/employees/:employeeId | Renvoie un employé           |
+| POST    | /api/employees             | Crée un nouvel employé       |
+| PATCH   | /api/employees/:employeeId | Met à jour un employé        |
+| DELETE  | /api/employees/:employeeId | Supprime un employé          |
 
 </details>
 
@@ -171,22 +171,11 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
-<summary>Mesures</summary>
-
-| Méthode | Endpoint                    | Description                      |
-| ------- | --------------------------- | -------------------------------- |
-| GET     | /api/measurements           | Renvoie toutes les mesures       |
-| GET     | /api/measurements/:sensorId | Renvoie les mesures d'un capteur |
-| POST    | /api/measurements           | Crée une nouvelle mesure         |
-
-</details>
-
-<details>
 <summary>Commandes</summary>
 
 | Méthode | Endpoint                    | Description                         |
 | ------- | --------------------------- | ----------------------------------- |
-| GET     | /api/orders                 | Renvoie toutes les commandes        |
+| GET     | /api/orders                 | Renvoie une liste de commandes      |
 | GET     | /api/orders/:orderId        | Renvoie une commande                |
 | POST    | /api/orders                 | Crée une nouvelle commande          |
 | PATCH   | /api/orders/:orderId/status | Met à jour le statut d'une commande |
@@ -209,13 +198,13 @@ Authorization: Bearer <your_token_here>
 <details>
 <summary>Produits</summary>
 
-| Méthode | Endpoint                 | Description               |
-| ------- | ------------------------ | ------------------------- |
-| GET     | /api/products            | Renvoie tous les produits |
-| GET     | /api/products/:productId | Renvoie un produit        |
-| POST    | /api/products            | Crée un nouveau produit   |
-| PATCH   | /api/products/:productId | Met à jour un produit     |
-| DELETE  | /api/products/:productId | Supprime un produit       |
+| Méthode | Endpoint                 | Description                   |
+| ------- | ------------------------ | ----------------------------- |
+| GET     | /api/products            | Renvoie une liste de produits |
+| GET     | /api/products/:productId | Renvoie un produit            |
+| POST    | /api/products            | Crée un nouveau produit       |
+| PATCH   | /api/products/:productId | Met à jour un produit         |
+| DELETE  | /api/products/:productId | Supprime un produit           |
 
 </details>
 
@@ -235,13 +224,15 @@ Authorization: Bearer <your_token_here>
 <details>
 <summary>Capteurs</summary>
 
-| Méthode | Endpoint                | Description               |
-| ------- | ----------------------- | ------------------------- |
-| GET     | /api/sensors            | Renvoie tous les capteurs |
-| GET     | /api/sensors/:sensorsId | Renvoie un capteur        |
-| POST    | /api/sensors            | Crée un nouveau capteur   |
-| PATCH   | /api/sensors/:sensorsId | Met à jour un capteur     |
-| DELETE  | /api/sensors/:sensorsId | Supprime un capteur       |
+| Méthode | Endpoint                             | Description                      |
+| ------- | ------------------------------------ | -------------------------------- |
+| GET     | /api/sensors                         | Renvoie une liste de capteurs    |
+| GET     | /api/sensors/:sensorsId              | Renvoie un capteur               |
+| GET     | /api/sensors/:sensorsId/measurements | Renvoie les mesures d'un capteur |
+| POST    | /api/sensors/:sensorsId/measurements | Crée une mesure de capteur       |
+| POST    | /api/sensors                         | Crée un nouveau capteur          |
+| PATCH   | /api/sensors/:sensorsId              | Met à jour un capteur            |
+| DELETE  | /api/sensors/:sensorsId              | Supprime un capteur              |
 
 </details>
 
@@ -261,13 +252,13 @@ Authorization: Bearer <your_token_here>
 <details>
 <summary>Espaces</summary>
 
-| Méthode | Endpoint             | Description              |
-| ------- | -------------------- | ------------------------ |
-| GET     | /api/spaces          | Renvoie tous les espaces |
-| GET     | /api/spaces/:spaceId | Renvoie un espace        |
-| POST    | /api/spaces          | Crée un nouvel espace    |
-| PATCH   | /api/spaces/:spaceId | Met à jour un espace     |
-| DELETE  | /api/spaces/:spaceId | Supprime un espace       |
+| Méthode | Endpoint             | Description                 |
+| ------- | -------------------- | --------------------------- |
+| GET     | /api/spaces          | Renvoie une liste d'espaces |
+| GET     | /api/spaces/:spaceId | Renvoie un espace           |
+| POST    | /api/spaces          | Crée un nouvel espace       |
+| PATCH   | /api/spaces/:spaceId | Met à jour un espace        |
+| DELETE  | /api/spaces/:spaceId | Supprime un espace          |
 
 </details>
 

@@ -135,7 +135,7 @@ Authorization: Bearer <your_token_here>
 
 | Method | Endpoint                          | Description                  |
 | ------ | --------------------------------- | ---------------------------- |
-| GET    | /api/customers                    | Returns all customers        |
+| GET    | /api/customers                    | Returns a list of customers  |
 | GET    | /api/customers/:customerId        | Returns a single customer    |
 | GET    | /api/customers/:customerId/orders | Returns customer orders      |
 | POST   | /api/customers                    | Creates a new customer       |
@@ -149,7 +149,7 @@ Authorization: Bearer <your_token_here>
 
 | Method | Endpoint                   | Description                  |
 | ------ | -------------------------- | ---------------------------- |
-| GET    | /api/employees             | Returns all employees        |
+| GET    | /api/employees             | Returns a list of employees  |
 | GET    | /api/employees/:employeeId | Returns a single employee    |
 | POST   | /api/employees             | Creates a new employee       |
 | PATCH  | /api/employees/:employeeId | Updates an existing employee |
@@ -171,22 +171,11 @@ Authorization: Bearer <your_token_here>
 </details>
 
 <details>
-<summary>Measurements</summary>
-
-| Method | Endpoint                    | Description                      |
-| ------ | --------------------------- | -------------------------------- |
-| GET    | /api/measurements           | Returns all measurements         |
-| GET    | /api/measurements/:sensorId | Returns measurements of a sensor |
-| POST   | /api/measurements           | Creates a new measurement        |
-
-</details>
-
-<details>
 <summary>Orders</summary>
 
 | Method | Endpoint                    | Description                    |
 | ------ | --------------------------- | ------------------------------ |
-| GET    | /api/orders                 | Returns all orders             |
+| GET    | /api/orders                 | Returns a list of orders       |
 | GET    | /api/orders/:orderId        | Returns a single order         |
 | POST   | /api/orders                 | Creates a new order            |
 | PATCH  | /api/orders/:orderId/status | Updates the status of an order |
@@ -211,7 +200,7 @@ Authorization: Bearer <your_token_here>
 
 | Method | Endpoint                 | Description                 |
 | ------ | ------------------------ | --------------------------- |
-| GET    | /api/products            | Returns all products        |
+| GET    | /api/products            | Returns a list of products  |
 | GET    | /api/products/:productId | Returns a single product    |
 | POST   | /api/products            | Creates a new product       |
 | PATCH  | /api/products/:productId | Updates an existing product |
@@ -235,13 +224,15 @@ Authorization: Bearer <your_token_here>
 <details>
 <summary>Sensors</summary>
 
-| Method | Endpoint                | Description                |
-| ------ | ----------------------- | -------------------------- |
-| GET    | /api/sensors            | Returns all sensors        |
-| GET    | /api/sensors/:sensorsId | Returns a single sensor    |
-| POST   | /api/sensors            | Creates a new sensor       |
-| PATCH  | /api/sensors/:sensorsId | Updates an existing sensor |
-| DELETE | /api/sensors/:sensorsId | Deletes a sensor           |
+| Method | Endpoint                             | Description                  |
+| ------ | ------------------------------------ | ---------------------------- |
+| GET    | /api/sensors                         | Returns a list of sensors    |
+| GET    | /api/sensors/:sensorsId              | Returns a single sensor      |
+| GET    | /api/sensors/:sensorsId/measurements | Returns sensor measurements  |
+| POST   | /api/sensors/:sensorsId/measurements | Creates a sensor measurement |
+| POST   | /api/sensors                         | Creates a new sensor         |
+| PATCH  | /api/sensors/:sensorsId              | Updates an existing sensor   |
+| DELETE | /api/sensors/:sensorsId              | Deletes a sensor             |
 
 </details>
 
@@ -263,7 +254,7 @@ Authorization: Bearer <your_token_here>
 
 | Method | Endpoint             | Description               |
 | ------ | -------------------- | ------------------------- |
-| GET    | /api/spaces          | Returns all spaces        |
+| GET    | /api/spaces          | Returns a list of spaces  |
 | GET    | /api/spaces/:spaceId | Returns a single space    |
 | POST   | /api/spaces          | Creates a new space       |
 | PATCH  | /api/spaces/:spaceId | Updates an existing space |
