@@ -197,15 +197,15 @@ const getCustomerOrders = async (req, res) => {
 
 const createCustomer = async (req, res) => {
   try {
-    const { first_name, last_name, arrival_date, departure_date, space_id } =
+    const { first_name: firstName, last_name: lastName, arrival_date: arrivalDate, departure_date: departureDate, space_id: spaceId } =
       req.body;
 
     if (
-      !first_name ||
-      !last_name ||
-      !arrival_date ||
-      !departure_date ||
-      !space_id
+      !firstName ||
+      !lastName ||
+      !arrivalDate ||
+      !departureDate ||
+      !spaceId
     ) {
       return res.status(400).json({
         success: false,
@@ -217,11 +217,11 @@ const createCustomer = async (req, res) => {
     }
 
     const newCustomer = await customerModel.createCustomer({
-      first_name,
-      last_name,
-      arrival_date,
-      departure_date,
-      space_id
+      firstName,
+      lastName,
+      arrivalDate,
+      departureDate,
+      spaceId
     });
 
     const space = await spaceModel.getSpaceById(newCustomer.space_id);
@@ -256,15 +256,15 @@ const createCustomer = async (req, res) => {
 const updateCustomer = async (req, res) => {
   try {
     const { customerId } = req.params;
-    const { first_name, last_name, arrival_date, departure_date, space_id } =
+    const { first_name: firstName, last_name: lastName, arrival_date: arrivalDate, departure_date: departureDate, space_id: spaceId } =
       req.body;
 
     const updatedCustomer = await customerModel.updateCustomer(customerId, {
-      first_name,
-      last_name,
-      arrival_date,
-      departure_date,
-      space_id
+      firstName,
+      lastName,
+      arrivalDate,
+      departureDate,
+      spaceId
     });
 
     if (!updatedCustomer) {
