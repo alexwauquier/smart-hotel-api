@@ -139,9 +139,12 @@ const getSensor = async (req, res) => {
 const getSensorMeasurements = async (req, res) => {
   try {
     const { sensorId } = req.params;
+    const range = req.query.range || undefined;
 
-    const sensorMeasurements =
-      await measurementModel.getMeasurementsBySensorId(sensorId);
+    const sensorMeasurements = await measurementModel.getMeasurementsBySensorId(
+      sensorId,
+      range
+    );
 
     if (!sensorMeasurements.length) {
       return res.status(404).json({
