@@ -9,7 +9,9 @@ import pool from '../config/db.js';
 
 const getOrders = async (req, res) => {
   try {
-    const { page = 1, size = 50, status_id: statusId } = req.query;
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 50;
+    const statusId = parseInt(req.query.status_id) || null;
     const offset = (page - 1) * size;
 
     const orders = await orderHeaderModel.getOrderHeaders(
@@ -74,8 +76,8 @@ const getOrders = async (req, res) => {
     const links = {
       first: buildLink(1),
       last: buildLink(totalPages),
-      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
-      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+      prev: page > 1 ? buildLink(page - 1) : null,
+      next: page < totalPages ? buildLink(page + 1) : null
     };
 
     res.status(200).json({

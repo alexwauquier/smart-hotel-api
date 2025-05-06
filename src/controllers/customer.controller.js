@@ -5,7 +5,9 @@ import * as spaceModel from '../models/space.model.js';
 
 const getCustomers = async (req, res) => {
   try {
-    const { page = 1, size = 50, space_id: spaceId } = req.query;
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 50;
+    const spaceId = parseInt(req.query.space_id) || null;
     const offset = (page - 1) * size;
 
     const customers = await customerModel.getCustomers(size, offset, spaceId);
@@ -49,8 +51,8 @@ const getCustomers = async (req, res) => {
     const links = {
       first: buildLink(1),
       last: buildLink(totalPages),
-      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
-      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+      prev: page > 1 ? buildLink(page - 1) : null,
+      next: page < totalPages ? buildLink(page + 1) : null
     };
 
     res.status(200).json({

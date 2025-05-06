@@ -4,7 +4,9 @@ import * as employeeTypeModel from '../models/employee-type.model.js';
 
 const getEmployees = async (req, res) => {
   try {
-    const { page = 1, size = 50, type_id: typeId } = req.query;
+    const page = parseInt(req.query.page) || 1;
+    const size = parseInt(req.query.size) || 50;
+    const typeId = parseInt(req.query.type_id) || null;
     const offset = (page - 1) * size;
 
     const employees = await employeeModel.getEmployees(size, offset, typeId);
@@ -49,8 +51,8 @@ const getEmployees = async (req, res) => {
     const links = {
       first: buildLink(1),
       last: buildLink(totalPages),
-      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
-      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+      prev: page > 1 ? buildLink(page - 1) : null,
+      next: page < totalPages ? buildLink(page + 1) : null
     };
 
     res.status(200).json({
