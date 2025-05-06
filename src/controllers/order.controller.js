@@ -62,8 +62,32 @@ const getOrders = async (req, res) => {
       })
     );
 
+    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const statusParam = statusId ? `&status_id=${statusId}` : '';
+
+    const totalOrders = await orderHeaderModel.countOrders(statusParam);
+    const totalPages = Math.ceil(totalOrders / limit);
+
+    const buildLink = (targetPage) =>
+      `${baseUrl}?page=${targetPage}&limit=${limit}${statusParam}`;
+
+    const links = {
+      first: buildLink(1),
+      last: buildLink(totalPages),
+      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
+      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+    };
+
     res.status(200).json({
       success: true,
+      meta: {
+        page: {
+          current: page,
+          size: limit,
+          total: totalPages
+        }
+      },
+      links,
       data: {
         orders: ordersData
       }

@@ -73,4 +73,27 @@ const deleteSensor = async (sensorId) => {
   return result.rows[0];
 };
 
-export { getSensors, getSensorById, createSensor, updateSensor, deleteSensor };
+const countSensors = async (typeId, spaceId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  if (spaceId) {
+    values.push(spaceId);
+    whereClauses.push(`space_id = $${values.length}`);
+  }
+
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `SELECT COUNT(*) FROM sensor ${where}`;
+
+  const result = await pool.query(text, values);
+  return result.rows[0].count;
+};
+
+export { getSensors, getSensorById, createSensor, updateSensor, deleteSensor, countSensors };

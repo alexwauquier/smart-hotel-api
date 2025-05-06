@@ -83,10 +83,34 @@ const deleteProduct = async (productId) => {
   return result.rows[0];
 };
 
+const countProducts = async (typeId, containsAlcohol) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  if (containsAlcohol) {
+    values.push(containsAlcohol);
+    whereClauses.push(`contains_alcohol = $${values.length}`);
+  }
+
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `SELECT COUNT(*) FROM product ${where}`;
+
+  const result = await pool.query(text, values);
+  return result.rows[0].count;
+};
+
 export {
   getProducts,
   getProductById,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  countProducts
 };

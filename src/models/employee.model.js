@@ -87,11 +87,30 @@ const deleteEmployee = async (employeeId) => {
   return result.rows[0];
 };
 
+const countEmployees = async (typeId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `SELECT COUNT(*) FROM employee ${where}`;
+
+  const result = await pool.query(text, values);
+  return result.rows[0].count;
+};
+
 export {
   getEmployees,
   getEmployeeById,
   getEmployeeByUsername,
   createEmployee,
   updateEmployee,
-  deleteEmployee
+  deleteEmployee,
+  countEmployees
 };

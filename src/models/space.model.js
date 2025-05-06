@@ -75,4 +75,27 @@ const deleteSpace = async (spaceId) => {
   return result.rows[0];
 };
 
-export { getSpaces, getSpaceById, createSpace, updateSpace, deleteSpace };
+const countSpaces = async (typeId, capacity) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (typeId) {
+    values.push(typeId);
+    whereClauses.push(`type_id = $${values.length}`);
+  }
+
+  if (capacity) {
+    values.push(capacity);
+    whereClauses.push(`capacity = $${values.length}`);
+  }
+
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `SELECT COUNT(*) FROM space ${where}`;
+
+  const result = await pool.query(text, values);
+  return result.rows[0].count;
+};
+
+export { getSpaces, getSpaceById, createSpace, updateSpace, deleteSpace, countSpaces };

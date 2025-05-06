@@ -78,11 +78,30 @@ const deleteCustomer = async (customerId) => {
   return result.rows[0];
 };
 
+const countCustomers = async (spaceId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (spaceId) {
+    values.push(spaceId);
+    whereClauses.push(`space_id = $${values.length}`);
+  }
+
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `SELECT COUNT(*) FROM customer ${where}`;
+
+  const result = await pool.query(text, values);
+  return result.rows[0].count;
+};
+
 export {
   getCustomers,
   getCustomerByCredentials,
   getCustomerById,
   createCustomer,
   updateCustomer,
-  deleteCustomer
+  deleteCustomer,
+  countCustomers
 };

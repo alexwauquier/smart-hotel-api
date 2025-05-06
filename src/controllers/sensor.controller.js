@@ -53,8 +53,33 @@ const getSensors = async (req, res) => {
       })
     );
 
+    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const typeParam = typeId ? `&type_id=${typeId}` : '';
+    const spaceParam = spaceId ? `&space_id=${spaceId}` : '';
+
+    const totalSensors = await sensorModel.countSensors(typeId, spaceId);
+    const totalPages = Math.ceil(totalSensors / limit);
+
+    const buildLink = (targetPage) =>
+      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}${spaceParam}`;
+
+    const links = {
+      first: buildLink(1),
+      last: buildLink(totalPages),
+      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
+      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+    };
+
     res.status(200).json({
       success: true,
+      meta: {
+        page: {
+          current: page,
+          size: limit,
+          total: totalPages
+        }
+      },
+      links,
       data: {
         sensors: sensorsData
       }

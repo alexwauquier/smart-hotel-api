@@ -37,8 +37,32 @@ const getEmployees = async (req, res) => {
       })
     );
 
+    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const typeParam = typeId ? `&type_id=${typeId}` : '';
+
+    const totalEmployees = await employeeModel.countEmployees(typeId);
+    const totalPages = Math.ceil(totalEmployees / limit);
+
+    const buildLink = (targetPage) =>
+      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}`;
+
+    const links = {
+      first: buildLink(1),
+      last: buildLink(totalPages),
+      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
+      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+    };
+
     res.status(200).json({
       success: true,
+      meta: {
+        page: {
+          current: page,
+          size: limit,
+          total: totalPages
+        }
+      },
+      links,
       data: {
         employees: employeesData
       }

@@ -33,8 +33,33 @@ const getSpaces = async (req, res) => {
       })
     );
 
+    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const typeParam = typeId ? `&type_id=${typeId}` : '';
+    const capacityParam = capacity ? `&capacity=${capacity}` : '';
+
+    const totalSpaces = await spaceModel.countSpaces(typeId, capacity);
+    const totalPages = Math.ceil(totalSpaces / limit);
+
+    const buildLink = (targetPage) =>
+      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}${capacityParam}`;
+
+    const links = {
+      first: buildLink(1),
+      last: buildLink(totalPages),
+      prev: page > 1 ? buildLink(parseInt(page) - 1) : null,
+      next: page < totalPages ? buildLink(parseInt(page) + 1) : null
+    };
+
     res.status(200).json({
       success: true,
+      meta: {
+        page: {
+          current: page,
+          size: limit,
+          total: totalPages
+        }
+      },
+      links,
       data: {
         spaces: spacesData
       }

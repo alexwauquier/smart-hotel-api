@@ -63,10 +63,29 @@ const updateOrderStatus = async (orderId, status) => {
   return result.rows[0];
 };
 
+const countOrders = async (statusId) => {
+  let whereClauses = [];
+  let values = [];
+
+  if (statusId) {
+    values.push(statusId);
+    whereClauses.push(`status_id = $${values.length}`);
+  }
+
+  const where =
+    whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+  const text = `SELECT COUNT(*) FROM order_header ${where}`;
+
+  const result = await pool.query(text, values);
+  return result.rows[0].count;
+};
+
 export {
   getOrderHeaders,
   getOrderHeaderById,
   getOrdersByCustomerId,
   createOrderHeader,
-  updateOrderStatus
+  updateOrderStatus,
+  countOrders
 };
