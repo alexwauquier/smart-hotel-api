@@ -51,9 +51,14 @@ const getProducts = async (req, res) => {
 
     const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
     const typeParam = typeId ? `&type_id=${typeId}` : '';
-    const containsAlcoholParam = containsAlcohol ? `&contains_alcohol=${containsAlcohol}` : '';
+    const containsAlcoholParam = containsAlcohol
+      ? `&contains_alcohol=${containsAlcohol}`
+      : '';
 
-    const totalProducts = await productModel.countProducts(typeId, containsAlcohol);
+    const totalProducts = await productModel.countProducts(
+      typeId,
+      containsAlcohol
+    );
     const totalPages = Math.ceil(totalProducts / size);
 
     const buildLink = (targetPage) =>

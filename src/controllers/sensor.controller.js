@@ -11,12 +11,7 @@ const getSensors = async (req, res) => {
     const spaceId = parseInt(req.query.space_id) || null;
     const offset = (page - 1) * size;
 
-    const sensors = await sensorModel.getSensors(
-      size,
-      offset,
-      typeId,
-      spaceId
-    );
+    const sensors = await sensorModel.getSensors(size, offset, typeId, spaceId);
 
     if (!sensors.length) {
       return res.status(404).json({

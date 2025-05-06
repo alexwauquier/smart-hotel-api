@@ -228,7 +228,9 @@ const createOrder = async (req, res) => {
 
     await client.query('COMMIT');
 
-    const customer = await customerModel.getCustomerById(orderHeader.customer_id);
+    const customer = await customerModel.getCustomerById(
+      orderHeader.customer_id
+    );
     const employee = orderHeader.employee_id
       ? await employeeModel.getEmployeeById(orderHeader.employee_id)
       : null;
@@ -327,7 +329,9 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
-    const customer = await customerModel.getCustomerById(updatedOrder.customer_id);
+    const customer = await customerModel.getCustomerById(
+      updatedOrder.customer_id
+    );
     const employee = updatedOrder.employee_id
       ? await employeeModel.getEmployeeById(updatedOrder.employee_id)
       : null;

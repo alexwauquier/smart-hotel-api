@@ -98,4 +98,11 @@ const countSpaces = async (typeId, capacity) => {
   return result.rows[0].count;
 };
 
-export { getSpaces, getSpaceById, createSpace, updateSpace, deleteSpace, countSpaces };
+export {
+  getSpaces,
+  getSpaceById,
+  createSpace,
+  updateSpace,
+  deleteSpace,
+  countSpaces
+};

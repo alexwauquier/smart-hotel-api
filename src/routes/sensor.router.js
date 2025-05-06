@@ -9,7 +9,10 @@ router.use('/types', sensorTypeRouter);
 router.get('/', sensorController.getSensors);
 router.get('/:sensorId', sensorController.getSensor);
 router.get('/:sensorId/measurements', sensorController.getSensorMeasurements);
-router.post('/:sensorId/measurements', sensorController.createSensorMeasurement);
+router.post(
+  '/:sensorId/measurements',
+  sensorController.createSensorMeasurement
+);
 router.post('/', sensorController.createSensor);
 router.patch('/:sensorId', sensorController.updateSensor);
 router.delete('/:sensorId', sensorController.deleteSensor);

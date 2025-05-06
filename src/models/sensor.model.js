@@ -96,4 +96,11 @@ const countSensors = async (typeId, spaceId) => {
   return result.rows[0].count;
 };
 
-export { getSensors, getSensorById, createSensor, updateSensor, deleteSensor, countSensors };
+export {
+  getSensors,
+  getSensorById,
+  createSensor,
+  updateSensor,
+  deleteSensor,
+  countSensors
+};
