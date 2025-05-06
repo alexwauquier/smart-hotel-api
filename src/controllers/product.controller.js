@@ -5,8 +5,8 @@ const getProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 50;
-    const typeId = parseInt(req.query.type_id) || null;
-    const containsAlcohol = parseInt(req.query.contains_alcohol) || null;
+    const typeId = req.query.type_id || null;
+    const containsAlcohol = req.query.contains_alcohol || null;
     const offset = (page - 1) * size;
 
     const products = await productModel.getProducts(

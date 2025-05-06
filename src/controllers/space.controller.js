@@ -5,7 +5,7 @@ const getSpaces = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 50;
-    const typeId = parseInt(req.query.type_id) || null;
+    const typeId = req.query.type_id || null;
     const capacity = parseInt(req.query.capacity) || null;
     const offset = (page - 1) * size;
 
