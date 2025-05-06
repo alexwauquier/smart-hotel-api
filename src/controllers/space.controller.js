@@ -3,10 +3,10 @@ import * as spaceTypeModel from '../models/space-type.model.js';
 
 const getSpaces = async (req, res) => {
   try {
-    const { page = 1, limit = 50, type_id: typeId, capacity } = req.query;
-    const offset = (page - 1) * limit;
+    const { page = 1, size = 50, type_id: typeId, capacity } = req.query;
+    const offset = (page - 1) * size;
 
-    const spaces = await spaceModel.getSpaces(limit, offset, typeId, capacity);
+    const spaces = await spaceModel.getSpaces(size, offset, typeId, capacity);
 
     if (!spaces.length) {
       return res.status(404).json({
@@ -38,10 +38,10 @@ const getSpaces = async (req, res) => {
     const capacityParam = capacity ? `&capacity=${capacity}` : '';
 
     const totalSpaces = await spaceModel.countSpaces(typeId, capacity);
-    const totalPages = Math.ceil(totalSpaces / limit);
+    const totalPages = Math.ceil(totalSpaces / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}${capacityParam}`;
+      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}${capacityParam}`;
 
     const links = {
       first: buildLink(1),
@@ -55,7 +55,7 @@ const getSpaces = async (req, res) => {
       meta: {
         page: {
           current: page,
-          size: limit,
+          size,
           total: totalPages
         }
       },

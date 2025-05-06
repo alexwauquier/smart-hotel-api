@@ -7,14 +7,14 @@ const getSensors = async (req, res) => {
   try {
     const {
       page = 1,
-      limit = 50,
+      size = 50,
       type_id: typeId,
       space_id: spaceId
     } = req.query;
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * size;
 
     const sensors = await sensorModel.getSensors(
-      limit,
+      size,
       offset,
       typeId,
       spaceId
@@ -58,10 +58,10 @@ const getSensors = async (req, res) => {
     const spaceParam = spaceId ? `&space_id=${spaceId}` : '';
 
     const totalSensors = await sensorModel.countSensors(typeId, spaceId);
-    const totalPages = Math.ceil(totalSensors / limit);
+    const totalPages = Math.ceil(totalSensors / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}${spaceParam}`;
+      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}${spaceParam}`;
 
     const links = {
       first: buildLink(1),
@@ -75,7 +75,7 @@ const getSensors = async (req, res) => {
       meta: {
         page: {
           current: page,
-          size: limit,
+          size,
           total: totalPages
         }
       },

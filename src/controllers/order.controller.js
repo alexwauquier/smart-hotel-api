@@ -9,11 +9,11 @@ import pool from '../config/db.js';
 
 const getOrders = async (req, res) => {
   try {
-    const { page = 1, limit = 50, status_id: statusId } = req.query;
-    const offset = (page - 1) * limit;
+    const { page = 1, size = 50, status_id: statusId } = req.query;
+    const offset = (page - 1) * size;
 
     const orders = await orderHeaderModel.getOrderHeaders(
-      limit,
+      size,
       offset,
       statusId
     );
@@ -66,10 +66,10 @@ const getOrders = async (req, res) => {
     const statusParam = statusId ? `&status_id=${statusId}` : '';
 
     const totalOrders = await orderHeaderModel.countOrders(statusParam);
-    const totalPages = Math.ceil(totalOrders / limit);
+    const totalPages = Math.ceil(totalOrders / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&limit=${limit}${statusParam}`;
+      `${baseUrl}?page=${targetPage}&size=${size}${statusParam}`;
 
     const links = {
       first: buildLink(1),
@@ -83,7 +83,7 @@ const getOrders = async (req, res) => {
       meta: {
         page: {
           current: page,
-          size: limit,
+          size,
           total: totalPages
         }
       },

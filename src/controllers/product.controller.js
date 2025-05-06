@@ -5,14 +5,14 @@ const getProducts = async (req, res) => {
   try {
     const {
       page = 1,
-      limit = 50,
+      size = 50,
       type_id: typeId,
       contains_alcohol: containsAlcohol
     } = req.query;
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * size;
 
     const products = await productModel.getProducts(
-      limit,
+      size,
       offset,
       typeId,
       containsAlcohol
@@ -55,10 +55,10 @@ const getProducts = async (req, res) => {
     const containsAlcoholParam = containsAlcohol ? `&contains_alcohol=${containsAlcohol}` : '';
 
     const totalProducts = await productModel.countProducts(typeId, containsAlcohol);
-    const totalPages = Math.ceil(totalProducts / limit);
+    const totalPages = Math.ceil(totalProducts / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}${containsAlcoholParam}`;
+      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}${containsAlcoholParam}`;
 
     const links = {
       first: buildLink(1),
@@ -72,7 +72,7 @@ const getProducts = async (req, res) => {
       meta: {
         page: {
           current: page,
-          size: limit,
+          size,
           total: totalPages
         }
       },

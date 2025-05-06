@@ -4,10 +4,10 @@ import * as employeeTypeModel from '../models/employee-type.model.js';
 
 const getEmployees = async (req, res) => {
   try {
-    const { page = 1, limit = 50, type_id: typeId } = req.query;
-    const offset = (page - 1) * limit;
+    const { page = 1, size = 50, type_id: typeId } = req.query;
+    const offset = (page - 1) * size;
 
-    const employees = await employeeModel.getEmployees(limit, offset, typeId);
+    const employees = await employeeModel.getEmployees(size, offset, typeId);
 
     if (!employees.length) {
       return res.status(404).json({
@@ -41,10 +41,10 @@ const getEmployees = async (req, res) => {
     const typeParam = typeId ? `&type_id=${typeId}` : '';
 
     const totalEmployees = await employeeModel.countEmployees(typeId);
-    const totalPages = Math.ceil(totalEmployees / limit);
+    const totalPages = Math.ceil(totalEmployees / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&limit=${limit}${typeParam}`;
+      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}`;
 
     const links = {
       first: buildLink(1),
@@ -58,7 +58,7 @@ const getEmployees = async (req, res) => {
       meta: {
         page: {
           current: page,
-          size: limit,
+          size,
           total: totalPages
         }
       },

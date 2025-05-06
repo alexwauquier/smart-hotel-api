@@ -5,10 +5,10 @@ import * as spaceModel from '../models/space.model.js';
 
 const getCustomers = async (req, res) => {
   try {
-    const { page = 1, limit = 50, space_id: spaceId } = req.query;
-    const offset = (page - 1) * limit;
+    const { page = 1, size = 50, space_id: spaceId } = req.query;
+    const offset = (page - 1) * size;
 
-    const customers = await customerModel.getCustomers(limit, offset, spaceId);
+    const customers = await customerModel.getCustomers(size, offset, spaceId);
 
     if (!customers.length) {
       return res.status(404).json({
@@ -41,10 +41,10 @@ const getCustomers = async (req, res) => {
     const spaceParam = spaceId ? `&space_id=${spaceId}` : '';
 
     const totalCustomers = await customerModel.countCustomers(spaceId);
-    const totalPages = Math.ceil(totalCustomers / limit);
+    const totalPages = Math.ceil(totalCustomers / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&limit=${limit}${spaceParam}`;
+      `${baseUrl}?page=${targetPage}&size=${size}${spaceParam}`;
 
     const links = {
       first: buildLink(1),
@@ -58,7 +58,7 @@ const getCustomers = async (req, res) => {
       meta: {
         page: {
           current: page,
-          size: limit,
+          size,
           total: totalPages
         }
       },
