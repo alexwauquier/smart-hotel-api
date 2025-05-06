@@ -81,6 +81,7 @@ CREATE TABLE "product" (
 	"unit_price"        decimal(5,2) NOT NULL,
 	"stock_quantity"    int,
 	"limit_quantity"    int,
+	"image_url"         text,
 	PRIMARY KEY ("id")
 );
 
