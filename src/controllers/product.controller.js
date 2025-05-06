@@ -43,7 +43,8 @@ const getProducts = async (req, res) => {
           contains_alcohol: product.contains_alcohol,
           unit_price: product.unit_price,
           stock_quantity: product.stock_quantity,
-          limit_quantity: product.limit_quantity
+          limit_quantity: product.limit_quantity,
+          image_url: product.image_url
         };
       })
     );
@@ -125,7 +126,8 @@ const getProduct = async (req, res) => {
           contains_alcohol: product.contains_alcohol,
           unit_price: product.unit_price,
           stock_quantity: product.stock_quantity,
-          limit_quantity: product.limit_quantity
+          limit_quantity: product.limit_quantity,
+          image_url: product.image_url
         }
       }
     });
@@ -150,7 +152,8 @@ const createProduct = async (req, res) => {
       contains_alcohol: containsAlcohol,
       unit_price: unitPrice,
       stock_quantity: stockQuantity,
-      limit_quantity: limitQuantity
+      limit_quantity: limitQuantity,
+      image_url: imageUrl
     } = req.body;
 
     if (!name || !typeId || !containsAlcohol || !unitPrice) {
@@ -171,7 +174,8 @@ const createProduct = async (req, res) => {
       containsAlcohol,
       unitPrice,
       stockQuantity,
-      limitQuantity
+      limitQuantity,
+      imageUrl
     });
 
     const productType = await productTypeModel.getProductTypeById(
@@ -193,7 +197,8 @@ const createProduct = async (req, res) => {
           contains_alcohol: newProduct.contains_alcohol,
           unit_price: newProduct.unit_price,
           stock_quantity: newProduct.stock_quantity,
-          limit_quantity: newProduct.limit_quantity
+          limit_quantity: newProduct.limit_quantity,
+          image_url: newProduct.image_url
         }
       }
     });
@@ -219,7 +224,8 @@ const updateProduct = async (req, res) => {
       contains_alcohol: containsAlcohol,
       unit_price: unitPrice,
       stock_quantity: stockQuantity,
-      limit_quantity: limitQuantity
+      limit_quantity: limitQuantity,
+      image_url: imageUrl
     } = req.body;
 
     const updatedProduct = await productModel.updateProduct(productId, {
@@ -230,7 +236,8 @@ const updateProduct = async (req, res) => {
       containsAlcohol,
       unitPrice,
       stockQuantity,
-      limitQuantity
+      limitQuantity,
+      imageUrl
     });
 
     if (!updatedProduct) {
@@ -262,7 +269,8 @@ const updateProduct = async (req, res) => {
           contains_alcohol: updatedProduct.contains_alcohol,
           unit_price: updatedProduct.unit_price,
           stock_quantity: updatedProduct.stock_quantity,
-          limit_quantity: updatedProduct.limit_quantity
+          limit_quantity: updatedProduct.limit_quantity,
+          image_url: updatedProduct.image_url
         }
       }
     });

@@ -47,9 +47,10 @@ const createProduct = async (productData) => {
       contains_alcohol,
       unit_price,
       stock_quantity,
-      limit_quantity
+      limit_quantity,
+      image_url
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING *
   `;
   const values = Object.values(productData);
@@ -68,8 +69,9 @@ const updateProduct = async (productId, productData) => {
       contains_alcohol = COALESCE($5, contains_alcohol),
       unit_price = COALESCE($6, unit_price),
       stock_quantity = COALESCE($7, stock_quantity),
-      limit_quantity = COALESCE($8, limit_quantity)
-    WHERE id = $9
+      limit_quantity = COALESCE($8, limit_quantity),
+      image_url = COALESCE($9, image_url)
+    WHERE id = $10
     RETURNING *
   `;
   const values = [...Object.values(productData), productId];
