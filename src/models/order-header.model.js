@@ -1,8 +1,17 @@
 import pool from '../config/db.js';
 
-const getOrderHeaders = async (limit, offset, statusId) => {
+const getOrderHeaders = async (limit, offset, employeeId, statusId) => {
   let whereClauses = [];
   let values = [];
+
+  if (employeeId !== undefined) {
+    if (employeeId === 'null') {
+      whereClauses.push('employee_id IS NULL');
+    } else {
+      values.push(employeeId);
+      whereClauses.push(`employee_id = $${values.length}`);
+    }
+  }
 
   if (statusId) {
     values.push(statusId);

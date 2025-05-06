@@ -11,12 +11,14 @@ const getOrders = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 50;
-    const statusId = parseInt(req.query.status_id) || null;
+    const employeeId = req.query.employee_id;
+    const statusId = req.query.status_id || null;
     const offset = (page - 1) * size;
 
     const orders = await orderHeaderModel.getOrderHeaders(
       size,
       offset,
+      employeeId,
       statusId
     );
 
