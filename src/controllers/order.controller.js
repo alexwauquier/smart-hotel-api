@@ -46,7 +46,8 @@ const getOrders = async (req, res) => {
           date: order.date,
           customer: {
             first_name: customer.first_name,
-            last_name: customer.last_name
+            last_name: customer.last_name,
+            space_id: customer.space_id
           },
           employee: employee
             ? { first_name: employee.first_name, last_name: employee.last_name }
@@ -160,7 +161,8 @@ const getOrderDetails = async (req, res) => {
           date: orderHeader.date,
           customer: {
             first_name: customer.first_name,
-            last_name: customer.last_name
+            last_name: customer.last_name,
+            space_id: customer.space_id
           },
           employee: employee
             ? { first_name: employee.first_name, last_name: employee.last_name }
@@ -266,7 +268,8 @@ const createOrder = async (req, res) => {
           date: orderHeader.date,
           customer: {
             first_name: customer.first_name,
-            last_name: customer.last_name
+            last_name: customer.last_name,
+            space_id: customer.space_id
           },
           employee: employee
             ? { first_name: employee.first_name, last_name: employee.last_name }
@@ -368,7 +371,8 @@ const updateOrderStatus = async (req, res) => {
           date: updatedOrder.date,
           customer: {
             first_name: customer.first_name,
-            last_name: customer.last_name
+            last_name: customer.last_name,
+            space_id: customer.space_id
           },
           employee: employee
             ? { first_name: employee.first_name, last_name: employee.last_name }
