@@ -78,7 +78,8 @@ const getProducts = async (req, res) => {
           current: page,
           size,
           total: totalPages
-        }
+        },
+        total_items: totalProducts
       },
       links,
       data: {

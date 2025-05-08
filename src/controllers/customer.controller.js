@@ -62,7 +62,8 @@ const getCustomers = async (req, res) => {
           current: page,
           size,
           total: totalPages
-        }
+        },
+        total_items: totalCustomers
       },
       links,
       data: {

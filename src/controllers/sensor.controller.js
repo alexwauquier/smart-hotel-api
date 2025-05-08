@@ -70,7 +70,8 @@ const getSensors = async (req, res) => {
           current: page,
           size,
           total: totalPages
-        }
+        },
+        total_items: totalSensors
       },
       links,
       data: {

@@ -90,7 +90,8 @@ const getOrders = async (req, res) => {
           current: page,
           size,
           total: totalPages
-        }
+        },
+        total_items: totalOrders
       },
       links,
       data: {

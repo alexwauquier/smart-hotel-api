@@ -62,7 +62,8 @@ const getEmployees = async (req, res) => {
           current: page,
           size,
           total: totalPages
-        }
+        },
+        total_items: totalEmployees
       },
       links,
       data: {

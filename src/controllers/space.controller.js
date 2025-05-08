@@ -60,7 +60,8 @@ const getSpaces = async (req, res) => {
           current: page,
           size,
           total: totalPages
-        }
+        },
+        total_items: totalSpaces
       },
       links,
       data: {
