@@ -46,7 +46,7 @@ const getSensors = async (req, res) => {
       })
     );
 
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const baseUrl = process.env.API_BASE_URL;
     const typeParam = typeId ? `&type_id=${typeId}` : '';
     const spaceParam = spaceId ? `&space_id=${spaceId}` : '';
 
@@ -54,7 +54,7 @@ const getSensors = async (req, res) => {
     const totalPages = Math.ceil(totalSensors / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}${spaceParam}`;
+      `${baseUrl}/api/sensors?page=${targetPage}&size=${size}${typeParam}${spaceParam}`;
 
     const links = {
       first: buildLink(1),

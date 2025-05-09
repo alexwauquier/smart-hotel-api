@@ -39,14 +39,14 @@ const getEmployees = async (req, res) => {
       })
     );
 
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const baseUrl = process.env.API_BASE_URL;
     const typeParam = typeId ? `&type_id=${typeId}` : '';
 
     const totalEmployees = await employeeModel.countEmployees(typeId);
     const totalPages = Math.ceil(totalEmployees / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}`;
+      `${baseUrl}/api/employees?page=${targetPage}&size=${size}${typeParam}`;
 
     const links = {
       first: buildLink(1),

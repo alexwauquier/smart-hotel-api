@@ -67,14 +67,14 @@ const getOrders = async (req, res) => {
       })
     );
 
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const baseUrl = process.env.API_BASE_URL;
     const statusParam = statusId ? `&status_id=${statusId}` : '';
 
     const totalOrders = await orderHeaderModel.countOrders(statusParam);
     const totalPages = Math.ceil(totalOrders / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&size=${size}${statusParam}`;
+      `${baseUrl}/api/orders?page=${targetPage}&size=${size}${statusParam}`;
 
     const links = {
       first: buildLink(1),

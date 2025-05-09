@@ -36,7 +36,7 @@ const getSpaces = async (req, res) => {
       })
     );
 
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const baseUrl = process.env.API_BASE_URL;
     const typeParam = typeId ? `&type_id=${typeId}` : '';
     const capacityParam = capacity ? `&capacity=${capacity}` : '';
 
@@ -44,7 +44,7 @@ const getSpaces = async (req, res) => {
     const totalPages = Math.ceil(totalSpaces / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}${capacityParam}`;
+      `${baseUrl}/api/spaces?page=${targetPage}&size=${size}${typeParam}${capacityParam}`;
 
     const links = {
       first: buildLink(1),

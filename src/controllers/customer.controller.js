@@ -39,14 +39,14 @@ const getCustomers = async (req, res) => {
       })
     );
 
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const baseUrl = process.env.API_BASE_URL;
     const spaceParam = spaceId ? `&space_id=${spaceId}` : '';
 
     const totalCustomers = await customerModel.countCustomers(spaceId);
     const totalPages = Math.ceil(totalCustomers / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&size=${size}${spaceParam}`;
+      `${baseUrl}/api/customers?page=${targetPage}&size=${size}${spaceParam}`;
 
     const links = {
       first: buildLink(1),

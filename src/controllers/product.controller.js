@@ -49,7 +49,7 @@ const getProducts = async (req, res) => {
       })
     );
 
-    const baseUrl = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+    const baseUrl = process.env.API_BASE_URL;
     const typeParam = typeId ? `&type_id=${typeId}` : '';
     const containsAlcoholParam = containsAlcohol
       ? `&contains_alcohol=${containsAlcohol}`
@@ -62,7 +62,7 @@ const getProducts = async (req, res) => {
     const totalPages = Math.ceil(totalProducts / size);
 
     const buildLink = (targetPage) =>
-      `${baseUrl}?page=${targetPage}&size=${size}${typeParam}${containsAlcoholParam}`;
+      `${baseUrl}/api/products?page=${targetPage}&size=${size}${typeParam}${containsAlcoholParam}`;
 
     const links = {
       first: buildLink(1),
