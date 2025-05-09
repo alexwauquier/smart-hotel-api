@@ -76,15 +76,16 @@ npm install
 
 This project includes a default `.env.development` file. You can override this by adding your own environment variables to the `.env.development.local` file. The application will automatically load variables from both files, with the .env.development.local file taking priority.
 
-| Variable    | Description                    | Default value  |
-| ----------- | ------------------------------ | -------------- |
-| PORT        | Port on which the API will run | 3000           |
-| DB_USER     | Database username              | smarthotel     |
-| DB_PASSWORD | Database password              | smarthotel     |
-| DB_HOST     | Database host                  | localhost      |
-| DB_PORT     | Database port                  | 5432           |
-| DB_NAME     | Database name                  | smart_hotel_db |
-| JWT_SECRET  | JWT secret key                 | smarthotel     |
+| Variable     | Description                    | Default value         |
+| ------------ | ------------------------------ | --------------------- |
+| API_BASE_URL | Base URL of the API            | http://127.0.0.1:3000 |
+| PORT         | Port on which the API will run | 3000                  |
+| DB_USER      | Database username              | smarthotel            |
+| DB_PASSWORD  | Database password              | smarthotel            |
+| DB_HOST      | Database host                  | localhost             |
+| DB_PORT      | Database port                  | 5432                  |
+| DB_NAME      | Database name                  | smart_hotel_db        |
+| JWT_SECRET   | JWT secret key                 | smarthotel            |
 
 ### Running the API Locally
 

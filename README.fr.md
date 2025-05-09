@@ -76,15 +76,16 @@ npm install
 
 Ce projet inclut un fichier `.env.development` par défaut. Vous pouvez le remplacer en ajoutant vos propres variables d'environnement dans le fichier `.env.development.local`. L'application chargera automatiquement les variables des deux fichiers, le fichier .env.development.local étant prioritaire.
 
-| Variable    | Description                             | Valeur par défaut |
-| ----------- | --------------------------------------- | ----------------- |
-| PORT        | Port sur lequel l'API sera exécutée     | 3000              |
-| DB_USER     | Nom d'utilisateur de la base de données | smarthotel        |
-| DB_PASSWORD | Mot de passe de la base de données      | smarthotel        |
-| DB_HOST     | Adresse hôte de la base de données      | localhost         |
-| DB_PORT     | Port de la base de données              | 5432              |
-| DB_NAME     | Nom de la base de données               | smart_hotel_db    |
-| JWT_SECRET  | Clé secrète JWT                         | smarthotel        |
+| Variable     | Description                             | Valeur par défaut     |
+| ------------ | --------------------------------------- | --------------------- |
+| API_BASE_URL | URL de base de l'API                    | http://127.0.0.1:3000 |
+| PORT         | Port sur lequel l'API sera exécutée     | 3000                  |
+| DB_USER      | Nom d'utilisateur de la base de données | smarthotel            |
+| DB_PASSWORD  | Mot de passe de la base de données      | smarthotel            |
+| DB_HOST      | Adresse hôte de la base de données      | localhost             |
+| DB_PORT      | Port de la base de données              | 5432                  |
+| DB_NAME      | Nom de la base de données               | smart_hotel_db        |
+| JWT_SECRET   | Clé secrète JWT                         | smarthotel            |
 
 ### Exécuter l'API Localement
 
