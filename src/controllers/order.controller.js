@@ -305,6 +305,106 @@ const createOrder = async (req, res) => {
   }
 };
 
+const updateOrderEmployee = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const employeeId = req.body.employee_id;
+
+    if (!employeeId) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message: 'Missing employee ID'
+        }
+      });
+    }
+
+    const updatedOrder = await orderHeaderModel.updateOrderEmployee(
+      orderId,
+      employeeId
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({
+        success: false,
+        error: {
+          code: 404,
+          message: 'Order not found'
+        }
+      });
+    }
+
+    const customer = await customerModel.getCustomerById(
+      updatedOrder.customer_id
+    );
+    const employee = updatedOrder.employee_id
+      ? await employeeModel.getEmployeeById(updatedOrder.employee_id)
+      : null;
+    const space = await spaceModel.getSpaceById(updatedOrder.space_id);
+    const orderStatus = await orderStatusModel.getOrderStatusById(
+      updatedOrder.status_id
+    );
+    const orderLines = await orderLineModel.getOrderLinesByOrderId(orderId);
+
+    const orderLinesData = await Promise.all(
+      orderLines.map(async (orderLine) => {
+        const product = await productModel.getProductById(orderLine.product_id);
+        return {
+          id: orderLine.id,
+          product: {
+            id: product.id,
+            name: product.name,
+            unit_price: product.unit_price
+          },
+          quantity: orderLine.product_quantity
+        };
+      })
+    );
+
+    const totalPrice = orderLinesData.reduce((total, line) => {
+      return total + line.product.unit_price * line.quantity;
+    }, 0);
+
+    res.status(200).json({
+      success: true,
+      data: {
+        order: {
+          id: updatedOrder.id,
+          date: updatedOrder.date,
+          customer: {
+            first_name: customer.first_name,
+            last_name: customer.last_name,
+            space_id: customer.space_id
+          },
+          employee: employee
+            ? { first_name: employee.first_name, last_name: employee.last_name }
+            : null,
+          space: {
+            id: space.id,
+            name: space.name
+          },
+          status: {
+            id: orderStatus.id,
+            label: orderStatus.label
+          },
+          is_paid: updatedOrder.is_paid,
+          line_items: orderLinesData,
+          total_price: totalPrice
+        }
+      }
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 500,
+        message: err.message
+      }
+    });
+  }
+}
+
 const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -405,4 +505,4 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-export { getOrders, getOrderDetails, createOrder, updateOrderStatus };
+export { getOrders, getOrderDetails, createOrder, updateOrderEmployee, updateOrderStatus };

@@ -11,6 +11,11 @@ router.get('/', verifyRole(['employee']), orderController.getOrders);
 router.get('/:orderId', orderController.getOrderDetails);
 router.post('/', orderController.createOrder);
 router.patch(
+  '/:orderId/employee',
+  verifyRole(['employee']),
+  orderController.updateOrderEmployee
+);
+router.patch(
   '/:orderId/status',
   verifyRole(['employee']),
   orderController.updateOrderStatus

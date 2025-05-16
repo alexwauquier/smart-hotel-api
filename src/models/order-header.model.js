@@ -61,6 +61,17 @@ const createOrderHeader = async (client, customerId, spaceId) => {
   return result.rows[0];
 };
 
+const updateOrderEmployee = async (orderId, employeeId) => {
+  const text = `
+    UPDATE order_header
+    SET employee_id = $1
+    WHERE id = $2
+    RETURNING *
+  `;
+  const result = await pool.query(text, [employeeId, orderId]);
+  return result.rows[0];
+};
+
 const updateOrderStatus = async (orderId, status) => {
   const text = `
     UPDATE order_header
@@ -95,6 +106,7 @@ export {
   getOrderHeaderById,
   getOrdersByCustomerId,
   createOrderHeader,
+  updateOrderEmployee,
   updateOrderStatus,
   countOrders
 };
