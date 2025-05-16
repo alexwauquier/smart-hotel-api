@@ -408,9 +408,9 @@ const updateOrderEmployee = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
-    const { status } = req.body;
+    const statusId = req.body.status_id;
 
-    if (!status) {
+    if (!statusId) {
       return res.status(400).json({
         success: false,
         error: {
@@ -422,7 +422,7 @@ const updateOrderStatus = async (req, res) => {
 
     const updatedOrder = await orderHeaderModel.updateOrderStatus(
       orderId,
-      status
+      statusId
     );
 
     if (!updatedOrder) {
