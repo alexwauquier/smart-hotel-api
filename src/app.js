@@ -8,11 +8,13 @@ import productRouter from './routes/product.router.js';
 import sensorsRouter from './routes/sensor.router.js';
 import spaceRouter from './routes/space.router.js';
 import { verifyToken, verifyRole } from './middlewares/auth.middleware.js';
+import rateLimiter from './middlewares/rate-limiter.middleware.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(rateLimiter);
 
 app.get('/', (req, res) => {
   res.send('Smart Hotel RESTful API');
