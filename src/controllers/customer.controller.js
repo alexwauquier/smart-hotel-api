@@ -8,9 +8,17 @@ const getCustomers = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 50;
     const spaceId = parseInt(req.query.space_id) || null;
+    const sortBy = req.query.sort_by || 'id';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
-    const customers = await customerModel.getCustomers(size, offset, spaceId);
+    const customers = await customerModel.getCustomers(
+      size,
+      offset,
+      spaceId,
+      sortBy,
+      sortOrder
+    );
 
     if (!customers.length) {
       return res.status(404).json({
@@ -45,8 +53,11 @@ const getCustomers = async (req, res) => {
     const totalCustomers = await customerModel.countCustomers(spaceId);
     const totalPages = Math.ceil(totalCustomers / size);
 
+    const sortByParam = sortBy ? `&sort_by=${sortBy}` : '';
+    const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
+
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/customers?page=${targetPage}&size=${size}${spaceParam}`;
+      `${baseUrl}/api/customers?page=${targetPage}&size=${size}${spaceParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),

@@ -7,9 +7,18 @@ const getSpaces = async (req, res) => {
     const size = parseInt(req.query.size) || 50;
     const typeId = req.query.type_id || null;
     const capacity = parseInt(req.query.capacity) || null;
+    const sortBy = req.query.sort_by || 'id';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
-    const spaces = await spaceModel.getSpaces(size, offset, typeId, capacity);
+    const spaces = await spaceModel.getSpaces(
+      size,
+      offset,
+      typeId,
+      capacity,
+      sortBy,
+      sortOrder
+    );
 
     if (!spaces.length) {
       return res.status(404).json({
@@ -43,8 +52,11 @@ const getSpaces = async (req, res) => {
     const totalSpaces = await spaceModel.countSpaces(typeId, capacity);
     const totalPages = Math.ceil(totalSpaces / size);
 
+    const sortByParam = sortBy ? `&sort_by=${sortBy}` : '';
+    const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
+
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/spaces?page=${targetPage}&size=${size}${typeParam}${capacityParam}`;
+      `${baseUrl}/api/spaces?page=${targetPage}&size=${size}${typeParam}${capacityParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),

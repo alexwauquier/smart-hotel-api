@@ -1,6 +1,6 @@
 import pool from '../config/db.js';
 
-const getOrderHeaders = async (limit, offset, employeeId, statusId, date) => {
+const getOrderHeaders = async (limit, offset, employeeId, statusId, date, sortBy, sortOrder) => {
   let whereClauses = [];
   let values = [];
 
@@ -26,10 +26,26 @@ const getOrderHeaders = async (limit, offset, employeeId, statusId, date) => {
   const where =
     whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
+  const allowedSortColumns = [
+    'id',
+    'date',
+    'customer_id',
+    'employee_id',
+    'space_id',
+    'status_id',
+    'is_paid'
+  ];
+
+  if (!allowedSortColumns.includes(sortBy)) {
+    sortBy = 'id';
+  }
+
+  sortOrder = sortOrder === 'desc' ? 'DESC' : 'ASC';
+
   const text = `
     SELECT * FROM order_header
     ${where}
-    ORDER BY id ASC
+    ORDER BY ${sortBy} ${sortOrder}
     LIMIT $${values.length + 1}
     OFFSET $${values.length + 2}
   `;

@@ -9,9 +9,18 @@ const getSensors = async (req, res) => {
     const size = parseInt(req.query.size) || 50;
     const typeId = req.query.type_id || null;
     const spaceId = parseInt(req.query.space_id) || null;
+    const sortBy = req.query.sort_by || 'id';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
-    const sensors = await sensorModel.getSensors(size, offset, typeId, spaceId);
+    const sensors = await sensorModel.getSensors(
+      size,
+      offset,
+      typeId,
+      spaceId,
+      sortBy,
+      sortOrder
+    );
 
     if (!sensors.length) {
       return res.status(404).json({
@@ -53,8 +62,11 @@ const getSensors = async (req, res) => {
     const totalSensors = await sensorModel.countSensors(typeId, spaceId);
     const totalPages = Math.ceil(totalSensors / size);
 
+    const sortByParam = sortBy ? `&sort_by=${sortBy}` : '';
+    const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
+
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/sensors?page=${targetPage}&size=${size}${typeParam}${spaceParam}`;
+      `${baseUrl}/api/sensors?page=${targetPage}&size=${size}${typeParam}${spaceParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),
@@ -141,10 +153,14 @@ const getSensorMeasurements = async (req, res) => {
   try {
     const { sensorId } = req.params;
     const range = req.query.range || undefined;
+    const sortBy = req.query.sort_by || 'timestamp';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'asc' ? 'asc' : 'desc';
 
     const sensorMeasurements = await measurementModel.getMeasurementsBySensorId(
       sensorId,
-      range
+      range,
+      sortBy,
+      sortOrder
     );
 
     if (!sensorMeasurements.length) {

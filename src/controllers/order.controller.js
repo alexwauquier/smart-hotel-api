@@ -14,6 +14,8 @@ const getOrders = async (req, res) => {
     const employeeId = req.query.employee_id;
     const statusId = req.query.status_id || null;
     const date = req.query.date || null;
+    const sortBy = req.query.sort_by || 'id';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const orders = await orderHeaderModel.getOrderHeaders(
@@ -21,7 +23,9 @@ const getOrders = async (req, res) => {
       offset,
       employeeId,
       statusId,
-      date
+      date,
+      sortBy,
+      sortOrder
     );
 
     if (!orders.length) {
@@ -75,8 +79,11 @@ const getOrders = async (req, res) => {
     const totalOrders = await orderHeaderModel.countOrders(statusParam);
     const totalPages = Math.ceil(totalOrders / size);
 
+    const sortByParam = sortBy ? `&sort_by=${sortBy}` : '';
+    const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
+
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/orders?page=${targetPage}&size=${size}${statusParam}`;
+      `${baseUrl}/api/orders?page=${targetPage}&size=${size}${statusParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),

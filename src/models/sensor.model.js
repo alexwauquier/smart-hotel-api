@@ -1,6 +1,6 @@
 import pool from '../config/db.js';
 
-const getSensors = async (limit, offset, typeId, spaceId) => {
+const getSensors = async (limit, offset, typeId, spaceId, sortBy, sortOrder) => {
   let whereClauses = [];
   let values = [];
 
@@ -17,10 +17,23 @@ const getSensors = async (limit, offset, typeId, spaceId) => {
   const where =
     whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
+  const allowedSortColumns = [
+    'id',
+    'name',
+    'type_id',
+    'space_id'
+  ];
+
+  if (!allowedSortColumns.includes(sortBy)) {
+    sortBy = 'id';
+  }
+
+  sortOrder = sortOrder === 'desc' ? 'DESC' : 'ASC';
+
   const text = `
     SELECT * FROM sensor
     ${where}
-    ORDER BY id ASC
+    ORDER BY ${sortBy} ${sortOrder}
     LIMIT $${values.length + 1}
     OFFSET $${values.length + 2}
   `;

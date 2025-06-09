@@ -7,13 +7,17 @@ const getProducts = async (req, res) => {
     const size = parseInt(req.query.size) || 50;
     const typeId = req.query.type_id || null;
     const containsAlcohol = req.query.contains_alcohol || null;
+    const sortBy = req.query.sort_by || 'id';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const products = await productModel.getProducts(
       size,
       offset,
       typeId,
-      containsAlcohol
+      containsAlcohol,
+      sortBy,
+      sortOrder
     );
 
     if (!products.length) {
@@ -61,8 +65,11 @@ const getProducts = async (req, res) => {
     );
     const totalPages = Math.ceil(totalProducts / size);
 
+    const sortByParam = sortBy ? `&sort_by=${sortBy}` : '';
+    const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
+
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/products?page=${targetPage}&size=${size}${typeParam}${containsAlcoholParam}`;
+      `${baseUrl}/api/products?page=${targetPage}&size=${size}${typeParam}${containsAlcoholParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),

@@ -7,9 +7,17 @@ const getEmployees = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const size = parseInt(req.query.size) || 50;
     const typeId = req.query.type_id || null;
+    const sortBy = req.query.sort_by || 'id';
+    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
-    const employees = await employeeModel.getEmployees(size, offset, typeId);
+    const employees = await employeeModel.getEmployees(
+      size,
+      offset,
+      typeId,
+      sortBy,
+      sortOrder
+    );
 
     if (!employees.length) {
       return res.status(404).json({
@@ -45,8 +53,11 @@ const getEmployees = async (req, res) => {
     const totalEmployees = await employeeModel.countEmployees(typeId);
     const totalPages = Math.ceil(totalEmployees / size);
 
+    const sortByParam = sortBy ? `&sort_by=${sortBy}` : '';
+    const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
+
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/employees?page=${targetPage}&size=${size}${typeParam}`;
+      `${baseUrl}/api/employees?page=${targetPage}&size=${size}${typeParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),

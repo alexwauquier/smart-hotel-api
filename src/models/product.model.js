@@ -1,6 +1,6 @@
 import pool from '../config/db.js';
 
-const getProducts = async (limit, offset, typeId, containsAlcohol) => {
+const getProducts = async (limit, offset, typeId, containsAlcohol, sortBy, sortOrder) => {
   let whereClauses = [];
   let values = [];
 
@@ -17,10 +17,29 @@ const getProducts = async (limit, offset, typeId, containsAlcohol) => {
   const where =
     whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
+  const allowedSortColumns = [
+    'id',
+    'name',
+    'description',
+    'ingredients',
+    'type_id',
+    'contains_alcohol',
+    'unit_price',
+    'stock_quantity',
+    'limit_quantity',
+    'image_url',
+  ];
+
+  if (!allowedSortColumns.includes(sortBy)) {
+    sortBy = 'id';
+  }
+
+  sortOrder = sortOrder === 'desc' ? 'DESC' : 'ASC';
+
   const text = `
     SELECT * FROM product
     ${where}
-    ORDER BY id ASC
+    ORDER BY ${sortBy} ${sortOrder}
     LIMIT $${values.length + 1}
     OFFSET $${values.length + 2}
   `;

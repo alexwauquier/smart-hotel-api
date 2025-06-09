@@ -1,6 +1,6 @@
 import pool from '../config/db.js';
 
-const getEmployees = async (limit, offset, typeId) => {
+const getEmployees = async (limit, offset, typeId, sortBy, sortOrder) => {
   let whereClauses = [];
   let values = [];
 
@@ -12,11 +12,25 @@ const getEmployees = async (limit, offset, typeId) => {
   const where =
     whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
+  const allowedSortColumns = [
+    'id',
+    'first_name',
+    'last_name',
+    'username',
+    'type_id'
+  ];
+
+  if (!allowedSortColumns.includes(sortBy)) {
+    sortBy = 'id';
+  }
+
+  sortOrder = sortOrder === 'desc' ? 'DESC' : 'ASC';
+
   const text = `
     SELECT id, first_name, last_name, username, type_id
     FROM employee
     ${where}
-    ORDER BY id ASC
+    ORDER BY ${sortBy} ${sortOrder}
     LIMIT $${values.length + 1}
     OFFSET $${values.length + 2}
   `;
