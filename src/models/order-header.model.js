@@ -1,6 +1,6 @@
 import pool from '../config/db.js';
 
-const getOrderHeaders = async (limit, offset, employeeId, statusId) => {
+const getOrderHeaders = async (limit, offset, employeeId, statusId, date) => {
   let whereClauses = [];
   let values = [];
 
@@ -16,6 +16,11 @@ const getOrderHeaders = async (limit, offset, employeeId, statusId) => {
   if (statusId) {
     values.push(statusId);
     whereClauses.push(`status_id = $${values.length}`);
+  }
+
+  if (date) {
+    values.push(date);
+    whereClauses.push(`date::date = $${values.length}`);
   }
 
   const where =
