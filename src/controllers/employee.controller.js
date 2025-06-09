@@ -55,7 +55,7 @@ const getEmployees = async (req, res) => {
       next: page < totalPages ? buildLink(page + 1) : null
     };
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       meta: {
         page: {
@@ -71,7 +71,7 @@ const getEmployees = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -101,7 +101,7 @@ const getEmployee = async (req, res) => {
       employee.type_id
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         employee: {
@@ -117,7 +117,7 @@ const getEmployee = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -161,7 +161,7 @@ const createEmployee = async (req, res) => {
       newEmployee.type_id
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         employee: {
@@ -177,7 +177,7 @@ const createEmployee = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -222,7 +222,7 @@ const updateEmployee = async (req, res) => {
       updatedEmployee.type_id
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         employee: {
@@ -238,7 +238,7 @@ const updateEmployee = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -264,12 +264,12 @@ const deleteEmployee = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Employee successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

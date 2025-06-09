@@ -71,7 +71,7 @@ const getProducts = async (req, res) => {
       next: page < totalPages ? buildLink(page + 1) : null
     };
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       meta: {
         page: {
@@ -87,7 +87,7 @@ const getProducts = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -117,7 +117,7 @@ const getProduct = async (req, res) => {
       product.type_id
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         product: {
@@ -138,7 +138,7 @@ const getProduct = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -188,7 +188,7 @@ const createProduct = async (req, res) => {
       newProduct.type_id
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         product: {
@@ -209,7 +209,7 @@ const createProduct = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -260,7 +260,7 @@ const updateProduct = async (req, res) => {
       updatedProduct.type_id
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         product: {
@@ -281,7 +281,7 @@ const updateProduct = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -307,12 +307,12 @@ const deleteProduct = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Product successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

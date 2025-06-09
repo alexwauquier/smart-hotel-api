@@ -14,14 +14,14 @@ const getAllSpaceTypes = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         space_types: spaceTypes
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -47,14 +47,14 @@ const getSpaceType = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         space_type: spaceType
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -80,14 +80,14 @@ const createSpaceType = async (req, res) => {
 
     const newSpaceType = await spaceTypeModel.createSpaceType({ id, label });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         space_type: newSpaceType
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -117,14 +117,14 @@ const updateSpaceType = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         space_type: updatedSpaceType
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -150,12 +150,12 @@ const deleteSpaceType = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Space type successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

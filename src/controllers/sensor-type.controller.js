@@ -14,14 +14,14 @@ const getAllSensorTypes = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         sensor_types: sensorTypes
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -47,14 +47,14 @@ const getSensorType = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         sensor_type: sensorType
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -80,14 +80,14 @@ const createSensorType = async (req, res) => {
 
     const newSensorType = await sensorTypeModel.createSensorType({ id, label });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         sensor_type: newSensorType
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -117,14 +117,14 @@ const updateSensorType = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         sensor_type: updatedSensorType
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -150,12 +150,12 @@ const deleteSensorType = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Sensor type successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

@@ -14,14 +14,14 @@ const getAllOrderStatuses = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         order_statuses: orderStatuses
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -47,14 +47,14 @@ const getOrderStatus = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         order_status: orderStatus
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -83,14 +83,14 @@ const createOrderStatus = async (req, res) => {
       label
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         order_status: newOrderStatus
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -120,14 +120,14 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         order_status: updatedOrderStatus
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -154,12 +154,12 @@ const deleteOrderStatus = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Order status successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

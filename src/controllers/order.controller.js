@@ -83,7 +83,7 @@ const getOrders = async (req, res) => {
       next: page < totalPages ? buildLink(page + 1) : null
     };
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       meta: {
         page: {
@@ -99,7 +99,7 @@ const getOrders = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -156,7 +156,7 @@ const getOrderDetails = async (req, res) => {
       return total + line.product.unit_price * line.quantity;
     }, 0);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         order: {
@@ -185,7 +185,7 @@ const getOrderDetails = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -263,7 +263,7 @@ const createOrder = async (req, res) => {
       return total + line.product.unit_price * line.quantity;
     }, 0);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         order: {
@@ -293,7 +293,7 @@ const createOrder = async (req, res) => {
     });
   } catch (err) {
     await client.query('ROLLBACK');
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -366,7 +366,7 @@ const updateOrderEmployee = async (req, res) => {
       return total + line.product.unit_price * line.quantity;
     }, 0);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         order: {
@@ -395,7 +395,7 @@ const updateOrderEmployee = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -466,7 +466,7 @@ const updateOrderStatus = async (req, res) => {
       return total + line.product.unit_price * line.quantity;
     }, 0);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         order: {
@@ -495,7 +495,7 @@ const updateOrderStatus = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

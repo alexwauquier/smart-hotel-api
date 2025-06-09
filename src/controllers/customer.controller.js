@@ -55,7 +55,7 @@ const getCustomers = async (req, res) => {
       next: page < totalPages ? buildLink(page + 1) : null
     };
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       meta: {
         page: {
@@ -71,7 +71,7 @@ const getCustomers = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -99,7 +99,7 @@ const getCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(customer.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         customer: {
@@ -116,7 +116,7 @@ const getCustomer = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -168,7 +168,7 @@ const getCustomerOrders = async (req, res) => {
     const customer = await customerModel.getCustomerById(customerId);
     const space = await spaceModel.getSpaceById(customer.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         customer: {
@@ -186,7 +186,7 @@ const getCustomerOrders = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -227,7 +227,7 @@ const createCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(newCustomer.space_id);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         customer: {
@@ -244,7 +244,7 @@ const createCustomer = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -280,7 +280,7 @@ const updateCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(updatedCustomer.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         customer: {
@@ -297,7 +297,7 @@ const updateCustomer = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -323,12 +323,12 @@ const deleteCustomer = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Customer successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

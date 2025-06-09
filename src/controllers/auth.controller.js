@@ -42,7 +42,7 @@ const loginCustomer = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(customer.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         customer: {
@@ -60,7 +60,7 @@ const loginCustomer = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -121,7 +121,7 @@ const loginEmployee = async (req, res) => {
       employee.type_id
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         employee: {
@@ -137,7 +137,7 @@ const loginEmployee = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

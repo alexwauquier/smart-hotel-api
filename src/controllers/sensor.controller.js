@@ -63,7 +63,7 @@ const getSensors = async (req, res) => {
       next: page < totalPages ? buildLink(page + 1) : null
     };
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       meta: {
         page: {
@@ -79,7 +79,7 @@ const getSensors = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -109,7 +109,7 @@ const getSensor = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(sensor.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         sensor: {
@@ -127,7 +127,7 @@ const getSensor = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -161,7 +161,7 @@ const getSensorMeasurements = async (req, res) => {
     const sensorType = await sensorTypeModel.getSensorTypeById(sensor.type_id);
     const space = await spaceModel.getSpaceById(sensor.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         sensor: {
@@ -180,7 +180,7 @@ const getSensorMeasurements = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -211,7 +211,7 @@ const createSensorMeasurement = async (req, res) => {
     });
     const sensor = await sensorModel.getSensorById(sensorId);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         measurement: {
@@ -222,7 +222,7 @@ const createSensorMeasurement = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -258,7 +258,7 @@ const createSensor = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(newSensor.space_id);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         sensor: {
@@ -276,7 +276,7 @@ const createSensor = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -313,7 +313,7 @@ const updateSensor = async (req, res) => {
 
     const space = await spaceModel.getSpaceById(updatedSensor.space_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         sensor: {
@@ -331,7 +331,7 @@ const updateSensor = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -357,12 +357,12 @@ const deleteSensor = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Sensor successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,

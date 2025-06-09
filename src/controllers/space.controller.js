@@ -53,7 +53,7 @@ const getSpaces = async (req, res) => {
       next: page < totalPages ? buildLink(page + 1) : null
     };
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       meta: {
         page: {
@@ -69,7 +69,7 @@ const getSpaces = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -97,7 +97,7 @@ const getSpace = async (req, res) => {
 
     const spaceType = await spaceTypeModel.getSpaceTypeById(space.type_id);
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         space: {
@@ -112,7 +112,7 @@ const getSpace = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -145,7 +145,7 @@ const createSpace = async (req, res) => {
 
     const spaceType = await spaceTypeModel.getSpaceTypeById(newSpace.type_id);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       data: {
         space: {
@@ -160,7 +160,7 @@ const createSpace = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -196,7 +196,7 @@ const updateSpace = async (req, res) => {
       updatedSpace.type_id
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       data: {
         space: {
@@ -211,7 +211,7 @@ const updateSpace = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
@@ -237,12 +237,12 @@ const deleteSpace = async (req, res) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: 'Space successfully deleted'
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: {
         code: 500,
