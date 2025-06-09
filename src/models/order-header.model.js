@@ -1,6 +1,14 @@
 import pool from '../config/db.js';
 
-const getOrderHeaders = async (limit, offset, employeeId, statusId, date, sortBy, sortOrder) => {
+const getOrderHeaders = async (
+  limit,
+  offset,
+  employeeId,
+  statusId,
+  date,
+  sortBy,
+  sortOrder
+) => {
   let whereClauses = [];
   let values = [];
 

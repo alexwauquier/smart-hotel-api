@@ -10,7 +10,8 @@ const getSensors = async (req, res) => {
     const typeId = req.query.type_id || null;
     const spaceId = parseInt(req.query.space_id) || null;
     const sortBy = req.query.sort_by || 'id';
-    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
+    const sortOrder =
+      req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const sensors = await sensorModel.getSensors(
@@ -154,7 +155,8 @@ const getSensorMeasurements = async (req, res) => {
     const { sensorId } = req.params;
     const range = req.query.range || undefined;
     const sortBy = req.query.sort_by || 'timestamp';
-    const sortOrder = req.query.sort_order?.toLowerCase() === 'asc' ? 'asc' : 'desc';
+    const sortOrder =
+      req.query.sort_order?.toLowerCase() === 'asc' ? 'asc' : 'desc';
 
     const sensorMeasurements = await measurementModel.getMeasurementsBySensorId(
       sensorId,

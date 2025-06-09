@@ -8,7 +8,8 @@ const getEmployees = async (req, res) => {
     const size = parseInt(req.query.size) || 50;
     const typeId = req.query.type_id || null;
     const sortBy = req.query.sort_by || 'id';
-    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
+    const sortOrder =
+      req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const employees = await employeeModel.getEmployees(

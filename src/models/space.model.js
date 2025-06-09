@@ -1,6 +1,13 @@
 import pool from '../config/db.js';
 
-const getSpaces = async (limit, offset, typeId, capacity, sortBy, sortOrder) => {
+const getSpaces = async (
+  limit,
+  offset,
+  typeId,
+  capacity,
+  sortBy,
+  sortOrder
+) => {
   let whereClauses = [];
   let values = [];
 
@@ -17,12 +24,7 @@ const getSpaces = async (limit, offset, typeId, capacity, sortBy, sortOrder) => 
   const where =
     whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
-  const allowedSortColumns = [
-    'id',
-    'name',
-    'type_id',
-    'capacity'
-  ];
+  const allowedSortColumns = ['id', 'name', 'type_id', 'capacity'];
 
   if (!allowedSortColumns.includes(sortBy)) {
     sortBy = 'id';

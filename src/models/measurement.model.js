@@ -1,6 +1,11 @@
 import pool from '../config/db.js';
 
-const getMeasurementsBySensorId = async (sensorId, range = 'last_30_days', sortBy, sortOrder) => {
+const getMeasurementsBySensorId = async (
+  sensorId,
+  range = 'last_30_days',
+  sortBy,
+  sortOrder
+) => {
   let text = `
     SELECT id, value, timestamp FROM sensor_measurement
     WHERE sensor_id = $1
@@ -15,12 +20,7 @@ const getMeasurementsBySensorId = async (sensorId, range = 'last_30_days', sortB
       "Invalid 'range' parameter. Use 'last_30_days' (default), 'last_7_days' or 'last_24_hours'."
     );
 
-  const allowedSortColumns = [
-    'id',
-    'sensor_id',
-    'value',
-    'timestamp'
-  ];
+  const allowedSortColumns = ['id', 'sensor_id', 'value', 'timestamp'];
 
   if (!allowedSortColumns.includes(sortBy)) {
     sortBy = 'timestamp';

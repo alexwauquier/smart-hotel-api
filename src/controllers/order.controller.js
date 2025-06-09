@@ -15,7 +15,8 @@ const getOrders = async (req, res) => {
     const statusId = req.query.status_id || null;
     const date = req.query.date || null;
     const sortBy = req.query.sort_by || 'id';
-    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
+    const sortOrder =
+      req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const orders = await orderHeaderModel.getOrderHeaders(
@@ -414,7 +415,7 @@ const updateOrderEmployee = async (req, res) => {
       }
     });
   }
-}
+};
 
 const updateOrderStatus = async (req, res) => {
   try {
@@ -516,4 +517,10 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-export { getOrders, getOrderDetails, createOrder, updateOrderEmployee, updateOrderStatus };
+export {
+  getOrders,
+  getOrderDetails,
+  createOrder,
+  updateOrderEmployee,
+  updateOrderStatus
+};

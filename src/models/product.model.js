@@ -1,6 +1,13 @@
 import pool from '../config/db.js';
 
-const getProducts = async (limit, offset, typeId, containsAlcohol, sortBy, sortOrder) => {
+const getProducts = async (
+  limit,
+  offset,
+  typeId,
+  containsAlcohol,
+  sortBy,
+  sortOrder
+) => {
   let whereClauses = [];
   let values = [];
 
@@ -27,7 +34,7 @@ const getProducts = async (limit, offset, typeId, containsAlcohol, sortBy, sortO
     'unit_price',
     'stock_quantity',
     'limit_quantity',
-    'image_url',
+    'image_url'
   ];
 
   if (!allowedSortColumns.includes(sortBy)) {

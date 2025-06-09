@@ -8,7 +8,8 @@ const getSpaces = async (req, res) => {
     const typeId = req.query.type_id || null;
     const capacity = parseInt(req.query.capacity) || null;
     const sortBy = req.query.sort_by || 'id';
-    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
+    const sortOrder =
+      req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const spaces = await spaceModel.getSpaces(

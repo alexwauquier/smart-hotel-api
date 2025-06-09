@@ -9,7 +9,8 @@ const getCustomers = async (req, res) => {
     const size = parseInt(req.query.size) || 50;
     const spaceId = parseInt(req.query.space_id) || null;
     const sortBy = req.query.sort_by || 'id';
-    const sortOrder = req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
+    const sortOrder =
+      req.query.sort_order?.toLowerCase() === 'desc' ? 'desc' : 'asc';
     const offset = (page - 1) * size;
 
     const customers = await customerModel.getCustomers(
@@ -209,16 +210,15 @@ const getCustomerOrders = async (req, res) => {
 
 const createCustomer = async (req, res) => {
   try {
-    const { first_name: firstName, last_name: lastName, arrival_date: arrivalDate, departure_date: departureDate, space_id: spaceId } =
-      req.body;
+    const {
+      first_name: firstName,
+      last_name: lastName,
+      arrival_date: arrivalDate,
+      departure_date: departureDate,
+      space_id: spaceId
+    } = req.body;
 
-    if (
-      !firstName ||
-      !lastName ||
-      !arrivalDate ||
-      !departureDate ||
-      !spaceId
-    ) {
+    if (!firstName || !lastName || !arrivalDate || !departureDate || !spaceId) {
       return res.status(400).json({
         success: false,
         error: {
@@ -268,8 +268,13 @@ const createCustomer = async (req, res) => {
 const updateCustomer = async (req, res) => {
   try {
     const { customerId } = req.params;
-    const { first_name: firstName, last_name: lastName, arrival_date: arrivalDate, departure_date: departureDate, space_id: spaceId } =
-      req.body;
+    const {
+      first_name: firstName,
+      last_name: lastName,
+      arrival_date: arrivalDate,
+      departure_date: departureDate,
+      space_id: spaceId
+    } = req.body;
 
     const updatedCustomer = await customerModel.updateCustomer(customerId, {
       firstName,
