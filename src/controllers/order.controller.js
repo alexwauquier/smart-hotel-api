@@ -74,7 +74,9 @@ const getOrders = async (req, res) => {
     );
 
     const baseUrl = process.env.API_BASE_URL;
+    const employeeParam = employeeId ? `&employee_id=${employeeId}` : '';
     const statusParam = statusId ? `&status_id=${statusId}` : '';
+    const dateParam = date ? `&date=${date}` : '';
 
     const totalOrders = await orderHeaderModel.countOrders(statusParam);
     const totalPages = Math.ceil(totalOrders / size);
@@ -83,7 +85,7 @@ const getOrders = async (req, res) => {
     const sortOrderParam = sortOrder ? `&sort_order=${sortOrder}` : '';
 
     const buildLink = (targetPage) =>
-      `${baseUrl}/api/orders?page=${targetPage}&size=${size}${statusParam}${sortByParam}${sortOrderParam}`;
+      `${baseUrl}/api/orders?page=${targetPage}&size=${size}${employeeParam}${statusParam}${dateParam}${sortByParam}${sortOrderParam}`;
 
     const links = {
       first: buildLink(1),
