@@ -8,7 +8,6 @@ const limiter = rateLimit({
   keyGenerator: (req, res) => {
     const ip = req.ip;
     const ua = req.headers['user-agent'] || 'unknown';
-    console.log(ip + '-' + ua);
     return ip + '-' + ua;
   },
   message: {

@@ -198,7 +198,7 @@ const updateEmployee = async (req, res) => {
       type_id: typeId
     } = req.body;
 
-    const passwordHash = await argon2.hash(password);
+    const passwordHash = password ? await argon2.hash(password) : null;
 
     const updatedEmployee = await employeeModel.updateEmployee(employeeId, {
       firstName,
